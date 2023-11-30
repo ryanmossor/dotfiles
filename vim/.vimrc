@@ -25,6 +25,9 @@ set history=10000
 noremap <leader>w <Esc>:w<CR>
 nnoremap <leader>x :q!<CR>
 
+" Save file as sudo
+cmap w!! w !sudo tee > /dev/null %
+
 " Toggle line wrap
 "nnoremap gw :set wrap!<CR>
 
