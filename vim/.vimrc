@@ -104,7 +104,7 @@ nnoremap <leader>Y "+y$
 xnoremap <leader>Y "+y
 
 " Cut to system clipboard
-xnoremap <leader>X "+x
+xnoremap <leader>x "+x
 
 " Paste from system clipboard
 nnoremap <leader>p "+p
