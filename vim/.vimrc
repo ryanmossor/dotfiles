@@ -25,6 +25,10 @@ set history=10000
 noremap <leader>w <Esc>:w<CR>
 nnoremap <leader>x :q!<CR>
 
+" Enable standard Ctrl+Backspace/Ctrl+Del behavior in insert mode
+inoremap <C-Del> <C-o>dw
+inoremap <C-BS> <C-o>db
+
 " Save file as sudo
 cmap w!! w !sudo tee > /dev/null %
 
