@@ -51,7 +51,6 @@ windows=(
     pwsh
     vim # vim goes to both $HOME and $WIN_HOME
     vsvim
-    wsl
 )
 
 stow_apps() {
