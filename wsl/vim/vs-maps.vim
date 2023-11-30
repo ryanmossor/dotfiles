@@ -24,8 +24,7 @@ inoremap <C-h> <C-o>:vsc Edit.ParameterInfo<CR>
 nnoremap <leader>gd :vsc Edit.PeekDifference<CR>
 
 " (g)o (c)lose (o)thers
-"nnoremap gco :vsc File.CloseAllButThis<CR> 
-"nnoremap <leader>qo :vsc File.CloseAllButThis<CR>
+nnoremap gco :vsc File.CloseAllButThis<CR> 
 
 nnoremap <leader>r :vsc Refactor.Rename<CR>
 "nnoremap gR :vsc Refactor.Rename<CR>
@@ -34,12 +33,13 @@ nnoremap <C-,> :vsc Tools.Options<CR>
 
 noremap <C-o> :vsc View.NavigateBackward<CR>
 noremap <C-i> :vsc View.NavigateForward<CR>
+" (c)ode (a)ctions
+nnoremap <leader>ca :vsc View.QuickActions<CR>
 nnoremap <leader>. :vsc View.QuickActions<CR>
-nnoremap gca :vsc View.QuickActions<CR>
 nnoremap <leader>E :vsc View.SolutionExplorer<CR>
 
-" (g)o (c)lose (o)thers
-nnoremap gco :vsc Window.CloseAllButPinned<CR>
+" (g)o (c)lose (u)npinned
+nnoremap gcu :vsc Window.CloseAllButPinned<CR>
 nnoremap Q :vsc Window.CloseAllDocuments<CR>
 nnoremap <leader>P :vsc Window.PinTab<CR>
 

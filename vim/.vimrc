@@ -23,7 +23,7 @@ set history=10000
 "set clipboard=unnamed
 
 noremap <leader>w <Esc>:w<CR>
-noremap <leader>x <Esc>:q!<CR>
+nnoremap <leader>x :q!<CR>
 
 " Toggle line wrap
 "nnoremap gw :set wrap!<CR>
@@ -46,10 +46,10 @@ xnoremap <leader>a :sort /\<\S\+\>\%>0<CR>
 
 " Substitute with 'very magic' mode enabled (standard regex symbols)
 "nnoremap <leader>s :%s/\v/gI<Left><Left><Left>
-nnoremap s :%s/\v/gcI<Left><Left><Left><Left>
+nnoremap s :%s/\v/gI<Left><Left><Left>
 
 " Substitute word under cursor
-nnoremap <leader>s :%s/\v<<C-r><C-w>>//gcI<Left><Left><Left><Left>
+nnoremap <leader>s :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
 
 " Create horizontal/vertical splits
 "noremap <leader>h <Esc><C-w>s
@@ -82,8 +82,6 @@ nnoremap n /<CR>zz
 nnoremap N ?<CR>zz
 
 " Keep current text in register when pasting
-"xnoremap <leader>p "_dP
-"xnoremap p "_dgP
 xnoremap p "_dP
 
 " Delete to void register; preserves text currently in register
@@ -102,8 +100,8 @@ xnoremap <leader>Y "+y
 xnoremap <leader>X "+x
 
 " Paste from system clipboard
-nnoremap <leader>p "+gP
-xnoremap <leader>p "_d"+gP
+nnoremap <leader>p "+p
+xnoremap <leader>p "_d"+P
 
 " H/L go to start/end of line
 noremap H 0^
@@ -115,7 +113,6 @@ onoremap L $
 "nnoremap U <C-r>
 
 " Paste from system clipboard
-"nnoremap <leader><C-v> "+gP
 cnoremap <C-v> <C-R>+
 inoremap <C-v> <Esc>"+gpi
 
