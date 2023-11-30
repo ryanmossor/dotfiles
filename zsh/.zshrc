@@ -1,6 +1,6 @@
 export EDITOR="code"
 
-[[ -z $DOTFILES ]] && export DOTFILES=$HOME/.dotfiles
+[[ -z $DOTFILES ]] && export DOTFILES=$HOME/dotfiles
 
 if [[ -x /usr/bin/fzf ]]; then
     [[ -x /usr/bin/rg ]] && export FZF_DEFAULT_COMMAND='rg -g "!{**/node_modules/*,**/.git/*}" --files --hidden --ignore'

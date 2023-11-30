@@ -9,7 +9,6 @@ packages=(
     curl
     fzf
     git
-    git-team
     htop
     jq
     neofetch
@@ -35,7 +34,7 @@ fi
 
 base=(
     bat
-    tmux
+    #tmux
     vim
     zsh
 )
@@ -43,7 +42,6 @@ base=(
 personal=(
     devilspie2
     #i3
-    mint
     rofi
 )
 
