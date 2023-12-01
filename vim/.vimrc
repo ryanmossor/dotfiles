@@ -121,7 +121,7 @@ onoremap L $
 
 " Paste from system clipboard
 cnoremap <C-v> <C-R>+
-inoremap <C-v> <Esc>"+gpi
+inoremap <C-v> <C-R>+ 
 
 " Yank entire file to system clipboard
 nnoremap <C-y> mygg"+yG`y
