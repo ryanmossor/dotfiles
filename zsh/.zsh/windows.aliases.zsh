@@ -9,10 +9,3 @@ alias screenkey='$WIN_HOME/code/KeyCastOW/build/keycastow.exe &'
 alias gt='$wsl_git_path team'
 alias gtc='$wsl_git_path commit'
 alias work='$WIN_HOME/work'
-
-dot() {
-    pushd $DOTFILES
-    git ff
-    ./stow.sh --windows
-    popd
-}

@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-GREEN="\[[\e[1;32m\]]"
-RESET="\[[\e[0m\]]"
-BLUE="\[[\e[1;34m\]]"
-PINK="\[[\e[1;38;5;219m\]]"
+GREEN="\[\e[1;32m\]"
+RESET="\[\e[0m\]"
+BLUE="\[\e[1;34m\]"
+PINK="\[\e[1;38;5;219m\]"
 
 DIR="$BLUE\w$RESET"
 BRANCH="$PINK\$(__git_ps1 ' (%s)')$RESET"
@@ -27,7 +27,7 @@ shopt -s histappend
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=20000
-HISTTIMEFORMAT="[[%m-%d-%Y %T]] "
+HISTTIMEFORMAT="[%m-%d-%Y %T] "
 
 # enable color support of ls and also add handy aliases
 if [[ -x /usr/bin/dircolors ]]; then

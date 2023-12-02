@@ -33,6 +33,8 @@ nnoremap <C-,> :vsc Tools.Options<CR>
 
 noremap <C-o> :vsc View.NavigateBackward<CR>
 noremap <C-i> :vsc View.NavigateForward<CR>
+nnoremap ] :vsc View.NextError<CR>
+nnoremap [ :vsc View.PreviousError<CR>
 " (c)ode (a)ctions
 nnoremap <leader>ca :vsc View.QuickActions<CR>
 nnoremap <leader>. :vsc View.QuickActions<CR>
@@ -43,4 +45,6 @@ nnoremap gcu :vsc Window.CloseAllButPinned<CR>
 nnoremap Q :vsc Window.CloseAllDocuments<CR>
 nnoremap <leader>P :vsc Window.PinTab<CR>
 
+" Visual Studio extension
 nnoremap <leader>VSC :vsc OpeninVisualStudioCode<CR>
+autcmd BufEnter * :vsc Edit.AddGuideline 120

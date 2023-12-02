@@ -1,5 +1,4 @@
-"let mapleader = "\<space>" 
-let mapleader = " " 
+let mapleader = "\<Space>"
 
 " Line numbers
 set number
@@ -42,7 +41,7 @@ nnoremap <leader>3 :set relativenumber!<CR>
 nnoremap <leader>c :source ~/.vimrc<CR>
 
 " Un-highlight search matches
-nnoremap <Esc> :nohlsearch<CR>
+nnoremap <Esc> <Esc>:nohlsearch<CR>
 
 " Use 'very magic' mode for search
 noremap <leader>/ /\v
@@ -115,6 +114,7 @@ noremap H 0^
 noremap L $
 onoremap H ^
 onoremap L $
+noremap ^ 0^
 
 " U to redo
 "nnoremap U <C-r>

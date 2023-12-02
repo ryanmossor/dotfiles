@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+green='\033[1;92m'
+yellow='\033[1;93m'
+clear='\033[0m'
+
+options=()
+show_help=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -p|--personal) 
+            options+=('--personal') 
+            ;;
+        -w|--windows) 
+            options+=('--windows') 
+            ;;
+        -h|--help) 
+            show_help=true 
+            ;;
+        *) echo "Unknown option: $1"
+            return 
+            ;;
+    esac
+    shift
+done
+
+if [[ "$show_help" == true ]]; then
+    echo -e "${yellow}USAGE:${clear}"
+    echo -e "    dot [OPTIONS]"
+    echo -e "\n${yellow}OPTIONS:${clear}"
+    echo -e "    ${green}-h${clear}, ${green}--help${clear}        Show this help message"
+    echo -e "    ${green}-p${clear}, ${green}--personal${clear}    Set up personal configurations"
+    echo -e "    ${green}-w${clear}, ${green}--windows${clear}     Set up Windows configurations"
+    exit
+fi
+
+pushd "$DOTFILES" || exit
+git pull
+./stow.sh "${options[@]}"
+popd || exit
+ 

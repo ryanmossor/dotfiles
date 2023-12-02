@@ -1,4 +1,3 @@
-[[ -x /usr/bin/batcat ]] && alias cat='batcat --theme=Catppuccin-mocha --paging=never'
 alias history='history -f 1'
 alias x=extract
 alias xsc='xclip -selection clipboard'
@@ -16,9 +15,8 @@ alias evrc='$EDITOR ~/.vimrc'
 
 alias hosts='cat ~/.ssh/config'
 
-fe() { du -a --exclude=".git" --exclude="node_modules" | awk '{print $2}' | fzf | xargs -ro $EDITOR ;}
-fx() { du -a --exclude=".git" --exclude="node_modules" | awk '{print $2}' | fzf | xargs realpath | tr '\n' ' ' | xclip -selection clipboard ;}
+fe() { fzf | xargs -ro $EDITOR }
+fv() { fzf | xargs -ro vim }
+fx() { fzf | xargs realpath | tr '\n' ' ' | xclip -selection clipboard }
 
-clear_git_branches() {
-    git branch | grep -vE "main|master|DEV" | xargs git branch -D
-}
+clear_git_branches() { git branch | grep -vE "main|master|DEV" | xargs git branch -D }

@@ -59,4 +59,3 @@ Set-Alias xsc clip
 
 Set-Alias screenkey "$HOME\code\KeyCastOW\build\keycastow.exe"
 Set-Alias vs "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\devenv.exe"
-

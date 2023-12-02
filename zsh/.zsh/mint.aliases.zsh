@@ -9,10 +9,3 @@ alias update_all='sudo /home/$USER/code/Scripts/update_all.sh'
 
 alias audiofix='pulseaudio -k'
 alias cursor='sudo update-alternatives --config x-cursor-theme'
-
-dot() {
-    pushd $DOTFILES
-    git ff
-    ./stow.sh --personal
-    popd
-}
