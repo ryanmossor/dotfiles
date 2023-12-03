@@ -9,6 +9,9 @@ nnoremap <leader>bs :vsc Build.BuildSolution<CR>
 "nnoremap gD :vsc Debug.ShowNextStatement<CR>
 noremap <leader>bp :vsc Debug.ToggleBreakpoint<CR>
 
+nnoremap [g :vsc Diff.PreviousDifference<CR>
+nnoremap ]g :vsc Diff.NextDifference<CR>
+
 nnoremap K :vsc Edit.QuickInfo<CR>
 nnoremap gh :vsc Edit.QuickInfo<CR>
 nnoremap gi :vsc Edit.GoToImplementation<CR>
@@ -33,8 +36,8 @@ nnoremap <C-,> :vsc Tools.Options<CR>
 
 noremap <C-o> :vsc View.NavigateBackward<CR>
 noremap <C-i> :vsc View.NavigateForward<CR>
-nnoremap ] :vsc View.NextError<CR>
-nnoremap [ :vsc View.PreviousError<CR>
+nnoremap ]d :vsc View.NextError<CR>
+nnoremap [d :vsc View.PreviousError<CR>
 " (c)ode (a)ctions
 nnoremap <leader>ca :vsc View.QuickActions<CR>
 nnoremap <leader>. :vsc View.QuickActions<CR>

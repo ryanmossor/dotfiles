@@ -55,6 +55,7 @@ function pid-kill([int]$Port) { taskkill /pid $Port /f }
 function cwd { (Get-Location) -split '\r?\n' | Select-Object -Last 1 }
 Set-Alias ll ls
 Set-Alias touch New-Item
+Set-Alias grep findstr
 Set-Alias xsc clip
 
 Set-Alias screenkey "$HOME\code\KeyCastOW\build\keycastow.exe"
