@@ -32,7 +32,7 @@ inoremap <C-BS> <C-o>db
 cmap w!! w !sudo tee > /dev/null %
 
 " Toggle line wrap
-"nnoremap gw :set wrap!<CR>
+nnoremap gw :set wrap!<CR>
 
 " Toggle relative line numbers
 nnoremap <leader>3 :set relativenumber!<CR>
@@ -133,12 +133,8 @@ nnoremap <C-y> mygg"+yG`y
 "xnoremap J :m '>+1<CR>gv=gv
 "xnoremap K :m '<-2<CR>gv=gv
 
-" VS Code move/reformat/reselect
-"xnoremap J dpV']k=gv
-"xnoremap K dkPV']k=gv
-
 " Don't move cursor when joining below line
-nnoremap J mzJ0`z
+noremap J mzJ0`z
 
 " Split (opposite of J for join)
 nnoremap S yl/<C-r>0<CR>Ncgn<C-r>0<Del><CR><Esc>n:nohlsearch<CR>

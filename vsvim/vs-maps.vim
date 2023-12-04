@@ -16,7 +16,7 @@ nnoremap K :vsc Edit.QuickInfo<CR>
 nnoremap gh :vsc Edit.QuickInfo<CR>
 nnoremap gi :vsc Edit.GoToImplementation<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
-nnoremap gw :vsc Edit.ToggleWordWrap<CR>
+"nnoremap gw :vsc Edit.ToggleWordWrap<CR>
 noremap <leader>/ :vsc Edit.ToggleLineComment<CR>
 nnoremap <C-p> :vsc Edit.GoToFile<CR>
 nnoremap <leader>f :vsc Edit.GoToFile<CR>
