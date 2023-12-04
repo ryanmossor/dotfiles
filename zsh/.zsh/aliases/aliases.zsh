@@ -13,7 +13,7 @@ if command -v xclip &> /dev/null; then
     alias clip='xclip -selection clipboard'
 elif command -v pbcopy &> /dev/null; then
     alias clip='pbcopy'
-elif [[ $(uname -a) == *Microsoft* ]]; then
+elif [[ $(uname -a) == *microsoft* ]]; then
     alias clip='clip.exe'
 fi
 
@@ -23,7 +23,7 @@ alias cgc='cat ~/.gitconfig'
 alias gp='git push origin HEAD'
 
 alias bp='dot && source ~/.zshrc && echo "~/.zshrc reloaded"'
-alias cbp='cat ~/.zsh/prompt.zsh ~/.zshrc ~/.zsh/exports.zsh'
+alias cbp='cat ~/.zshrc ~/.zsh/exports.zsh'
 alias ebp='$EDITOR ~/.zshrc'
 
 alias cvrc='cat ~/.vimrc'

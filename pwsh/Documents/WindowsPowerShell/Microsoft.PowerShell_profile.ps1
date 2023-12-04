@@ -13,10 +13,10 @@ function Write-BranchName {
             $branch = git rev-parse --short HEAD
             Write-Host " ($branch)" -ForegroundColor "red" -NoNewline
         } else {
-            Write-Host " ($branch)" -ForegroundColor "yellow" -NoNewline
+            Write-Host " ($branch)" -ForegroundColor "Magenta" -NoNewline
         }
     } catch {
-        Write-Host " (no branches yet)" -ForegroundColor "yellow" -NoNewline
+        Write-Host " (no branches yet)" -ForegroundColor "DarkMagenta" -NoNewline
     }
 }
 

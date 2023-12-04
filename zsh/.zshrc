@@ -31,22 +31,10 @@ source_file "exports.zsh"
 source_file "prompt.zsh"
 source_file "vim-mode.zsh"
 
-if command -v fzf &> /dev/null; then
-    if [[ $(uname -s) == "Darwin" ]]; then
-        fzf_ver=$(fzf --version | cut -d " " -f 1)
-        source_file "/usr/local/Cellar/fzf/$fzf_ver/shell/key-bindings.zsh"
-        source_file "/usr/local/Cellar/fzf/$fzf_ver/shell/completion.zsh"
-    else
-        fzf_dir=$(dirname $(command -v fzf))
-        source_file "$fzf_dir/key-bindings.zsh"
-        source_file "$fzf_dir/completion.zsh"
-    fi
-fi
-
 # Aliases
 source_file "aliases/aliases.zsh"
 
-if [[ $(uname -a) == *Microsoft* ]]; then
+if [[ $(uname -a) == *microsoft* ]]; then
     source_file "aliases/windows-aliases.zsh"
 elif [[ $(uname -a) == *mint* ]]; then
     source_file "aliases/mint-aliases.zsh"
@@ -54,6 +42,7 @@ fi
 
 # Plugins
 plug "Aloxaf/fzf-tab" && zstyle ':fzf-tab:*' fzf-min-height 80
+plug "joshskidmore/zsh-fzf-history-search"
 plug "le0me55i/extract"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"

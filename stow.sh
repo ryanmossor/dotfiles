@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[[ -z $WIN_HOME ]] && WIN_HOME="/mnt/c/Users/$USER"
+
 blue='\033[1;94m'
 green='\033[1;92m'
 clear='\033[0m'
@@ -12,6 +14,20 @@ stow_apps() {
     for app in "${apps[@]}"; do
         echo -e "Stowing ${green}${app}${clear} in ${blue}${target_dir}${clear}"
         stow -Rt "$target_dir" "$app"
+    done
+}
+
+copy_windows_apps() {
+    local target_dir="$1"
+    shift
+    local apps=("$@")
+    [[ -z $DOTFILES ]] && DOTFILES="$HOME/dotfiles"
+
+    for app in "${apps[@]}"; do
+        echo -e "Copying ${green}${app}${clear} to ${blue}${target_dir}${clear}"
+        pushd "$DOTFILES"/"$app" > /dev/null || exit
+        cp -r . "$target_dir"
+        popd > /dev/null || exit
     done
 }
 
@@ -51,6 +67,11 @@ install_packages() {
         sudo apt upgrade -y > /dev/null 2>&1
         sudo apt install "${packages[@]}" -y > /dev/null 2>&1
     fi
+
+    if [[ $SHELL != "/bin/zsh" ]]; then
+        echo -e "${green}Changing shell to zsh${clear}"
+        sudo chsh -s /bin/zsh "$USER"
+    fi
 }
 
 base=(
@@ -88,7 +109,7 @@ while [[ "$#" -gt 0 ]]; do
             stow_apps "$HOME" "${personal[@]}"
             ;;
         -w|--windows)
-            stow_apps "$WIN_HOME" "${windows[@]}"
+            copy_windows_apps "$WIN_HOME" "${windows[@]}"
             ;;
         *)
             echo "Unknown option: $1"
@@ -99,3 +120,9 @@ while [[ "$#" -gt 0 ]]; do
 done
  
 stow_apps "$HOME" "${base[@]}"
+
+if [[ $(uname -s) == "Darwin" ]]; then
+    bat cache --build &> /dev/null
+else
+    batcat cache --build &> /dev/null
+fi
