@@ -18,7 +18,7 @@ while [[ $# -gt 0 ]]; do
             options+=('--windows') 
             ;;
         *) echo "Unknown option: $1"
-            return 
+            exit
             ;;
     esac
     shift
