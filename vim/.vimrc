@@ -134,7 +134,7 @@ nnoremap <C-y> mygg"+yG`y
 "xnoremap K :m '<-2<CR>gv=gv
 
 " Don't move cursor when joining below line
-noremap J mzJ0`z
+nnoremap J mzJ0`z
 
 " Split (opposite of J for join)
 nnoremap S yl/<C-r>0<CR>Ncgn<C-r>0<Del><CR><Esc>n:nohlsearch<CR>
