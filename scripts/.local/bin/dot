@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+options=()
+show_help=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -h|--help) 
+            show_help=true 
+            ;;
+        -i|--install) 
+            options+=('--install') 
+            ;;
+        -p|--personal) 
+            options+=('--personal') 
+            ;;
+        -w|--windows) 
+            options+=('--windows') 
+            ;;
+        *) echo "Unknown option: $1"
+            return 
+            ;;
+    esac
+    shift
+done
+
+if [[ "$show_help" == true ]]; then
+    echo "USAGE:"
+    echo "    dot [OPTIONS]"
+    echo -e "\nOPTIONS:"
+    echo "    -h, --help        Show this help message"
+    echo "    -i, --install     Install/update required packages"
+    echo "    -p, --personal    Set up personal configurations"
+    echo "    -w, --windows     Set up Windows configurations"
+    exit
+fi
+
+pushd "$DOTFILES" > /dev/null || exit
+git pull
+./stow.sh "${options[@]}"
+popd > /dev/null || exit
+ 

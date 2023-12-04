@@ -10,8 +10,8 @@ stow_apps() {
     local apps=("$@")
 
     for app in "${apps[@]}"; do
-        stow -Rvt "$target_dir" "$app"
         echo -e "Stowing ${green}${app}${clear} in ${blue}${target_dir}${clear}"
+        stow -Rt "$target_dir" "$app"
     done
 }
 
@@ -33,18 +33,23 @@ packages=(
     zsh
 )
 
-if [[ $(uname -s) == "Darwin" ]]; then
-    brew update
-    brew upgrade
-    brew install "${packages[@]}"
-else
-    sudo apt update
-    sudo apt upgrade -y
-    sudo apt install "${packages[@]}" -y
-fi
+install_packages() {
+    echo "Updating required packages..."
+    if [[ $(uname -s) == "Darwin" ]]; then
+        brew update > /dev/null 2>&1
+        brew upgrade > /dev/null 2>&1
+        brew install "${packages[@]}" > /dev/null 2>&1
+    else
+        echo "Updating required packages..."
+        sudo apt update > /dev/null 2>&1
+        sudo apt upgrade -y > /dev/null 2>&1
+        sudo apt install "${packages[@]}" -y > /dev/null 2>&1
+    fi
+}
 
 base=(
     bat
+    scripts
     #tmux
     vim
     zsh
@@ -62,10 +67,11 @@ windows=(
     vsvim
 )
 
-stow_apps "$HOME" "${base[@]}"
-
 while [[ "$#" -gt 0 ]]; do
     case $1 in
+        -i|--install)
+            install_packages
+            ;;
         -p|--personal)
             stow_apps "$HOME" "${personal[@]}"
             ;;
@@ -80,3 +86,4 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
  
+stow_apps "$HOME" "${base[@]}"
