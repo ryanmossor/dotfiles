@@ -17,7 +17,7 @@ nnoremap gh :vsc Edit.QuickInfo<CR>
 nnoremap gi :vsc Edit.GoToImplementation<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
 nnoremap gw :vsc Edit.ToggleWordWrap<CR>
-"noremap <leader>c :vsc Edit.ToggleLineComment<CR>
+noremap <leader>/ :vsc Edit.ToggleLineComment<CR>
 nnoremap <C-p> :vsc Edit.GoToFile<CR>
 nnoremap <leader>f :vsc Edit.GoToFile<CR>
 nnoremap <leader>F :vsc Edit.FindInFiles<CR>
@@ -50,4 +50,3 @@ nnoremap <leader>P :vsc Window.PinTab<CR>
 
 " Visual Studio extension
 nnoremap <leader>VSC :vsc OpeninVisualStudioCode<CR>
-autcmd BufEnter * :vsc Edit.AddGuideline 120
