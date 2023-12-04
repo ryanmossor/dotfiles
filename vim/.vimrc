@@ -21,6 +21,9 @@ set history=10000
 " Vim and system share same clipboard
 "set clipboard=unnamed
 
+noremap j gj
+noremap k gk
+
 noremap <leader>w <Esc>:w<CR>
 nnoremap <leader>x :q!<CR>
 

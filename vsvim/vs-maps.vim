@@ -1,7 +1,7 @@
 nnoremap <leader>c :source ~/.vsvimrc<CR>
 
 " Substitute with 'very magic' mode enabled (standard regex symbols)
-nnoremap <leader>s :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
+nnoremap s :%s//gI<Left><Left><Left> 
 
 " Substitute word under cursor across entire file in "very magic" mode
 nnoremap <leader>s :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
