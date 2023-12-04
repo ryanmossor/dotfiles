@@ -15,6 +15,14 @@ stow_apps() {
     done
 }
 
+unstow_apps() {
+    local apps=("$@")
+    for app in "${apps[@]}"; do
+        echo "Removing $app"
+        stow -D "$app"
+    done
+}
+
 packages=(
     bat
     curl
@@ -23,13 +31,11 @@ packages=(
     htop
     jq
     neofetch
-    #openssh-server
     ripgrep
     stow
     tmux
     vim
     wget
-    xclip
     zsh
 )
 
@@ -69,8 +75,14 @@ windows=(
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-        -i|--install)
+        -d|-r|--delete|--remove)
+            unstow_apps "${base[@]}" "${personal[@]}" "${windows[@]}"
+            exit
+            ;;
+        -i|--init|--install)
             install_packages
+            [[ $(uname -a) == *mint* ]] && sudo apt install xclip
+            [[ $(uname -s) != "Darwin" ]] && sudo apt install openssh-server
             ;;
         -p|--personal)
             stow_apps "$HOME" "${personal[@]}"
@@ -80,7 +92,7 @@ while [[ "$#" -gt 0 ]]; do
             ;;
         *)
             echo "Unknown option: $1"
-            exit 1
+            exit
             ;;
     esac
     shift

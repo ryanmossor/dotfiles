@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+pushd "$DOTFILES" > /dev/null || exit
+./stow.sh --delete
+popd > /dev/null || exit
+ 
