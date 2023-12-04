@@ -15,6 +15,10 @@ export FZF_DEFAULT_OPTS="--reverse --border=rounded \
     --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
+export FZF_CTRL_R_OPTS="--height=80%"
+export FZF_CTRL_T_OPTS="--height=80%"
+export FZF_ALT_C_OPTS="--height=80%"
+
 [[ ! -d "$HOME/.cache/zsh" ]] && mkdir -p "$HOME/.cache/zsh"
 HISTFILE="$HOME/.cache/zsh/history"
 HISTSIZE=10000
