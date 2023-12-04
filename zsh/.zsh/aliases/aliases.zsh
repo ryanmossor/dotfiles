@@ -9,14 +9,20 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+if command -v xclip &> /dev/null; then
+    alias clip='xclip -selection clipboard'
+elif command -v pbcopy &> /dev/null; then
+    alias clip='pbcopy'
+elif [[ $(uname -a) == *Microsoft* ]]; then
+    alias clip='clip.exe'
+fi
+
 alias history='history -f 1'
-alias xsc='xclip -selection clipboard'
-alias clip='xclip -selection clipboard'
 
 alias cgc='cat ~/.gitconfig'
 alias gp='git push origin HEAD'
 
-alias bp='source ~/.zshrc && echo "~/.zshrc reloaded"'
+alias bp='dot && source ~/.zshrc && echo "~/.zshrc reloaded"'
 alias cbp='cat ~/.zsh/prompt.zsh ~/.zshrc ~/.zsh/exports.zsh'
 alias ebp='$EDITOR ~/.zshrc'
 
@@ -28,6 +34,6 @@ alias hosts='cat ~/.ssh/config'
 alias fzp='fzf --preview "$BAT --color=always --theme=Catppuccin-mocha --style=numbers --line-range=:500 {}"'
 alias fze='fzp | xargs -ro code'
 alias fzv='fzp | xargs -ro vim'
-alias fzx='fzp | xargs realpath | tr "\n" " " | xclip -selection clipboard'
+alias fzx='fzp | xargs realpath | tr "\n" " " | clip'
 
 alias clear_git_branches='git branch | grep -vE "main|master|DEV" | xargs git branch -D'

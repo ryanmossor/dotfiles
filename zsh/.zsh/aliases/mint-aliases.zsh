@@ -1,3 +1,5 @@
+alias bp='dot --personal && source ~/.zshrc && echo "~/.zshrc reloaded"'
+
 alias scl='sudo crontab -l'
 alias sce='sudo crontab -e'
 
