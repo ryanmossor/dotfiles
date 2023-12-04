@@ -47,15 +47,11 @@ nnoremap <Esc> <Esc>:nohlsearch<CR>
 " noremap <leader>/ /\v
 " noremap <leader>? ?\v
 
-" (o)rder/alphabetize selected lines based on first word
-xnoremap <leader>o :sort /\<\S\+\>\%>0<CR>
-
-" Substitute with 'very magic' mode enabled (standard regex symbols)
-"nnoremap <leader>s :%s/\v/gI<Left><Left><Left>
-nnoremap s :%s/\v/gI<Left><Left><Left>
+" Quick substitute command
+nnoremap s :%s//gI<Left><Left><Left>
 
 " Substitute word under cursor across entire file
-nnoremap <leader>s :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
+nnoremap <leader>s :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
 
 " Substitute word under cursor once; use . to repeat
 nnoremap <leader>e *Ncgn
