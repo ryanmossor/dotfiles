@@ -21,6 +21,11 @@ set history=10000
 " Vim and system share same clipboard
 "set clipboard=unnamed
 
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
 noremap j gj
 noremap k gk
 
@@ -44,7 +49,7 @@ nnoremap <leader>3 :set relativenumber!<CR>
 nnoremap <leader>c :source ~/.vimrc<CR>
 
 " Un-highlight search matches
-nnoremap <Esc> <Esc>:nohlsearch<CR>
+nnoremap <leader><leader> <Esc>:nohlsearch<CR>
 
 " Use 'very magic' mode for search
 " noremap <leader>/ /\v
