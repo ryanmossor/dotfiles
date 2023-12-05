@@ -1,4 +1,5 @@
 alias a='alias | grep -vE "auto|which|alias" | awk -F= "{ printf \"\033[1;31m%s\033[0m = \033[1;34m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
+alias fa='alias | grep -E "^fz" | awk -F= "{ printf \"\033[1;31m%s\033[0m = \033[1;34m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
 
 [[ -x $BAT ]] && alias cat='$BAT --theme=Catppuccin-mocha --paging=never'
 alias ls='ls --color=auto'
@@ -35,5 +36,6 @@ alias fzp='fzf --preview "$BAT --color=always --theme=Catppuccin-mocha --style=n
 alias fze='fzp | xargs -ro code'
 alias fzv='fzp | xargs -ro vim'
 alias fzx='fzp | xargs realpath | tr "\n" " " | clip'
+alias fzc='selected_dir=$(find "$HOME/code" "$HOME/code/work" -maxdepth 1 -mindepth 1 -type d &> /dev/null | fzf); [ -n "$selected_dir" ] && cd "$selected_dir"'
 
 alias clear_git_branches='git branch | grep -vE "main|master|DEV" | xargs git branch -D'

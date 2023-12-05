@@ -26,9 +26,6 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-noremap j gj
-noremap k gk
-
 noremap <leader>w <Esc>:w<CR>
 nnoremap <leader>x :q!<CR>
 

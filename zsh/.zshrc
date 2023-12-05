@@ -36,6 +36,9 @@ elif [[ $(uname -a) == *mint* ]]; then
     source_file "aliases/mint-aliases.zsh"
 fi
 
+# Keybindings
+bindkey -s "^[c" "fzc\n" # Alt+c for fzf change dir
+
 # Plugins
 plug "Aloxaf/fzf-tab" && zstyle ':fzf-tab:*' fzf-min-height 80
 plug "joshskidmore/zsh-fzf-history-search"
