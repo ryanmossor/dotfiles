@@ -56,6 +56,9 @@ packages=(
 )
 
 install_packages() {
+    mkdir -p "$HOME"/.config
+    mkdir -p "$HOME"/.local/bin
+
     echo "Updating required packages..."
     if [[ $(uname -s) == "Darwin" ]]; then
         brew update > /dev/null 2>&1
@@ -89,6 +92,7 @@ personal=(
 )
 
 windows=(
+    keycastow
     pwsh
     vim # vim goes to both $HOME and $WIN_HOME
     vsvim
