@@ -49,7 +49,7 @@ nnoremap <leader>3 :set relativenumber!<CR>
 nnoremap <leader>c :source ~/.vimrc<CR>
 
 " Un-highlight search matches
-nnoremap <leader><leader> <Esc>:nohlsearch<CR>
+nnoremap <leader><Esc> <Esc>:nohlsearch<CR>
 
 " Use 'very magic' mode for search
 " noremap <leader>/ /\v
