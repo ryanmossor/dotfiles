@@ -19,12 +19,8 @@ unsetopt BEEP
 # Completions
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
-# zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files. 
-
-# Colors
-autoload -Uz colors && colors 
 
 source "$HOME/.zsh/functions.zsh"
 source_file "exports.zsh"
