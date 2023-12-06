@@ -55,6 +55,12 @@ packages=(
     zsh
 )
 
+if [[ $(uname -s) == "Darwin" ]]; then
+    packages+=(fd)
+else
+    packages+=(fd-find)
+fi
+
 install_packages() {
     mkdir -p "$HOME"/.config
     mkdir -p "$HOME"/.local/bin
