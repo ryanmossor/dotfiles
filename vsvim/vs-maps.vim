@@ -42,8 +42,8 @@ nnoremap <C-,> :vsc Tools.Options<CR>
 
 noremap <C-o> :vsc View.NavigateBackward<CR>
 noremap <C-i> :vsc View.NavigateForward<CR>
-nnoremap ]d :vsc View.NextError<CR>
-nnoremap [d :vsc View.PreviousError<CR>
+nnoremap ]e :vsc View.NextError<CR>
+nnoremap [e :vsc View.PreviousError<CR>
 " (c)ode (a)ctions
 nnoremap <leader>ca :vsc View.QuickActions<CR>
 nnoremap <leader>. :vsc View.QuickActions<CR>
