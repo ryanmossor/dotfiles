@@ -65,13 +65,11 @@ install_packages() {
     mkdir -p "$HOME"/.config
     mkdir -p "$HOME"/.local/bin
 
-    echo "Updating required packages..."
     if [[ $(uname -s) == "Darwin" ]]; then
         brew update
         brew upgrade
         brew install "${packages[@]}"
     else
-        echo "Updating required packages..."
         sudo apt update
         sudo apt upgrade -y
         sudo apt install "${packages[@]}" -y
