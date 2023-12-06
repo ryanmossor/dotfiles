@@ -1,4 +1,4 @@
-nnoremap <leader>c :source ~/.vsvimrc<CR>
+nnoremap <leader><leader> :source ~/.vsvimrc<CR>
 
 " Substitute with 'very magic' mode enabled (standard regex symbols)
 nnoremap s :%s//gI<Left><Left><Left> 

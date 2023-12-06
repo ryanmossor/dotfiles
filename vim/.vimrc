@@ -43,7 +43,7 @@ nnoremap gw :set wrap!<CR>
 nnoremap <leader>3 :set relativenumber!<CR>
 
 " Reload config
-nnoremap <leader>c :source ~/.vimrc<CR>
+nnoremap <leader><leader> :source ~/.vimrc<CR>
 
 " Un-highlight search matches
 nnoremap <leader><Esc> <Esc>:nohlsearch<CR>
