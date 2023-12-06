@@ -26,3 +26,11 @@ fzc() {
     [ -n "$selected" ] && cd "$selected"
     fd . --max-depth 2 -t f -e sln &> /dev/null | tee >(head -n 1 | tr "\n" " " | clip)
 }
+    
+git() {
+    if [[ "$(pwd)" =~ ^/mnt/c/ ]]; then
+        git.exe "$@"
+    else
+        $(type -p git | cut -d " " -f 3) "$@"
+    fi
+}
