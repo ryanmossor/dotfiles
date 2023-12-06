@@ -67,14 +67,14 @@ install_packages() {
 
     echo "Updating required packages..."
     if [[ $(uname -s) == "Darwin" ]]; then
-        brew update > /dev/null 2>&1
-        brew upgrade > /dev/null 2>&1
-        brew install "${packages[@]}" > /dev/null 2>&1
+        brew update
+        brew upgrade
+        brew install "${packages[@]}"
     else
         echo "Updating required packages..."
-        sudo apt update > /dev/null 2>&1
-        sudo apt upgrade -y > /dev/null 2>&1
-        sudo apt install "${packages[@]}" -y > /dev/null 2>&1
+        sudo apt update
+        sudo apt upgrade -y
+        sudo apt install "${packages[@]}" -y
     fi
 
     if [[ $SHELL != "/bin/zsh" ]]; then
