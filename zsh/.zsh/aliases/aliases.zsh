@@ -1,5 +1,5 @@
-alias a='alias | grep -vE "auto|which|alias" | awk -F= "{ printf \"\033[1;31m%s\033[0m = \033[1;36m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
-alias fa='alias | grep -E "^fz" | awk -F= "{ printf \"\033[1;31m%s\033[0m = \033[1;36m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
+alias a='alias | grep -vE "auto|which|alias" | awk -F= "{ printf \"\033[0;31m%s\033[0m = \033[0;36m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
+alias fa='alias | grep -E "^fz" | awk -F= "{ printf \"\033[0;31m%s\033[0m = \033[0;36m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
 alias ga='git config --get-regexp "alias.*" | sed "s/alias\.//" | sed "s/[ ]/ = /"'
 
 [[ -x $BAT ]] && alias cat='$BAT --theme=Catppuccin-mocha --paging=never'
@@ -42,15 +42,7 @@ alias fze='fzp | xargs -ro code'
 alias fzv='fzp | xargs -ro vim'
 #alias fzx='fzp | xargs realpath | tr "\n" " " | clip'
 alias fzx='fzp | tr "\n" " " | clip'
+alias fzc='selected=$(fd . "$HOME/code" "$HOME/code/work" --exact-depth 1 -t d &> /dev/null | fzf); [[ -n "$selected" ]] && cd "$selected"'
 
-fzc() {
-    local dirs=(
-        "$HOME/code"
-        "$HOME/code/work"
-    )
-
-    local selected_dir=$(fd . "${dirs[@]}" --exact-depth 1 -t d &> /dev/null | fzf)
-    [ -n "$selected_dir" ] && cd "$selected_dir"
-}
-
-alias clear_git_branches='git branch | grep -vE "main|master|DEV" | xargs git branch -D'
+# TODO: move to .gitconfig
+alias rm-branches='git branch | grep -vE "main|master|DEV" | xargs git branch -D'

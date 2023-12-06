@@ -11,21 +11,8 @@ alias gtc='$wsl_git_path commit'
 alias work='cd $WIN_HOME/code/work'
 
 # fzf search for .sln files in current dir
-alias fzs='selected_file=$(fd . -t file -e sln | fzf); [ -n "$selected_file" ] && vs "$selected_file"'
-
-fzc() {
-    local dirs=(
-        "$HOME/code"
-        "$HOME/code/work"
-        "$WIN_HOME/code"
-        "$WIN_HOME/code/work"
-        "$WIN_HOME/code/work/candidates"
-    )
-
-    local selected=$(fd . "${dirs[@]}" --exact-depth 1 -t d &> /dev/null | fzf)
-    [ -n "$selected" ] && cd "$selected"
-    fd . --max-depth 2 -t f -e sln &> /dev/null | tee >(head -n 1 | tr "\n" " " | clip)
-}
+alias fzs='selected=$(fd . -t file -e sln | fzf); [[ -n "$selected" ]] && cd $(dirname "$selected") && vs "$selected"'
+alias fzc='selected=$(fd . "$HOME/code" "$HOME/code/work" "$WIN_HOME/code" "$WIN_HOME/code/work" "$WIN_HOME/code/work/candidates" --exact-depth 1 -t d &> /dev/null | fzf); [[ -n "$selected" ]] && cd "$selected"'
     
 git() {
     if [[ "$(pwd)" =~ ^/mnt/c/ ]]; then

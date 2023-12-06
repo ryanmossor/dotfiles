@@ -23,25 +23,32 @@ zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files. 
 
 source "$HOME/.zsh/functions.zsh"
-source_file "exports.zsh"
-source_file "prompt.zsh"
-source_file "vim-mode.zsh"
+source_file "$HOME/.zsh/exports.zsh"
+source_file "$HOME/.zsh/prompt.zsh"
+source_file "$HOME/.zsh/vim-mode.zsh"
 
 # Aliases
-source_file "aliases/aliases.zsh"
+source_file "$HOME/.zsh/aliases/aliases.zsh"
 
 if [[ $(uname -a) == *microsoft* ]]; then
-    source_file "aliases/windows-aliases.zsh"
+    source_file "$HOME/.zsh/aliases/windows-aliases.zsh"
 elif [[ $(uname -a) == *mint* ]]; then
-    source_file "aliases/mint-aliases.zsh"
+    source_file "$HOME/.zsh/aliases/mint-aliases.zsh"
 fi
 
-# Keybindings
-bindkey -s "^[c" "fzc\n" # Alt+c for fzf change dir
+if command -v fzf &> /dev/null; then
+    if [[ $(uname -s) == "Darwin" ]]; then
+        fzf_ver=$(fzf --version | cut -d " " -f 1)
+        source_file "/usr/local/Cellar/fzf/$fzf_ver/shell/key-bindings.zsh"
+        source_file "/usr/local/Cellar/fzf/$fzf_ver/shell/completion.zsh"
+    else
+        source_file "/usr/share/doc/fzf/examples/key-bindings.zsh"
+        source_file "/usr/share/doc/fzf/examples/completion.zsh"
+    fi
+fi
 
 # Plugins
 plug "Aloxaf/fzf-tab" && zstyle ':fzf-tab:*' fzf-min-height 80
-plug "joshskidmore/zsh-fzf-history-search"
 plug "le0me55i/extract"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
