@@ -54,5 +54,7 @@ nnoremap gcu :vsc Window.CloseAllButPinned<CR>
 nnoremap Q :vsc Window.CloseAllDocuments<CR>
 nnoremap <leader>P :vsc Window.PinTab<CR>
 
-" Visual Studio extension
-nnoremap <leader>VSC :vsc OpeninVisualStudioCode<CR>
+nnoremap <C-j> :vsc Window.GoToPinnedTab1<CR>
+nnoremap <C-k> :vsc Window.GoToPinnedTab2<CR>
+nnoremap <C-l> :vsc Window.GoToPinnedTab3<CR>
+nnoremap <C-;> :vsc Window.GoToPinnedTab4<CR>

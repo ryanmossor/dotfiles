@@ -18,6 +18,8 @@ set incsearch
 set textwidth=120
 " Command history
 set history=10000
+" Delay between overlapping remaps
+set timeoutlen=250
 " Vim and system share same clipboard
 "set clipboard=unnamed
 
@@ -70,8 +72,10 @@ noremap <Left> <Esc><C-W>h
 noremap <Right> <Esc><C-W>l
 
 " Tab navigation
-noremap <C-h> <Esc>gT
-noremap <C-l> <Esc>gt
+"noremap <C-h> <Esc>gT
+"noremap <C-l> <Esc>gt
+noremap <C-Tab> <Esc>gt
+noremap <C-S-Tab> <Esc>gT
 
 " Center screen after scrolling motions
 nnoremap <C-d> <C-d>zz
