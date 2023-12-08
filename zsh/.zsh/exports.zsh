@@ -21,6 +21,9 @@ export FZF_CTRL_R_OPTS="--height=100%"
 export FZF_CTRL_T_OPTS="--height=100%"
 export FZF_ALT_C_OPTS="--height=100%"
 
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+
 [[ ! -d "$HOME/.cache/zsh" ]] && mkdir -p "$HOME/.cache/zsh"
 HISTFILE="$HOME/.cache/zsh/history"
 HISTSIZE=10000

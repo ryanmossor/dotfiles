@@ -12,7 +12,6 @@ alias work='cd $WIN_HOME/code/work'
 
 # fzf search for .sln files in current dir
 alias fzs='selected=$(fd . -t file -e sln | fzf); [[ -n "$selected" ]] && vs "$selected" &; cd $(dirname "$selected")'
-alias fzc='selected=$(fd . "$HOME/code" "$HOME/code/work" "$WIN_HOME/code" "$WIN_HOME/code/work" "$WIN_HOME/code/work/candidates" --exact-depth 1 -t d &> /dev/null | fzf); [[ -n "$selected" ]] && cd "$selected"'
     
 git() {
     if [[ "$(pwd)" =~ ^/mnt/c/ ]]; then

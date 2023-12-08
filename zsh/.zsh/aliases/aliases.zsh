@@ -38,11 +38,33 @@ alias evrc='$EDITOR ~/.vimrc'
 alias hosts='cat ~/.ssh/config'
 
 alias fzp='fzf --preview "$BAT --color=always --theme=Catppuccin-mocha --style=numbers --line-range=:500 {}"'
+alias fzc='fzf-cd-code-projects'
 alias fze='fzp | xargs -ro code'
 alias fzv='fzp | xargs -ro vim'
 #alias fzx='fzp | xargs realpath | tr "\n" " " | clip'
 alias fzx='fzp | tr "\n" " " | clip'
-alias fzc='selected=$(fd . "$HOME/code" "$HOME/code/work" --exact-depth 1 -t d &> /dev/null | fzf); [[ -n "$selected" ]] && cd "$selected"'
 
 # TODO: move to .gitconfig
 alias rm-branches='git branch | grep -vE "main|master|DEV" | xargs git branch -D'
+
+fzf-cd-code-projects() {
+    local dirs=(
+        "$HOME/code"
+        "$HOME/code/work"
+        "$WIN_HOME/code"
+        "$WIN_HOME/code/work"
+        "$WIN_HOME/code/work/candidates"
+    )
+
+    local selected=$(fd . "${dirs[@]}" --exact-depth 1 -t d &> /dev/null | fzf)
+
+    if [[ -z "$selected" ]]; then
+        exit 0
+    fi
+
+    cd "$selected"
+
+    if [[ $(uname -a) == *microsoft* ]]; then
+        fd . --max-depth 2 -t f -e sln &> /dev/null | tee >(head -n 1 | tr "\n" " " | clip)
+    fi
+}

@@ -47,6 +47,8 @@ if command -v fzf &> /dev/null; then
     fi
 fi
 
+bindkey -s ^f "fzf-cd-code-projects\n"
+
 # Plugins
 plug "Aloxaf/fzf-tab" && zstyle ':fzf-tab:*' fzf-min-height 80
 plug "le0me55i/extract"
