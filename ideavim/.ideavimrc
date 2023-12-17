@@ -1,0 +1,70 @@
+source ~/.vimrc
+
+set sidescrolloff=999
+
+Plug 'vim-highlightedyank'
+let g:highlightedyank_highlight_duration = "150"
+let g:highlightedyank_highlight_color = "rgba(117, 199, 236, 77)"
+
+" Substitute with 'very magic' mode enabled (standard regex symbols)
+nnoremap s :%s//gI<Left><Left><Left>
+
+" Substitute word under cursor across entire file in "very magic" mode
+nnoremap <leader>s :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
+
+nnoremap <leader><leader> :source ~/.ideavimrc<CR>
+nnoremap <C-,> :action ShowSettings<CR>
+
+" Move/reformat/reselect
+vnoremap J dpV']=gv
+vnoremap K dkPV']=gv
+
+nnoremap K :action ShowHoverInfo<CR>
+nnoremap gh :action ShowHoverInfo<CR>
+
+nnoremap <C-p> :action GotoFile<CR>
+nnoremap <leader>f :action GotoFile<CR>
+
+nnoremap <leader>F :action FindInPath<CR>
+nnoremap <leader>R :action ReplaceInPath<CR>
+
+"nnoremap <leader>bs :vsc Build.BuildSolution<CR>
+
+"nnoremap gD :vsc Debug.ShowNextStatement<CR>
+noremap <leader>bp :action ToggleLineBreakpoint<CR>
+
+" (g)it (d)iff
+nnoremap <leader>gd :action Compare.SameVersion<CR>
+
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gr :action FindUsages<CR>
+nnoremap gw :action EditorToggleUseSoftWraps<CR>
+noremap <leader>/ :action CommentByLineComment<CR>
+
+" Parameter help in insert mode
+inoremap <C-h> :action ParameterInfo<CR>
+
+nnoremap <leader>r :action RenameElement<CR>
+"nnoremap gR :action RenameElement<CR>
+
+" (c)ode (a)ctions
+nnoremap <leader>ca :action ShowIntentionActions<CR>
+nnoremap <leader>. :action ShowIntentionActions<CR>
+
+nnoremap ]e :action GotoNextError<CR>
+nnoremap [e :action GotoPreviousError<CR>
+
+" Project (E)xplorer
+nnoremap <leader>E :action ActivateProjectToolWindow<CR>
+
+nnoremap <leader>P :action PinActiveEditorTab<CR>
+nnoremap Q :action CloseAllEditors<CR>
+" (g)o (c)lose (u)npinned
+nnoremap gcu :action CloseAllUnpinnedEditors<CR>
+" (g)o (c)lose (o)thers
+nnoremap gco :action CloseAllEditorsButActive<CR>
+
+nnoremap <C-j> :action GoToTab1<CR>
+nnoremap <C-k> :action GoToTab2<CR>
+nnoremap <C-l> :action GoToTab3<CR>
+nnoremap <C-;> :action GoToTab4<CR>

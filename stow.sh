@@ -83,6 +83,7 @@ install_packages() {
 
 base=(
     bat
+    ideavim
     scripts
     #tmux
     vim

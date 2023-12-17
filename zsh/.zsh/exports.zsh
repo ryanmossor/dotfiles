@@ -5,6 +5,7 @@ export PATH="$HOME/.local/bin":$PATH
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/dotfiles"
 [[ -x /usr/bin/batcat ]] && export BAT="/usr/bin/batcat"
 [[ -x /usr/local/bin/bat ]] && export BAT="/usr/local/bin/bat"
+[[ -x /usr/local/go/bin ]] && export PATH=$PATH:/usr/local/go/bin
 
 if command -v fdfind &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fdfind --hidden --follow --exclude .git --exclude node_modules'

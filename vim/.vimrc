@@ -19,7 +19,7 @@ set textwidth=120
 " Command history
 set history=10000
 " Delay between overlapping remaps
-set timeoutlen=250
+set timeoutlen=500
 " Vim and system share same clipboard
 "set clipboard=unnamed
 
