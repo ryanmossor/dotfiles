@@ -64,7 +64,9 @@ nnoremap gcu :action CloseAllUnpinnedEditors<CR>
 " (g)o (c)lose (o)thers
 nnoremap gco :action CloseAllEditorsButActive<CR>
 
-nnoremap <C-j> :action GoToTab1<CR>
-nnoremap <C-k> :action GoToTab2<CR>
-nnoremap <C-l> :action GoToTab3<CR>
-nnoremap <C-;> :action GoToTab4<CR>
+nnoremap <C-j> :action HarpoonerOpenFile0<CR>
+nnoremap <C-k> :action HarpoonerOpenFile1<CR>
+nnoremap <C-l> :action HarpoonerOpenFile2<CR>
+nnoremap <C-;> :action HarpoonerOpenFile3<CR>
+nnoremap <leader>a :action HarpoonerAddFile<CR>
+nnoremap <C-e> :action HarpoonerQuickMenu<CR>
