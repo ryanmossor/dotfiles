@@ -15,9 +15,9 @@ nnoremap <leader>s :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
 nnoremap <leader><leader> :source ~/.ideavimrc<CR>
 nnoremap <C-,> :action ShowSettings<CR>
 
-" Move/reformat/reselect
-vnoremap J dpV']=gv
-vnoremap K dkPV']=gv
+" Move selected text up/down, reformat, then reselect
+xnoremap J :m '>+1<CR>gv=gv
+xnoremap K :m '<-2<CR>gv=gv
 
 nnoremap K :action ShowHoverInfo<CR>
 nnoremap gh :action ShowHoverInfo<CR>
@@ -70,3 +70,4 @@ nnoremap <C-l> :action HarpoonerOpenFile2<CR>
 nnoremap <C-;> :action HarpoonerOpenFile3<CR>
 nnoremap <leader>a :action HarpoonerAddFile<CR>
 nnoremap <C-e> :action HarpoonerQuickMenu<CR>
+
