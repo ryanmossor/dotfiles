@@ -15,10 +15,6 @@ nnoremap <leader>s :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
 nnoremap <leader><leader> :source ~/.ideavimrc<CR>
 nnoremap <C-,> :action ShowSettings<CR>
 
-" Move selected text up/down, reformat, then reselect
-xnoremap J :m '>+1<CR>gv=gv
-xnoremap K :m '<-2<CR>gv=gv
-
 nnoremap K :action ShowHoverInfo<CR>
 nnoremap gh :action ShowHoverInfo<CR>
 

@@ -134,9 +134,9 @@ inoremap <C-v> <C-R>+
 " Yank entire file to system clipboard
 nnoremap <C-y> mygg"+yG`y
 
-" Move selected text up/down, reformat, then reselect (OG vim)
-"xnoremap J :m '>+1<CR>gv=gv
-"xnoremap K :m '<-2<CR>gv=gv
+" Move selected text up/down, reformat, then reselect
+xnoremap J :m '>+1<CR>gv=gv
+xnoremap K :m '<-2<CR>gv=gv
 
 " Don't move cursor when joining below line
 nnoremap J mzJ0`z
