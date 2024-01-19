@@ -16,7 +16,6 @@ nnoremap <leader><leader> :source ~/.ideavimrc<CR>
 nnoremap <C-,> :action ShowSettings<CR>
 
 nnoremap K :action ShowHoverInfo<CR>
-nnoremap gh :action ShowHoverInfo<CR>
 
 nnoremap <C-p> :action GotoFile<CR>
 nnoremap <leader>f :action GotoFile<CR>
@@ -47,8 +46,8 @@ nnoremap <leader>r :action RenameElement<CR>
 nnoremap <leader>ca :action ShowIntentionActions<CR>
 nnoremap <leader>. :action ShowIntentionActions<CR>
 
-nnoremap ]e :action GotoNextError<CR>
-nnoremap [e :action GotoPreviousError<CR>
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
 
 " Project (E)xplorer
 nnoremap <leader>E :action ActivateProjectToolWindow<CR>
