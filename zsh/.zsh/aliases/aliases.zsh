@@ -27,6 +27,7 @@ alias history='history -f 1'
 
 alias cgc='cat ~/.gitconfig'
 alias gp='git push origin HEAD'
+alias gpf='git push origin HEAD --force-with-lease'
 
 alias bp='dot && source ~/.zshrc && echo "~/.zshrc reloaded"'
 alias cbp='cat ~/.zshrc ~/.zsh/exports.zsh'
