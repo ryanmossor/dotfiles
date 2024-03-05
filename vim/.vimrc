@@ -28,7 +28,8 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-noremap <leader>w <Esc>:w<CR>
+xnoremap <leader>w <Esc>:w<CR>
+nnoremap <leader>w :w<CR>
 nnoremap <leader>x :q!<CR>
 
 " Enable standard Ctrl+Backspace/Ctrl+Del behavior in insert mode
@@ -48,7 +49,8 @@ nnoremap <leader>3 :set relativenumber!<CR>
 nnoremap <leader><leader> :source ~/.vimrc<CR>
 
 " Un-highlight search matches
-nnoremap <leader><Esc> <Esc>:nohlsearch<CR>
+nnoremap <leader><Esc> :nohlsearch<CR>
+xnoremap <leader><Esc> <Esc>:nohlsearch<CR>
 
 " Use 'very magic' mode for search
 " noremap <leader>/ /\v
@@ -65,17 +67,22 @@ nnoremap <leader>e *Ncgn
 
 " Create horizontal/vertical splits
 "noremap <leader>h <Esc><C-w>s
-noremap <leader>v <Esc><C-w>v
+nnoremap <leader>v <C-w>v
+xnoremap <leader>v <Esc><C-w>v
 
 " Split navigation
-noremap <Left> <Esc><C-W>h
-noremap <Right> <Esc><C-W>l
+nnoremap <Left> <C-W>h
+nnoremap <Right> <C-W>l
+xnoremap <Left> <Esc><C-W>h
+xnoremap <Right> <Esc><C-W>l
 
 " Tab navigation
-"noremap <C-h> <Esc>gT
-"noremap <C-l> <Esc>gt
-noremap <C-Tab> <Esc>gt
-noremap <C-S-Tab> <Esc>gT
+nnoremap <C-Tab> gt
+nnoremap <C-S-Tab> gT
+inoremap <C-Tab> <Esc>gt
+inoremap <C-S-Tab> <Esc>gT
+xnoremap <C-Tab> <Esc>gt
+xnoremap <C-S-Tab> <Esc>gT
 
 " Center screen after scrolling motions
 nnoremap <C-d> <C-d>zz
@@ -123,9 +130,6 @@ noremap L $
 onoremap H ^
 onoremap L $
 noremap ^ 0^
-
-" U to redo
-"nnoremap U <C-r>
 
 " Paste from system clipboard
 cnoremap <C-v> <C-R>+

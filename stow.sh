@@ -97,6 +97,7 @@ personal=(
 )
 
 windows=(
+    ideavim
     keycastow
     pwsh
     vim # vim goes to both $HOME and $WIN_HOME

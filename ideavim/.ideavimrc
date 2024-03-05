@@ -1,6 +1,6 @@
 source ~/.vimrc
 
-set sidescrolloff=999
+set sidescrolloff=16
 
 Plug 'vim-highlightedyank'
 let g:highlightedyank_highlight_duration = "150"
@@ -23,8 +23,6 @@ nnoremap <leader>f :action GotoFile<CR>
 nnoremap <leader>F :action FindInPath<CR>
 nnoremap <leader>R :action ReplaceInPath<CR>
 
-"nnoremap <leader>bs :vsc Build.BuildSolution<CR>
-
 "nnoremap gD :vsc Debug.ShowNextStatement<CR>
 noremap <leader>bp :action ToggleLineBreakpoint<CR>
 
@@ -40,7 +38,6 @@ noremap <leader>/ :action CommentByLineComment<CR>
 inoremap <C-h> :action ParameterInfo<CR>
 
 nnoremap <leader>r :action RenameElement<CR>
-"nnoremap gR :action RenameElement<CR>
 
 " (c)ode (a)ctions
 nnoremap <leader>ca :action ShowIntentionActions<CR>
@@ -66,3 +63,5 @@ nnoremap <C-;> :action HarpoonerOpenFile3<CR>
 nnoremap <leader>a :action HarpoonerAddFile<CR>
 nnoremap <C-e> :action HarpoonerQuickMenu<CR>
 
+" Rider
+nnoremap <leader>bs :action BuildWholeSolutionAction<CR>
