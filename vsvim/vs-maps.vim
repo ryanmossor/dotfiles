@@ -26,6 +26,7 @@ noremap <leader>/ :vsc Edit.ToggleLineComment<CR>
 nnoremap <C-p> :vsc Edit.GoToFile<CR>
 nnoremap <leader>f :vsc Edit.GoToFile<CR>
 nnoremap <leader>F :vsc Edit.FindInFiles<CR>
+nnoremap <leader>R :vsc Edit.ReplaceinFiles<CR>
 " Parameter help in insert mode
 inoremap <C-h> <C-o>:vsc Edit.ParameterInfo<CR>
 " peek (g)it (d)iff
