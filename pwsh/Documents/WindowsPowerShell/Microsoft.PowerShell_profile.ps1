@@ -1,3 +1,6 @@
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = 1
+$env:POWERSHELL_TELEMETRY_OPTOUT = 1
+
 # Shows navigable menu of all options when hitting Tab
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 

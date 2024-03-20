@@ -1,6 +1,7 @@
 export EDITOR="vim"
 export MANWIDTH=999
 export PATH="$HOME/.local/bin":$PATH
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/dotfiles"
 [[ -x /usr/bin/batcat ]] && export BAT="/usr/bin/batcat"
