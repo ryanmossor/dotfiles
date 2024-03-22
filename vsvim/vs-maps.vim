@@ -18,7 +18,9 @@ noremap <leader>bp :vsc Debug.ToggleBreakpoint<CR>
 nnoremap [g :vsc Diff.PreviousDifference<CR>
 nnoremap ]g :vsc Diff.NextDifference<CR>
 
+" Simulate hover
 nnoremap K :vsc Edit.QuickInfo<CR>
+
 nnoremap gi :vsc Edit.GoToImplementation<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
 nnoremap gw :vsc Edit.ToggleWordWrap<CR>
@@ -27,29 +29,36 @@ nnoremap <C-p> :vsc Edit.GoToFile<CR>
 nnoremap <leader>f :vsc Edit.GoToFile<CR>
 nnoremap <leader>F :vsc Edit.FindInFiles<CR>
 nnoremap <leader>R :vsc Edit.ReplaceinFiles<CR>
+
 " Parameter help in insert mode
 inoremap <C-h> <C-o>:vsc Edit.ParameterInfo<CR>
-" peek (g)it (d)iff
+
+" Peek git diff
 nnoremap <leader>gd :vsc Edit.PeekDifference<CR>
 
-" (g)o (c)lose (o)thers
+" Close other tabs
 nnoremap gco :vsc File.CloseAllButThis<CR> 
 
 nnoremap <leader>r :vsc Refactor.Rename<CR>
-"nnoremap gR :vsc Refactor.Rename<CR>
 
 nnoremap <C-,> :vsc Tools.Options<CR>
 
 noremap <C-o> :vsc View.NavigateBackward<CR>
 noremap <C-i> :vsc View.NavigateForward<CR>
+
+" Jump to next diagnostic message
 nnoremap ]d :vsc View.NextError<CR>
 nnoremap [d :vsc View.PreviousError<CR>
-" (c)ode (a)ctions
+
+" Code actions
 nnoremap <leader>ca :vsc View.QuickActions<CR>
+xnoremap <leader>ca :vsc View.QuickActions<CR>
 nnoremap <leader>. :vsc View.QuickActions<CR>
+xnoremap <leader>. :vsc View.QuickActions<CR>
+
 nnoremap <leader>E :vsc View.SolutionExplorer<CR>
 
-" (g)o (c)lose (u)npinned
+" Close unpinned
 nnoremap gcu :vsc Window.CloseAllButPinned<CR>
 nnoremap Q :vsc Window.CloseAllDocuments<CR>
 nnoremap <leader>P :vsc Window.PinTab<CR>

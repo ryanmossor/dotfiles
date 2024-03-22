@@ -7,61 +7,68 @@ let g:highlightedyank_highlight_duration = "150"
 let g:highlightedyank_highlight_color = "rgba(117, 199, 236, 77)"
 
 " Substitute with 'very magic' mode enabled (standard regex symbols)
-nnoremap s :%s//gI<Left><Left><Left>
+nnoremap <leader>s :%s/\v/gI<Left><Left><Left>
 
-" Substitute word under cursor across entire file in "very magic" mode
-nnoremap <leader>s :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
+" Substitute word under cursor across entire file in 'very magic' mode (<C-r><C-w> doesn't work in ideavim)
+nnoremap <leader>s :%s/\v<<C-R><C-W>>//gI<Left><Left><Left>
+"nnoremap <leader>s :%s/\v<C-r>=expand('<cword>')<CR>//gI<Left><Left><Left>
 
 nnoremap <leader><leader> :source ~/.ideavimrc<CR>
-nnoremap <C-,> :action ShowSettings<CR>
+nmap <C-,> <Action>(ShowSettings)
 
-nnoremap K :action ShowHoverInfo<CR>
+" Simulate hover
+nmap K <Action>(ShowHoverInfo)
 
-nnoremap <C-p> :action GotoFile<CR>
-nnoremap <leader>f :action GotoFile<CR>
+nmap <C-p> <Action>(GotoFile)
+nmap <leader>f <Action>(GotoFile)
 
-nnoremap <leader>F :action FindInPath<CR>
-nnoremap <leader>R :action ReplaceInPath<CR>
+nmap <leader>F <Action>(FindInPath)
+nmap <leader>R <Action>(ReplaceInPath)
 
 "nnoremap gD :vsc Debug.ShowNextStatement<CR>
-noremap <leader>bp :action ToggleLineBreakpoint<CR>
+map <leader>bp <Action>(ToggleLineBreakpoint)
 
-" (g)it (d)iff
-nnoremap <leader>gd :action Compare.SameVersion<CR>
+" Peek git diff
+nmap <leader>gd <Action>(Compare.SameVersion)
 
-nnoremap gi :action GotoImplementation<CR>
-nnoremap gr :action FindUsages<CR>
-nnoremap gw :action EditorToggleUseSoftWraps<CR>
-noremap <leader>/ :action CommentByLineComment<CR>
+nmap gi <Action>(GotoImplementation)
+nmap gr <Action>(FindUsages)
+nmap gw <Action>(EditorToggleUseSoftWraps)
+map <leader>/ <Action>(CommentByLineComment)
 
 " Parameter help in insert mode
-inoremap <C-h> :action ParameterInfo<CR>
+imap <C-h> <Action>(ParameterInfo)
 
-nnoremap <leader>r :action RenameElement<CR>
+nmap <leader>r <Action>(RenameElement)
 
-" (c)ode (a)ctions
-nnoremap <leader>ca :action ShowIntentionActions<CR>
-nnoremap <leader>. :action ShowIntentionActions<CR>
+" Code actions
+nmap <leader>ca <Action>(ShowIntentionActions)
+xmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>. <Action>(ShowIntentionActions)
+xmap <leader>. <Action>(ShowIntentionActions)
 
-nnoremap ]d :action GotoNextError<CR>
-nnoremap [d :action GotoPreviousError<CR>
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
 
-" Project (E)xplorer
-nnoremap <leader>E :action ActivateProjectToolWindow<CR>
+" Project explorer
+nmap <leader>E <Action>(ActivateProjectToolWindow)
 
-nnoremap <leader>P :action PinActiveEditorTab<CR>
-nnoremap Q :action CloseAllEditors<CR>
-" (g)o (c)lose (u)npinned
-nnoremap gcu :action CloseAllUnpinnedEditors<CR>
-" (g)o (c)lose (o)thers
-nnoremap gco :action CloseAllEditorsButActive<CR>
+nmap <leader>P <Action>(PinActiveEditorTab)
+nmap Q <Action>(CloseAllEditors)
 
-nnoremap <C-j> :action HarpoonerOpenFile0<CR>
-nnoremap <C-k> :action HarpoonerOpenFile1<CR>
-nnoremap <C-l> :action HarpoonerOpenFile2<CR>
-nnoremap <C-;> :action HarpoonerOpenFile3<CR>
-nnoremap <leader>a :action HarpoonerAddFile<CR>
-nnoremap <C-e> :action HarpoonerQuickMenu<CR>
+" Close unpinned tabs
+nmap gcu <Action>(CloseAllUnpinnedEditors)
 
-" Rider
-nnoremap <leader>bs :action BuildWholeSolutionAction<CR>
+" Close other tabs
+nmap gco <Action>(CloseAllEditorsButActive)
+
+nmap <C-j> <Action>(HarpoonerOpenFile0)
+nmap <C-k> <Action>(HarpoonerOpenFile1)
+nmap <C-l> <Action>(HarpoonerOpenFile2)
+nmap <C-;> <Action>(HarpoonerOpenFile3)
+nmap <leader>a <Action>(HarpoonerAddFile)
+nmap <C-e> <Action>(HarpoonerQuickMenu)
+
+if &ide =~? 'rider'
+    nmap <leader>bs <Action>(BuildWholeSolutionAction)
+endif

@@ -65,7 +65,7 @@ nnoremap <leader>s :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
 " Substitute word under cursor once; use . to repeat
 nnoremap <leader>e *Ncgn
 
-" Create horizontal/vertical splits
+" Create splits
 "noremap <leader>h <Esc><C-w>s
 nnoremap <leader>v <C-w>v
 xnoremap <leader>v <Esc><C-w>v
