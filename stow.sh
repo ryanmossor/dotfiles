@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-[[ -z $WIN_HOME ]] && WIN_HOME="/mnt/c/Users/$USER"
+[[ -z $WIN_HOME ]] && export WIN_HOME="/mnt/c/Users/$USER"
+[[ -z $DOTFILES ]] && export DOTFILES="$HOME/dotfiles"
 
 blue='\033[1;94m'
 green='\033[1;92m'
@@ -21,7 +22,6 @@ copy_windows_apps() {
     local target_dir="$1"
     shift
     local apps=("$@")
-    [[ -z $DOTFILES ]] && DOTFILES="$HOME/dotfiles"
 
     for app in "${apps[@]}"; do
         echo -e "Copying ${green}${app}${clear} to ${blue}${target_dir}${clear}"
@@ -83,6 +83,7 @@ install_packages() {
 
 base=(
     bat
+    git
     ideavim
     scripts
     #tmux
@@ -91,9 +92,7 @@ base=(
 )
 
 personal=(
-    devilspie2
     #i3
-    rofi
 )
 
 windows=(
@@ -106,14 +105,18 @@ windows=(
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
+        -h|--help)
+            "$DOTFILES/scripts/.local/bin/dot" --help
+            exit
+            ;;
         -d|-r|--delete|--remove)
             unstow_apps "${base[@]}" "${personal[@]}" "${windows[@]}"
             exit
             ;;
         -i|--init|--install)
             install_packages
-            [[ $(uname -a) == *Ubuntu* ]] && sudo apt install xclip
-            [[ $(uname -s) != "Darwin" ]] && sudo apt install openssh-server
+            [[ $(uname -a) == *Ubuntu* ]] && sudo apt install xclip -y
+            [[ $(uname -s) != "Darwin" ]] && sudo apt install openssh-server -y
             ;;
         -p|--personal)
             stow_apps "$HOME" "${personal[@]}"
