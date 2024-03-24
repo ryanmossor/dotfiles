@@ -1,12 +1,12 @@
 nnoremap <leader><leader> :source ~/.vsvimrc<CR>
 
 " Substitute with 'very magic' mode enabled (standard regex symbols)
-nnoremap s :%s//gI<Left><Left><Left> 
+nnoremap <leader>s :%s//gI<Left><Left><Left> 
 
 " Substitute word under cursor across entire file in "very magic" mode
-nnoremap <leader>s :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
+nnoremap <leader>S :%s/\v<<C-r><C-w>>//gI<Left><Left><Left>
 
-" VsVim move/reformat/reselect
+" Move/reformat/reselect
 xnoremap J dpV']=gv
 xnoremap K dkPV']=gv
 
