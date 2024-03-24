@@ -59,13 +59,7 @@ fzf-cd-code-projects() {
 
     local selected=$(fd . "${dirs[@]}" --exact-depth 1 -t d &> /dev/null | fzf)
 
-    if [[ -z "$selected" ]]; then
-        exit 0
-    fi
-
-    cd "$selected"
-
-    if [[ $(uname -a) == *microsoft* ]]; then
-        fd . --max-depth 2 -t f -e sln &> /dev/null | tee >(head -n 1 | tr "\n" " " | clip)
+    if [[ -n "$selected" ]]; then
+        cd "$selected"
     fi
 }
