@@ -32,8 +32,8 @@ source_file "$HOME/.zsh/aliases/aliases.zsh"
 
 if [[ $(uname -a) == *microsoft* ]]; then
     source_file "$HOME/.zsh/aliases/windows-aliases.zsh"
-elif [[ $(uname -a) == *mint* ]]; then
-    source_file "$HOME/.zsh/aliases/mint-aliases.zsh"
+elif [[ $(uname -a) == *Ubuntu* ]]; then
+    source_file "$HOME/.zsh/aliases/linux-aliases.zsh"
 fi
 
 if command -v fzf &> /dev/null; then

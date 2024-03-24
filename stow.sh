@@ -112,7 +112,7 @@ while [[ "$#" -gt 0 ]]; do
             ;;
         -i|--init|--install)
             install_packages
-            [[ $(uname -a) == *mint* ]] && sudo apt install xclip
+            [[ $(uname -a) == *Ubuntu* ]] && sudo apt install xclip
             [[ $(uname -s) != "Darwin" ]] && sudo apt install openssh-server
             ;;
         -p|--personal)
