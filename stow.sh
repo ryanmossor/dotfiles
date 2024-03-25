@@ -41,6 +41,7 @@ unstow_apps() {
 
 packages=(
     bat
+    cloc
     curl
     fzf
     git
@@ -96,10 +97,11 @@ personal=(
 )
 
 windows=(
+    git # goes to both $HOME and $WIN_HOME
     ideavim
     keycastow
     pwsh
-    vim # vim goes to both $HOME and $WIN_HOME
+    vim # goes to both $HOME and $WIN_HOME
     vsvim
 )
 
