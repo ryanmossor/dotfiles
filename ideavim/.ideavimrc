@@ -77,6 +77,8 @@ nmap <leader>a <Action>(HarpoonerAddFile)
 nmap <C-e> <Action>(HarpoonerQuickMenu)
 
 if &ide =~? 'rider'
-    nmap <leader>bs <Action>(BuildWholeSolutionAction)
     nmap <leader>br <Action>(Run)
+    nmap <leader>bd <Action>(Debug)
+    nmap <leader>bs <Action>(BuildWholeSolutionAction)
+    nmap <leader>bt <Action>(RiderUnitTestRunSolutionAction)
 endif
