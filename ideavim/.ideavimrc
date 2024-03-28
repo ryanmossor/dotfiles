@@ -6,12 +6,9 @@ Plug 'vim-highlightedyank'
 let g:highlightedyank_highlight_duration = "150"
 let g:highlightedyank_highlight_color = "rgba(117, 199, 236, 77)"
 
-" Substitute with 'very magic' mode enabled (standard regex symbols)
-nnoremap <leader>s :%s/\v/gI<Left><Left><Left>
-
 " Substitute word under cursor across entire file in 'very magic' mode (<C-r><C-w> doesn't work in ideavim)
 " Leaving search pattern between // blank uses last search term
-nnoremap <leader>S *N:%s///gI<Left><Left><Left>
+nnoremap <leader>s *N:%s///gI<Left><Left><Left>
 
 " Move/reselect -- no =gv to reformat b/c ideavim doesn't handle it correctly
 xnoremap J dpV']

@@ -56,11 +56,8 @@ xnoremap <leader><Esc> <Esc>:nohlsearch<CR>
 " noremap <leader>/ /\v
 " noremap <leader>? ?\v
 
-" Quick substitute command
-nnoremap <leader>s :%s//gI<Left><Left><Left>
-
 " Substitute word under cursor across entire file
-nnoremap <leader>S :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
+nnoremap <leader>s :%s/\<<C-r><C-w>\>//gI<Left><Left><Left>
 
 " Substitute word under cursor once; use . to repeat
 nnoremap <leader>e *Ncgn
