@@ -1,20 +1,22 @@
 [alias]
-ca = commit --amend --no-edit
-co = checkout
-discard = "!f() { git checkout HEAD -- \"$1\"; }; f"
-ff = pull --ff-only
-gp = push origin HEAD
-lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %cn)%Creset' --abbrev-commit --date=relative
-lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %cn)%Creset' --abbrev-commit --date=relative --shortstat
-st = status --short --branch
-undo = reset --soft HEAD^
+	ca = commit --amend --no-edit
+	co = checkout
+	discard = "!f() { git checkout HEAD -- \"$1\"; }; f"
+	ff = pull --ff-only
+	gp = push origin HEAD
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %cn)%Creset' --abbrev-commit --date=relative
+	lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %cn)%Creset' --abbrev-commit --date=relative --shortstat
+	rm-branches = "!git branch | grep -vE 'main|master|DEV' | xargs git branch -D"
+	suc = "!git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current)"
+	st = status --short --branch
+	undo = reset --soft HEAD^
 
-a = "!f() { preview=\"git diff $@ --color=always -- {1}\"; git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"$preview\" | xargs -0 -t -r git add; }; f"
-fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
-fzd = "!f() { preview=\"git diff $@ --color=always -- {1}\"; git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"$preview\" | xargs -0 -t -r git add; }; f"
+# select files for git add w/ fzf and diff view
+	a = "!f() { preview=\"git diff $@ --color=always -- {1}\"; git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"$preview\" | xargs -0 -t -r git add; }; f"
+	fzd = "!f() { preview=\"git diff $@ --color=always -- {1}\"; git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"$preview\" | xargs -0 -t -r git add; }; f"
 
-#fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m --preview "$(git diff $@ --color=always -- {-1})" | xargs -0 -t -o git add"
-#fzd = "!f() { preview=\"git diff $@ --color=always -- {1}\"; git diff $@ --name-only | fzf -m --print0 --preview \"$preview\" | xargs -0 -t -r git add; }; f"
+# select files w/ fzf, no diff view
+	fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
 
 [core]
 	editor = vim
@@ -22,11 +24,5 @@ fzd = "!f() { preview=\"git diff $@ --color=always -- {1}\"; git ls-files -m -o 
 [fetch]
 	prune = true
 	
-[includeIf "gitdir:/home/"]
-    path = ~/.gitconfig_linux
-
-[includeIf "gitdir:/Users/"]
-    path = ~/.gitconfig_macos
-
-[includeIf "gitdir:C:"]
-    path = ~/.gitconfig_windows
+[include]
+    path = ~/.gitconfig_user

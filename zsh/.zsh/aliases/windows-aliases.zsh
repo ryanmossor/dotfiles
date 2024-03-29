@@ -14,7 +14,7 @@ alias work='cd $WIN_HOME/code/work'
 alias fzs='selected=$(fd . -t file -e sln | fzf); [[ -n "$selected" ]] && vs "$selected" &; cd $(dirname "$selected")'
     
 git() {
-    if [[ "$(pwd)" =~ ^/mnt/c/ ]]; then
+    if [[ "$(pwd)" == *oversight* ]]; then
         git.exe "$@"
     else
         $(type -p git | cut -d " " -f 3) "$@"

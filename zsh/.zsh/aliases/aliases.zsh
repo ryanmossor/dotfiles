@@ -45,9 +45,6 @@ alias fzv='fzp | xargs -ro vim'
 #alias fzx='fzp | xargs realpath | tr "\n" " " | clip'
 alias fzx='fzp | tr "\n" " " | clip'
 
-# TODO: move to .gitconfig
-alias rm-branches='git branch | grep -vE "main|master|DEV" | xargs git branch -D'
-
 fzf-cd-code-projects() {
     local dirs=(
         "$HOME/code"
