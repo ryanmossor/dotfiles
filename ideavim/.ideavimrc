@@ -2,6 +2,12 @@ source ~/.vimrc
 
 set sidescrolloff=16
 
+nnoremap <leader><leader> :source ~/.ideavimrc<CR>
+nmap <C-,> <Action>(ShowSettings)
+
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
+
 Plug 'vim-highlightedyank'
 let g:highlightedyank_highlight_duration = "150"
 let g:highlightedyank_highlight_color = "rgba(117, 199, 236, 77)"
@@ -14,11 +20,7 @@ nnoremap <leader>s *N:%s///gI<Left><Left><Left>
 xnoremap J dpV']
 xnoremap K dkPV']
 
-nnoremap <leader><leader> :source ~/.ideavimrc<CR>
-nmap <C-,> <Action>(ShowSettings)
-
-nmap <C-o> <Action>(Back)
-nmap <C-i> <Action>(Forward)
+inoremap <C-BS> <C-w>
 
 " Simulate hover
 nmap K <Action>(ShowHoverInfo)
