@@ -37,6 +37,7 @@ map <leader>bp <Action>(ToggleLineBreakpoint)
 " Peek git diff
 nmap <leader>gd <Action>(Compare.SameVersion)
 
+nmap gd <Action>(GotoDeclaration)
 nmap gi <Action>(GotoImplementation)
 nmap gr <Action>(FindUsages)
 nmap gw <Action>(EditorToggleUseSoftWraps)

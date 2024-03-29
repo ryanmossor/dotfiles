@@ -18,6 +18,7 @@ nnoremap ]g :vsc Diff.NextDifference<CR>
 " Simulate hover
 nnoremap K :vsc Edit.QuickInfo<CR>
 
+nnoremap gd :vsc Edit.GoToDefinition<CR>
 nnoremap gi :vsc Edit.GoToImplementation<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
 nnoremap gw :vsc Edit.ToggleWordWrap<CR>
