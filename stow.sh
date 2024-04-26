@@ -89,6 +89,7 @@ base=(
     scripts
     #tmux
     vim
+    wezterm
     zsh
 )
 
