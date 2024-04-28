@@ -44,19 +44,3 @@ alias fze='fzp | xargs -ro code'
 alias fzv='fzp | xargs -ro vim'
 #alias fzx='fzp | xargs realpath | tr "\n" " " | clip'
 alias fzx='fzp | tr "\n" " " | clip'
-
-fzf-cd-code-projects() {
-    local dirs=(
-        "$HOME/code"
-        "$HOME/code/work"
-        "$WIN_HOME/code"
-        "$WIN_HOME/code/work"
-        "$WIN_HOME/code/work/candidates"
-    )
-
-    local selected=$(fd . "${dirs[@]}" --exact-depth 1 -t d &> /dev/null | fzf)
-
-    if [[ -n "$selected" ]]; then
-        cd "$selected"
-    fi
-}

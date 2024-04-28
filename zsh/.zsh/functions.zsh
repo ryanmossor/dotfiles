@@ -30,3 +30,22 @@ function add_completion() {
 	completion_file="$(basename "${completion_file_path}")"
 	[[ "$2" = true ]] && compinit "${completion_file:1}"
 } 
+
+function fzf-cd-code-projects() {
+    local dirs=(
+        "$HOME/code"
+        "$HOME/code/work"
+        "$WIN_HOME/code"
+        "$WIN_HOME/code/work"
+        "$WIN_HOME/code/work/candidates"
+    )
+
+    local selected=$(fd . "${dirs[@]}" --exact-depth 1 -t d &> /dev/null | fzf)
+
+    if [[ -n "$selected" ]]; then
+        cd "$selected"
+        if [[ $TERM_PROGRAM == "WezTerm" ]]; then
+            wezterm cli set-tab-title $(basename $(pwd))
+        fi
+    fi
+}

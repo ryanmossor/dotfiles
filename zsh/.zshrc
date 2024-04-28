@@ -36,6 +36,10 @@ elif [[ $(uname -a) == *Ubuntu* ]]; then
     source_file "$HOME/.zsh/aliases/linux-aliases.zsh"
 fi
 
+if [[ $TERM_PROGRAM == "WezTerm" ]]; then
+    source_file "$HOME/.zsh/aliases/wezterm-aliases.zsh"
+fi
+
 if command -v fzf &> /dev/null; then
     if [[ $(uname -s) == "Darwin" ]]; then
         fzf_ver=$(fzf --version | cut -d " " -f 1)
