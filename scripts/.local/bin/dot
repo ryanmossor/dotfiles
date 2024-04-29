@@ -2,13 +2,23 @@
 
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/dotfiles"
 
+show_help() {
+    echo "USAGE:"
+    echo "    dot [OPTIONS]"
+    echo -e "\nOPTIONS:"
+    echo "    -h, --help                Show this help message"
+    echo "    -i, --init, --install     Install/update required packages"
+    echo "    -p, --personal            Set up personal configurations"
+    echo "    -w, --windows             Set up Windows configurations"
+    exit
+}
+
 options=()
-show_help=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
         -h|--help) 
-            show_help=true 
+            show_help
             ;;
         -i|--init|--install) 
             options+=('--install') 
@@ -26,19 +36,7 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-if [[ "$show_help" == true ]]; then
-    echo "USAGE:"
-    echo "    dot [OPTIONS]"
-    echo -e "\nOPTIONS:"
-    echo "    -h, --help                Show this help message"
-    echo "    -i, --init, --install     Install/update required packages"
-    echo "    -p, --personal            Set up personal configurations"
-    echo "    -w, --windows             Set up Windows configurations"
-    exit
-fi
-
 pushd "$DOTFILES" > /dev/null || exit
 git pull
 ./stow.sh "${options[@]}"
 popd > /dev/null || exit
-
