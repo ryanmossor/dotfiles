@@ -44,3 +44,11 @@ alias fze='fzp | xargs -ro code'
 alias fzv='fzp | xargs -ro vim'
 #alias fzx='fzp | xargs realpath | tr "\n" " " | clip'
 alias fzx='fzp | tr "\n" " " | clip'
+
+wez() {
+    if [[ $(uname -a) == *microsoft* ]]; then
+        wezterm.exe "$@"
+    else
+        wezterm "$@"
+    fi
+}

@@ -29,6 +29,25 @@ if (is_mac) then
     config.font_size = 16
 end
 
+config.launch_menu = {}
+
+if (is_windows) then
+    config.default_prog = { 'wsl.exe', '~' }
+
+    table.insert(config.launch_menu, {
+        label = 'PowerShell',
+        args = { 'powershell.exe', '-NoLogo' },
+    })
+    table.insert(config.launch_menu, {
+        label = 'Ubuntu',
+        args = { 'wsl.exe', '~' },
+    })
+
+    table.insert(config.keys, {
+        key = 'p', mods = 'ALT', action = wezterm.action.SpawnCommandInNewTab { args = { 'powershell.exe', '-NoLogo' } },
+    })
+end
+
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false

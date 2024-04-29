@@ -105,6 +105,7 @@ windows=(
     pwsh
     vim # goes to both $HOME and $WIN_HOME
     vsvim
+    wezterm # goes to both $HOME and $WIN_HOME
 )
 
 while [[ "$#" -gt 0 ]]; do
