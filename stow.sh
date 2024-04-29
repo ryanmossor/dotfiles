@@ -70,6 +70,7 @@ install_packages() {
         brew update
         brew upgrade
         brew install "${packages[@]}"
+        brew install --cask wezterm
     else
         sudo apt update
         sudo apt upgrade -y
