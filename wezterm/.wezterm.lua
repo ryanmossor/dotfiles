@@ -13,6 +13,7 @@ config.keys = {
     { key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentTab { confirm = true } },
     { key = 'v', mods = 'CTRL', action = wezterm.action.PasteFrom 'Clipboard' },
     { key = 'v', mods = 'CTRL', action = wezterm.action.PasteFrom 'PrimarySelection' }, 
+    { key = 'C', mods = 'CTRL|SHIFT', action = wezterm.action.ActivateCopyMode }, 
 }
 
 -- font
