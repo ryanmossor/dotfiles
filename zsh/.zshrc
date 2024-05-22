@@ -1,13 +1,15 @@
-# Add commands to history as they are typed, don't wait until shell exit
-setopt SHARE_HISTORY
-# Do not write events to history that are duplicates of previous events
-setopt HIST_IGNORE_DUPS
-# Ignore commands beginning with space
-setopt HIST_IGNORE_SPACE
-# When searching history don't display results already cycled through twice
-setopt HIST_FIND_NO_DUPS
-# Save each command's timestamp
-setopt EXTENDED_HISTORY
+# History -- https://github.com/rothgar/mastering-zsh/blob/master/docs/config/history.md
+[[ ! -d "$HOME/.cache/zsh" ]] && mkdir -p "$HOME/.cache/zsh"
+HISTFILE="$HOME/.cache/zsh/history"
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+
+setopt EXTENDED_HISTORY          # Save command timestamps
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space
+setopt SHARE_HISTORY             # Share history between all sessions
 
 # Disable Ctrl-s to freeze terminal
 stty stop undef 
@@ -19,9 +21,12 @@ unsetopt BEEP
 # Completions
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files. 
 
+# Imports
 source "$HOME/.zsh/functions.zsh"
 source_file "$HOME/.zsh/exports.zsh"
 source_file "$HOME/.zsh/prompt.zsh"
@@ -29,16 +34,9 @@ source_file "$HOME/.zsh/vim-mode.zsh"
 
 # Aliases
 source_file "$HOME/.zsh/aliases/aliases.zsh"
-
-if [[ $(uname -a) == *microsoft* ]]; then
-    source_file "$HOME/.zsh/aliases/windows-aliases.zsh"
-elif [[ $(uname -a) == *Ubuntu* ]]; then
-    source_file "$HOME/.zsh/aliases/linux-aliases.zsh"
-fi
-
-if [[ $TERM_PROGRAM == "WezTerm" ]]; then
-    source_file "$HOME/.zsh/aliases/wezterm-aliases.zsh"
-fi
+[[ $(uname -a) == *microsoft* ]] && source_file "$HOME/.zsh/aliases/windows-aliases.zsh"
+[[ $(uname -a) == *Ubuntu* ]] && source_file "$HOME/.zsh/aliases/linux-aliases.zsh"
+[[ $TERM_PROGRAM == "WezTerm" ]] &&source_file "$HOME/.zsh/aliases/wezterm-aliases.zsh"
 
 if command -v fzf &> /dev/null; then
     if [[ $(uname -s) == "Darwin" ]]; then
