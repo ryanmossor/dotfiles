@@ -7,8 +7,16 @@ function t() {
 }
 
 # title first word
-alias tfw="wez cli set-tab-title $(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $1}')"
+function tfw() {
+    wez cli set-tab-title $(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $1}')
+}
+
 # title last word
-alias tlw="wez cli set-tab-title $(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $NF}')"
+function tlw() {
+    wez cli set-tab-title $(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $NF}')
+}
+
 # title working dir
-alias twd="wez cli set-tab-title $(basename $(pwd))"
+function twd() {
+    wez cli set-tab-title $(basename $(pwd))
+}
