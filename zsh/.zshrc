@@ -5,11 +5,11 @@ HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 
-setopt EXTENDED_HISTORY          # Save command timestamps
-setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space
-setopt SHARE_HISTORY             # Share history between all sessions
+setopt EXTENDED_HISTORY     # Save command timestamps
+setopt HIST_IGNORE_ALL_DUPS # Delete an old recorded event if a new event is a duplicate
+setopt HIST_FIND_NO_DUPS    # Do not display a previously found event
+setopt HIST_IGNORE_SPACE    # Do not record an event starting with a space
+setopt SHARE_HISTORY        # Share history between all sessions
 
 # Disable Ctrl-s to freeze terminal
 stty stop undef 
@@ -31,6 +31,7 @@ source "$HOME/.zsh/functions.zsh"
 source_file "$HOME/.zsh/exports.zsh"
 source_file "$HOME/.zsh/prompt.zsh"
 source_file "$HOME/.zsh/vim-mode.zsh"
+source_file "$HOME/.fzf.zsh"
 
 # Aliases
 source_file "$HOME/.zsh/aliases/aliases.zsh"

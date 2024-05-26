@@ -18,7 +18,7 @@ config.keys = {
 
 -- font
 config.font = wezterm.font_with_fallback {
-    'Cascadia Code',
+    'Cascadia Mono',
     'Ubuntu Mono',
 }
 config.font_size = 12

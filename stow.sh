@@ -43,7 +43,7 @@ packages=(
     bat
     cloc
     curl
-    fzf
+    # fzf -- installed below via git
     git
     htop
     jq
@@ -122,6 +122,9 @@ while [[ "$#" -gt 0 ]]; do
             install_packages
             [[ $(uname -a) == *Ubuntu* ]] && sudo apt install xclip -y
             [[ $(uname -s) != "Darwin" ]] && sudo apt install openssh-server -y
+
+            git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+            ~/.fzf/install  --key-bindings --completion --no-update-rc
             ;;
         -p|--personal)
             stow_apps "$HOME" "${personal[@]}"

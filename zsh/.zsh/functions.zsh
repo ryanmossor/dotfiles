@@ -31,6 +31,15 @@ function add_completion() {
 	[[ "$2" = true ]] && compinit "${completion_file:1}"
 } 
 
+function update() {
+    [[ $(uname -a) == *Ubuntu* ]] && sudo apt update && sudo apt upgrade -y
+    [[ $(uname -a) == *mint* ]] && flatpak update -y
+    [[ $(uname -s) == "Darwin" ]] && brew update && brew upgrade
+
+    pushd ~/.fzf > /dev/null && git pull && ./install --key-bindings --completion --no-update-rc
+    popd > /dev/null
+}
+
 function fzf-cd-code-projects() {
     local dirs=(
         "$HOME/code"

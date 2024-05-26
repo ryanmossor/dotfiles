@@ -41,3 +41,5 @@ if [[ -x /usr/bin/dircolors ]]; then
 fi
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
