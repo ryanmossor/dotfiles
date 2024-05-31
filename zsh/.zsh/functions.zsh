@@ -36,8 +36,7 @@ function update() {
     [[ $(uname -a) == *mint* ]] && flatpak update -y
     [[ $(uname -s) == "Darwin" ]] && brew update && brew upgrade
 
-    pushd ~/.fzf > /dev/null && git pull && ./install --key-bindings --completion --no-update-rc
-    popd > /dev/null
+    pushd ~/.fzf > /dev/null && git pull && ./install --key-bindings --completion --no-update-rc && popd > /dev/null
 }
 
 function fzf-cd-code-projects() {
@@ -53,9 +52,7 @@ function fzf-cd-code-projects() {
 
     if [[ -n "$selected" ]]; then
         cd "$selected"
-        if [[ $TERM_PROGRAM == "WezTerm" ]]; then
-            wez cli set-tab-title $(basename $(pwd))
-        fi
+        [[ $TERM_PROGRAM == "WezTerm" ]] && wez cli set-tab-title $(basename $(pwd))
     fi
 }
 

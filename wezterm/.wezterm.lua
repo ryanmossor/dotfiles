@@ -1,13 +1,12 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
+local vim_edit_scrollback = require 'vim_edit_scrollback'
 
 local config = wezterm.config_builder()
 config.color_scheme = 'Catppuccin Mocha'
 config.window_close_confirmation = 'AlwaysPrompt'
 config.window_background_opacity = 0.9
--- Removes window title bar; drag using title bar or Ctrl+Shift if only single tab
-config.window_decorations = "RESIZE"
-    
+
 -- default window size
 config.initial_cols = 100
 config.initial_rows = 30
@@ -18,6 +17,7 @@ config.keys = {
     { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
     { key = 'v', mods = 'CTRL', action = act.PasteFrom 'PrimarySelection' }, 
     { key = 'C', mods = 'CTRL|SHIFT', action = act.ActivateCopyMode }, 
+    { key = 'e', mods = 'CTRL', action = wezterm.action_callback(vim_edit_scrollback) },
 }
 
 -- Ctrl+1 for tab 1, Ctrl+2 for tab 2, etc.
@@ -26,10 +26,7 @@ for i = 1, 9 do
 end
 
 -- font
-config.font = wezterm.font_with_fallback {
-    'Cascadia Mono',
-    'Ubuntu Mono',
-}
+config.font = wezterm.font_with_fallback { 'Cascadia Mono', 'Ubuntu Mono' }
 config.font_size = 12
 
 -- tab bar
