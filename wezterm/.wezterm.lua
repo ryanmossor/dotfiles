@@ -2,10 +2,13 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 local vim_edit_scrollback = require 'vim_edit_scrollback'
 
+local is_mac = wezterm.target_triple:find('darwin') ~= nil
+local is_linux = wezterm.target_triple:find('linux') ~= nil
+local is_windows = wezterm.target_triple:find('windows') ~= nil
+
 local config = wezterm.config_builder()
 config.color_scheme = 'Catppuccin Mocha'
 config.window_close_confirmation = 'AlwaysPrompt'
-config.window_background_opacity = 0.9
 
 -- default window size
 config.initial_cols = 100
@@ -34,20 +37,23 @@ config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
+config.tab_max_width = 32
 
-if (wezterm.target_triple:find('linux') ~= nil) then
+if (is_linux) then
 end
 
-if (wezterm.target_triple:find('darwin') ~= nil) then
+if (is_mac) then
     config.font_size = 16
 end
 
-if (wezterm.target_triple:find('windows') ~= nil) then
+if (is_windows) then
     config.default_prog = { 'wsl.exe', '~' }
 
     table.insert(config.keys, {
         key = 'p', mods = 'ALT', action = act.SpawnCommandInNewTab { args = { 'powershell.exe', '-NoLogo' } },
     })
+else
+    config.window_background_opacity = 0.8
 end
 
 return config
