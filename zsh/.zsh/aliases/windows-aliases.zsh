@@ -12,6 +12,10 @@ alias work='cd $WIN_HOME/code/work'
 
 # fzf search for .sln files in current dir
 alias fzs='selected=$(fd . -t file -e sln | fzf); [[ -n "$selected" ]] && vs "$selected" &; cd $(dirname "$selected")'
+
+# az cli
+alias azsubs="az account list | jq -r '.[] | \"\n\(.name)\n\(.id)\"'"
+alias azcurrent="az account list | jq -r '.[] | select(.isDefault == true) | .name, .id'"
     
 git() {
     if [[ "$(pwd)" == *oversight* ]]; then

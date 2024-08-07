@@ -3,6 +3,10 @@
 [[ -z $WIN_HOME ]] && export WIN_HOME="/mnt/c/Users/$USER"
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/dotfiles"
 
+[[ $(uname -s) == "Darwin" ]] && is_mac=true
+[[ $(uname -a) == *Ubuntu* ]] && is_linux=true
+[[ $(uname -r) == *microsoft* ]] && is_windows=true
+
 blue='\033[1;94m'
 green='\033[1;92m'
 clear='\033[0m'
@@ -56,7 +60,7 @@ packages=(
     zsh
 )
 
-if [[ $(uname -s) == "Darwin" ]]; then
+if [ $is_mac ]; then
     packages+=(fd)
 else
     packages+=(fd-find)
@@ -66,21 +70,31 @@ install_packages() {
     mkdir -p "$HOME"/.config
     mkdir -p "$HOME"/.local/bin
 
-    if [[ $(uname -s) == "Darwin" ]]; then
+    if [ $is_mac ]; then
         brew update
         brew upgrade
         brew install "${packages[@]}"
         brew install --cask wezterm
+        sudo apt install openssh-server -y
     else
         sudo apt update
         sudo apt upgrade -y
         sudo apt install "${packages[@]}" -y
+        sudo apt install xclip -y
+    fi
+
+    if [ $is_windows ]; then
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash # azure cli
     fi
 
     if [[ $SHELL != "/bin/zsh" ]]; then
         echo -e "${green}Changing shell to zsh${clear}"
         sudo chsh -s /bin/zsh "$USER"
     fi
+
+    # fzf latest version
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --key-bindings --completion --no-update-rc
 }
 
 base=(
@@ -120,11 +134,6 @@ while [[ "$#" -gt 0 ]]; do
             ;;
         -i|--init|--install)
             install_packages
-            [[ $(uname -a) == *Ubuntu* ]] && sudo apt install xclip -y
-            [[ $(uname -s) != "Darwin" ]] && sudo apt install openssh-server -y
-
-            git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-            ~/.fzf/install  --key-bindings --completion --no-update-rc
             ;;
         -p|--personal)
             stow_apps "$HOME" "${personal[@]}"
@@ -142,8 +151,8 @@ done
  
 stow_apps "$HOME" "${base[@]}"
 
-if [[ $(uname -s) == "Darwin" ]]; then
-    bat cache --build &> /dev/null
+if [ $is_mac ]; then
+   bat cache --build &> /dev/null
 else
     batcat cache --build &> /dev/null
 fi
