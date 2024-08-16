@@ -75,6 +75,7 @@ install_packages() {
         brew upgrade
         brew install "${packages[@]}"
         brew install --cask wezterm
+        brew install azure-cli
         sudo apt install openssh-server -y
     else
         sudo apt update

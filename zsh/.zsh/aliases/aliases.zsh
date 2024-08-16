@@ -23,6 +23,11 @@ if command -v fdfind &> /dev/null; then
     alias fd='fdfind'
 fi
 
+if command -v az &> /dev/null; then
+    alias azsubs="az account list | jq -r '.[] | \"[\(.tenantDisplayName)]\n\(.name)\n\(.id)\n\"'"
+    alias azcurrent="az account list | jq -r '.[] | select(.isDefault == true) | .tenantDisplayName, .name, .id'"
+fi
+
 alias history='history -f 1'
 
 alias cgc='cat ~/.gitconfig'
