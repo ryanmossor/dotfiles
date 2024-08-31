@@ -37,7 +37,7 @@ source_file "$HOME/.fzf.zsh"
 source_file "$HOME/.zsh/aliases/aliases.zsh"
 [[ $(uname -a) == *microsoft* ]] && source_file "$HOME/.zsh/aliases/windows-aliases.zsh"
 [[ $(uname -a) == *Ubuntu* ]] && source_file "$HOME/.zsh/aliases/linux-aliases.zsh"
-[[ $TERM_PROGRAM == "WezTerm" ]] &&source_file "$HOME/.zsh/aliases/wezterm-aliases.zsh"
+[[ $TERM_PROGRAM == "WezTerm" ]] && source_file "$HOME/.zsh/aliases/wezterm-aliases.zsh"
 
 if command -v fzf &> /dev/null; then
     if [[ $(uname -s) == "Darwin" ]]; then

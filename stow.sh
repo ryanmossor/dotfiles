@@ -82,9 +82,6 @@ install_packages() {
         sudo apt upgrade -y
         sudo apt install "${packages[@]}" -y
         sudo apt install xclip -y
-    fi
-
-    if [ $is_windows ]; then
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash # azure cli
     fi
 
