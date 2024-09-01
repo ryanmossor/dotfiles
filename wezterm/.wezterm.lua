@@ -23,6 +23,14 @@ config.keys = {
     { key = 'e', mods = 'CTRL', action = wezterm.action_callback(vim_edit_scrollback) },
 }
 
+config.mouse_bindings = {
+  {
+    -- click to open links w/ no modifier key
+    event = { Up = { streak = 1, button = 'Left' } },
+    action = wezterm.action.OpenLinkAtMouseCursor,
+  },
+} 
+
 -- Ctrl+1 for tab 1, Ctrl+2 for tab 2, etc.
 for i = 1, 9 do
     table.insert(config.keys, { key = tostring(i), mods = 'CTRL', action = act.ActivateTab(i - 1) })
