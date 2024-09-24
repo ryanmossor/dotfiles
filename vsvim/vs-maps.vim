@@ -35,7 +35,7 @@ inoremap <C-h> <C-o>:vsc Edit.ParameterInfo<CR>
 nnoremap <leader>gd :vsc Edit.PeekDifference<CR>
 
 " Close other tabs
-nnoremap gco :vsc File.CloseAllButThis<CR> 
+nnoremap gco :vsc File.CloseOtherTabs<CR> 
 
 nnoremap <leader>r :vsc Refactor.Rename<CR>
 
