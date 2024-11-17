@@ -23,6 +23,11 @@ config.keys = {
     { key = 'e', mods = 'CTRL', action = wezterm.action_callback(vim_edit_scrollback) },
 }
 
+-- Ctrl+1 for tab 1, Ctrl+2 for tab 2, etc.
+for i = 1, 9 do
+    table.insert(config.keys, { key = tostring(i), mods = 'CTRL', action = act.ActivateTab(i - 1) })
+end
+
 config.mouse_bindings = {
   {
     -- click to open links w/ no modifier key
@@ -30,11 +35,6 @@ config.mouse_bindings = {
     action = wezterm.action.OpenLinkAtMouseCursor,
   },
 } 
-
--- Ctrl+1 for tab 1, Ctrl+2 for tab 2, etc.
-for i = 1, 9 do
-    table.insert(config.keys, { key = tostring(i), mods = 'CTRL', action = act.ActivateTab(i - 1) })
-end
 
 -- font
 config.font = wezterm.font_with_fallback { 'Cascadia Mono', 'Ubuntu Mono' }
@@ -47,21 +47,36 @@ config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.tab_max_width = 32
 
-if (is_linux) then
+if is_linux then
 end
 
-if (is_mac) then
+if is_mac then
     config.font_size = 16
+    table.insert(config.font, 1, 'Consolas')
 end
 
-if (is_windows) then
+local default_opacity = 0.9
+
+if is_windows then
     config.default_prog = { 'wsl.exe', '~' }
+    default_opacity = 1.0
 
     table.insert(config.keys, {
         key = 'p', mods = 'ALT', action = act.SpawnCommandInNewTab { args = { 'powershell.exe', '-NoLogo' } },
     })
 else
-    config.window_background_opacity = 0.8
+    config.window_background_opacity = default_opacity
+    table.insert(config.keys, { key = 'o', mods = 'CTRL', action = wezterm.action.EmitEvent("toggle-opacity") })
 end
+
+wezterm.on("toggle-opacity", function(window, pane)
+    local overrides = window:get_config_overrides() or {}
+    if overrides.window_background_opacity == 1.0 then
+        overrides.window_background_opacity = default_opacity
+    else
+        overrides.window_background_opacity = 1.0
+    end
+    window:set_config_overrides(overrides)
+end)
 
 return config
