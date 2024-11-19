@@ -36,10 +36,6 @@ config.mouse_bindings = {
   },
 } 
 
--- font
-config.font = wezterm.font_with_fallback { 'Cascadia Mono', 'Ubuntu Mono' }
-config.font_size = 12
-
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
@@ -47,16 +43,18 @@ config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.tab_max_width = 32
 
-if is_linux then
-end
+-- font
+local font_list = { 'Cascadia Mono', 'Ubuntu Mono' }
+config.font_size = 12
 
 if is_mac then
     config.font_size = 16
-    table.insert(config.font, 1, 'Consolas')
+    -- table.insert(font_list, 1, 'Consolas')
 end
 
-local default_opacity = 0.9
+config.font = wezterm.font_with_fallback(font_list)
 
+local default_opacity = 0.8
 if is_windows then
     config.default_prog = { 'wsl.exe', '~' }
     default_opacity = 1.0
