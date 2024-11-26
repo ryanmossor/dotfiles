@@ -54,7 +54,7 @@ end
 
 config.font = wezterm.font_with_fallback(font_list)
 
-local default_opacity = 0.8
+local default_opacity = 0.9
 if is_windows then
     config.default_prog = { 'wsl.exe', '~' }
     default_opacity = 1.0
