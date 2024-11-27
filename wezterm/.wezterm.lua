@@ -19,7 +19,7 @@ config.keys = {
     { key = 'w', mods = 'CTRL', action = act.CloseCurrentTab { confirm = true } },
     { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
     -- { key = 'v', mods = 'CTRL', action = act.PasteFrom 'PrimarySelection' }, 
-    { key = 'C', mods = 'CTRL|SHIFT', action = act.ActivateCopyMode }, 
+    { key = 'C', mods = 'CTRL|SHIFT', action = act.ActivateCopyMode },
     { key = 'e', mods = 'CTRL', action = wezterm.action_callback(vim_edit_scrollback) },
 }
 
@@ -34,7 +34,7 @@ config.mouse_bindings = {
     event = { Up = { streak = 1, button = 'Left' } },
     action = wezterm.action.OpenLinkAtMouseCursor,
   },
-} 
+}
 
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = true
@@ -64,10 +64,10 @@ if is_windows then
     })
 else
     config.window_background_opacity = default_opacity
-    table.insert(config.keys, { key = 'o', mods = 'CTRL', action = wezterm.action.EmitEvent("toggle-opacity") })
+    table.insert(config.keys, { key = 'o', mods = 'CTRL|SHIFT', action = wezterm.action.EmitEvent("toggle-opacity") })
 end
 
-wezterm.on("toggle-opacity", function(window, pane)
+wezterm.on("toggle-opacity", function(window)
     local overrides = window:get_config_overrides() or {}
     if overrides.window_background_opacity == 1.0 then
         overrides.window_background_opacity = default_opacity

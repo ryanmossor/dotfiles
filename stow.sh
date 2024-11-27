@@ -60,7 +60,7 @@ packages=(
     zsh
 )
 
-if [ $is_mac ]; then
+if [ "$is_mac" ]; then
     packages+=(fd)
 else
     packages+=(fd-find)
@@ -70,7 +70,7 @@ install_packages() {
     mkdir -p "$HOME"/.config
     mkdir -p "$HOME"/.local/bin
 
-    if [ $is_mac ]; then
+    if [ "$is_mac" ]; then
         brew update
         brew upgrade
         brew install "${packages[@]}"
@@ -93,12 +93,19 @@ install_packages() {
     # fzf latest version
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --key-bindings --completion --no-update-rc
+    
+    # neovim latest stable
+    git clone https://github.com/neovim/neovim.git --branch=stable ~/code/neovim
+    pushd ~/code/neovim > /dev/null || exit
+    make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
+    popd > /dev/null || exit
 }
 
 base=(
     bat
     git
     ideavim
+    nvim
     scripts
     #tmux
     vim
@@ -149,7 +156,7 @@ done
  
 stow_apps "$HOME" "${base[@]}"
 
-if [ $is_mac ]; then
+if [ "$is_mac" ]; then
    bat cache --build &> /dev/null
 else
     batcat cache --build &> /dev/null

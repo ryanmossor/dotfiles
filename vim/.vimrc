@@ -114,12 +114,17 @@ noremap <leader>y "+y
 nnoremap <leader>Y "+y$
 xnoremap <leader>Y "+y
 
+" Yank entire file to system clipboard
+nnoremap <C-y> mygg"+yG`y
+
 " Cut to system clipboard
 xnoremap <leader>x "+x
 
 " Paste from system clipboard
 nnoremap <leader>p "+p
 xnoremap <leader>p "_d"+P
+cnoremap <C-v> <C-R>+
+inoremap <C-v> <C-R>+ 
 
 " H/L go to start/end of line
 noremap H 0^
@@ -127,13 +132,6 @@ noremap L $
 onoremap H ^
 onoremap L $
 noremap ^ 0^
-
-" Paste from system clipboard
-cnoremap <C-v> <C-R>+
-inoremap <C-v> <C-R>+ 
-
-" Yank entire file to system clipboard
-nnoremap <C-y> mygg"+yG`y
 
 " Move selected text up/down, reformat, then reselect
 xnoremap J :m '>+1<CR>gv=gv

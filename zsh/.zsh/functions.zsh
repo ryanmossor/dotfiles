@@ -36,10 +36,18 @@ function update() {
     [[ $(uname -a) == *mint* ]] && flatpak update -y
     [[ $(uname -s) == "Darwin" ]] && brew update && brew upgrade
 
+    # update fzf
     pushd ~/.fzf > /dev/null &&
     git pull &&
     ./install --key-bindings --completion --no-update-rc &&
     popd > /dev/null
+
+    # update neovim
+    [ ! -d ~/code/neovim ] && git clone https://github.com/neovim/neovim.git --branch=stable ~/code/neovim
+    pushd ~/code/neovim > /dev/null || exit
+    git checkout stable && git pull
+    make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
+    popd > /dev/null || exit
 }
 
 function fzf-cd-code-projects() {
