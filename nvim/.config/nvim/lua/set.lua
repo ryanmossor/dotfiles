@@ -28,7 +28,13 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+-- Text wrapping
+vim.opt.wrap = false
+
+-- Always display signs gutter (git changes, diagnostics, etc.)
 vim.opt.signcolumn = "yes"
+
+-- Allow special chars in filenames
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
@@ -46,3 +52,7 @@ vim.opt.wildmenu = true
 
 -- Completion mode that is used for the character specified with 'wildchar'
 -- vim.opt.wildmode=longest:full,full
+
+-- split window preferences
+vim.opt.splitright = true -- split vertical window to the right
+vim.opt.splitbelow = true -- split horizontal window to the bottom

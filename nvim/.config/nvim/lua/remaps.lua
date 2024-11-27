@@ -1,10 +1,10 @@
 vim.g.mapleader = " "
 
 -- Reload config
-vim.keymap.set("n", "<leader><leader>", ":source %<CR>")
+vim.keymap.set("n", "<leader><leader>", ":source %<CR>", { silent = true })
 
 vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
-vim.keymap.set("n", "<leader>x", ":q!<CR>")
+vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
 
 -- Enable standard Ctrl+Backspace/Ctrl+Del behavior in insert mode
 vim.keymap.set("i", "<C-Del>", "<C-o>dw")
@@ -14,14 +14,13 @@ vim.keymap.set("i", "<C-BS>", "<C-o>db")
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %")
 
 -- Toggle line wrap
-vim.keymap.set("n", "gw", ":set wrap!<CR>")
+vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true })
 
 -- Toggle relative line numbers
-vim.keymap.set("n", "<leader>3", ":set relativenumber!<CR>")
+vim.keymap.set("n", "<leader>3", ":set relativenumber!<CR>", { silent = true })
 
 -- Un-highlight search matches
-vim.keymap.set("n", "<leader><Esc>", ":nohlsearch<CR>")
-vim.keymap.set("x", "<leader><Esc>", "<Esc>:nohlsearch<CR>")
+vim.keymap.set({ "n", "x" }, "<leader><Esc>", "<Esc>:nohlsearch<CR>", { silent = true })
 
 -- Use 'very magic' mode for search
 --vim.keymap.set("n", "<leader>/", "/\v")
@@ -43,6 +42,12 @@ vim.keymap.set({ "n", "x" }, "<Up>", "<Esc><C-W>k")
 vim.keymap.set({ "n", "x" }, "<Down>", "<Esc><C-W>j")
 vim.keymap.set({ "n", "x" }, "<Left>", "<Esc><C-W>h")
 vim.keymap.set({ "n", "x" }, "<Right>", "<Esc><C-W>l")
+
+-- Resize split
+vim.keymap.set({ "n", "x" }, "<M-,>", "<C-w>5<")
+vim.keymap.set({ "n", "x" }, "<M-.>", "<C-w>5>")
+vim.keymap.set({ "n", "x" }, "<M-t>", "<C-w>+")
+vim.keymap.set({ "n", "x" }, "<M-s>", "<C-w>-")
 
 -- Tab navigation
 --vim.keymap.set("n", "<S-h>", "gT")
@@ -71,9 +76,8 @@ vim.keymap.set("n", "N", "?<CR>zz")
 vim.keymap.set("x", "p", "\"_dP")
 
 -- Delete to void register; preserves text currently in register
-vim.keymap.set("n", "<leader>d", "\"_d")
+vim.keymap.set({ "n", "x" }, "<leader>d", "\"_d")
 vim.keymap.set("n", "<leader>D", "\"_D")
---vim.keymap.set("v", "<leader>d", "\"_d")
 
 -- Make Y behave like C and D
 vim.keymap.set("n", "Y", "y$")
@@ -94,12 +98,12 @@ vim.keymap.set("x", "<leader>p", "_d\"+P")
 vim.keymap.set({ "c", "i" }, "<C-v>", "<C-R>+")
 
 -- H/L go to start/end of line
-vim.keymap.set({ "n", "o" }, "L", "$")
-vim.keymap.set("n", "H", "0^")
+vim.keymap.set({ "n", "o", "x" }, "L", "$")
+vim.keymap.set({ "n", "x" }, "H", "0^")
 vim.keymap.set("o", "H", "^")
-vim.keymap.set("n", "^", "0^")
+vim.keymap.set({ "n", "x" }, "^", "0^")
 
--- Move selected text up/down, reformat, then reselect (OG vim)
+-- Move selected text up/down, reformat, then reselect
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -107,8 +111,9 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- Split (opposite of J for join)
-vim.keymap.set("n", "S", "yl/<C-r>0<CR>Ncgn<C-r>0<Del><CR><Esc>n:nohlsearch<CR>")
+vim.keymap.set({ "n", "x" }, "S", ":s/,/,\\r/g<CR>:nohlsearch<CR>V'<=")
+--vim.keymap.set("n", "S", "yl/<C-r>0<CR>Ncgn<C-r>0<Del><CR><Esc>n:nohlsearch<CR>")
 
 -- Reselect text after indenting/dedenting
-vim.keymap.set("v", ">", ">gv")
-vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
+vim.keymap.set("x", "<", "<gv")

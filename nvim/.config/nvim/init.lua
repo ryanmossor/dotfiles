@@ -23,6 +23,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("set")
 require("remaps")
+require("autocmds")
 require("lazy").setup("plugins")
 
 vim.cmd.colorscheme "catppuccin"
