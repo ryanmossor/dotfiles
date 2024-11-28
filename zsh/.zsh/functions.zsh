@@ -32,7 +32,21 @@ function add_completion() {
 } 
 
 function update() {
-    [[ $(uname -a) == *Ubuntu* ]] && sudo apt update && sudo apt upgrade -y
+    if [[ $(uname -a) == *Ubuntu* ]]; then
+        sudo apt update
+        sudo apt upgrade -y
+
+        # update lazygit
+        LAZYGIT_LATEST=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r '.tag_name' | sed 's/v//')
+        LAZYGIT_CURRENT=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
+        if [[ "$LAZYGIT_CURRENT" != "$LAZYGIT_LATEST" ]]; then
+            pushd /tmp > /dev/null || exit
+            curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_LATEST}/lazygit_${LAZYGIT_LATEST}_Linux_x86_64.tar.gz"
+            tar xf lazygit.tar.gz lazygit
+            sudo install lazygit -D -t /usr/local/bin/
+            popd > /dev/null || exit
+        fi
+    fi
     [[ $(uname -a) == *mint* ]] && flatpak update -y
     [[ $(uname -s) == "Darwin" ]] && brew update && brew upgrade
 

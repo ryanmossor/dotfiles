@@ -1,36 +1,59 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				auto_install = true,
-			})
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			--lspconfig.bashls.setup({
-			--	filetypes = { "sh", "zsh" },
-			--  capabilities = capabilities,
-			--})
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
+    {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup()
+        end,
+    },
+    {
+        -- handle installation of LSPs
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup({
+                auto_install = true,
+                ensure_installed = {
+                    "gopls",
+                    "lua_ls",
+                    "ts_ls",
+                },
+            })
+        end,
+    },
+    {
+        -- handle installation of formatters/linters
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "nvimtools/none-ls.nvim",
+        },
+        config = function()
+            require("mason-null-ls").setup({
+                ensure_installed = {
+                    "eslint_d",
+                    "stylua",
+                },
+            })
+        end,
+    },
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local lspconfig = require("lspconfig")
+            --lspconfig.bashls.setup({
+            --	filetypes = { "sh", "zsh" },
+            --  capabilities = capabilities,
+            --})
+            lspconfig.gopls.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.lua_ls.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.ts_ls.setup({
+                capabilities = capabilities,
+            })
 
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
@@ -43,11 +66,17 @@ return {
             vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
             vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
-			vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Show function signature help" })
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+            vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Show function signature help" })
 
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-		end,
-	},
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+                vim.lsp.handlers.hover,
+                { border = "rounded" }
+            )
+            vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+                vim.lsp.handlers.signature_help,
+                { border = "rounded" }
+            )
+        end,
+    },
 }

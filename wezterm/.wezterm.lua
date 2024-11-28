@@ -21,7 +21,7 @@ config.keys = {
     { key = 'v', mods = 'CTRL|SHIFT', action = act.PasteFrom 'Clipboard' },
     -- { key = 'v', mods = 'CTRL', action = act.PasteFrom 'PrimarySelection' }, 
     { key = 'C', mods = 'CTRL|SHIFT', action = act.ActivateCopyMode },
-    { key = 'e', mods = 'CTRL', action = wezterm.action_callback(vim_edit_scrollback) },
+    { key = 'e', mods = 'CTRL|SHIFT', action = wezterm.action_callback(vim_edit_scrollback) },
 }
 
 -- Ctrl+1 for tab 1, Ctrl+2 for tab 2, etc.

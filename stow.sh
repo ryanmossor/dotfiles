@@ -76,12 +76,20 @@ install_packages() {
         brew upgrade
         brew install "${packages[@]}"
         brew install --cask wezterm
-        brew install azure-cli
+        brew install azure-cli jesseduffield/lazygit/lazygit
     else
         sudo apt update
         sudo apt upgrade -y
-        sudo apt install "${packages[@]}" openssh-server xclip -y
+        sudo apt install -y "${packages[@]}" openssh-server xclip
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash # azure cli
+
+        LAZYGIT_LATEST=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r '.tag_name' | sed 's/v//')
+        LAZYGIT_CURRENT=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
+        if [[ "$LAZYGIT_CURRENT" != "$LAZYGIT_LATEST" ]]; then
+            curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_LATEST}/lazygit_${LAZYGIT_LATEST}_Linux_x86_64.tar.gz"
+            tar xf lazygit.tar.gz lazygit
+            sudo install lazygit -D -t /usr/local/bin/
+        fi
     fi
 
     if [[ $SHELL != "/bin/zsh" ]]; then
