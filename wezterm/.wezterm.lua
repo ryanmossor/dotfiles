@@ -17,7 +17,7 @@ config.initial_rows = 30
 
 -- key bindings
 config.keys = {
-    { key = 'w', mods = 'CTRL', action = act.CloseCurrentTab { confirm = true } },
+    { key = 'w', mods = 'CTRL|SHIFT', action = act.CloseCurrentTab { confirm = true } },
     { key = 'v', mods = 'CTRL|SHIFT', action = act.PasteFrom 'Clipboard' },
     -- { key = 'v', mods = 'CTRL', action = act.PasteFrom 'PrimarySelection' }, 
     { key = 'C', mods = 'CTRL|SHIFT', action = act.ActivateCopyMode },

@@ -156,7 +156,7 @@ done
 stow_apps "$HOME" "${base[@]}"
 
 if [ "$is_mac" ]; then
-   bat cache --build &> /dev/null
+    bat cache --build &> /dev/null
 else
     batcat cache --build &> /dev/null
 fi
