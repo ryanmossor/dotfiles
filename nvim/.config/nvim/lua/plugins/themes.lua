@@ -25,6 +25,13 @@ return {
                 integrations = {
                     treesitter = true,
                 },
+                highlight_overrides = {
+                    mocha = function(mocha)
+                        return {
+                            LineNr = { fg = mocha.subtext0 },
+                        }
+                    end,
+                },
             })
         end,
     },

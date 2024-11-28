@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 
--- Reload config
-vim.keymap.set("n", "<leader><leader>", ":source %<CR>:nohlsearch<CR>", { silent = true })
+vim.keymap.set("n", "<leader><leader>", ":source %<CR>:nohlsearch<CR>", { silent = true, desc = "Reload config" })
 
 vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
 vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
@@ -10,32 +9,24 @@ vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
 vim.keymap.set("i", "<C-Del>", "<C-o>dw")
 vim.keymap.set("i", "<C-BS>", "<C-o>db")
 
--- Save file as sudo
-vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %")
+vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { desc = "Write file as sudo" })
 
--- Toggle line wrap
-vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true })
+vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true, desc = "Toggle line wrap" })
 
--- Toggle relative line numbers
-vim.keymap.set("n", "<leader>3", ":set relativenumber!<CR>", { silent = true })
+vim.keymap.set("n", "<leader>3", ":set relativenumber!<CR>", { silent = true, desc = "Toggle relative line numbers" })
 
--- Un-highlight search matches
-vim.keymap.set({ "n", "x" }, "<leader><Esc>", "<Esc>:nohlsearch<CR>", { silent = true })
+vim.keymap.set({ "n", "x" }, "<leader><Esc>", "<Esc>:nohlsearch<CR>", { silent = true, desc = "Un-highlight search matches" })
 
 -- Use 'very magic' mode for search
 --vim.keymap.set("n", "<leader>/", "/\v")
 --vim.keymap.set("n", "<leader>?", "?\v")
 
--- Substitute word under cursor across entire file
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = "Substitute word under cursor across entire file" })
 
--- Substite word under cursor once; use . to repeat
-vim.keymap.set("n", "<leader>e", "*Ncgn")
+vim.keymap.set("n", "<leader>e", "*Ncgn", { desc = "Substite word under cursor once; use . to repeat" })
 
--- Create horizontal split
---vim.keymap.set({ "n", "x" }, "<leader>h", "<Esc><C-w>s")
--- Create vertical split
-vim.keymap.set({ "n", "x" }, "<leader>v", "<Esc><C-w>v")
+vim.keymap.set({ "n", "x" }, "<leader>h", "<Esc><C-w>s", { desc = "Create horizontal split" })
+vim.keymap.set({ "n", "x" }, "<leader>v", "<Esc><C-w>v", { desc = "Create vertical split" })
 
 -- Split navigation
 vim.keymap.set({ "n", "x" }, "<Up>", "<Esc><C-W>k")
@@ -86,16 +77,13 @@ vim.keymap.set("n", "Y", "y$")
 vim.keymap.set({ "n", "x" }, "<leader>y", "\"+y")
 vim.keymap.set({ "n", "x" }, "<leader>Y", "\"+y$")
 
--- Yank entire file to system clipboard
-vim.keymap.set("n", "<C-y>", "mygg\"+yG`y")
+vim.keymap.set("n", "<C-y>", "mygg\"+yG`y", { desc = "Yank entire file to system clipboard" })
 
--- Cut to system clipboard
-vim.keymap.set("x", "<leader>x", "\"+x")
+vim.keymap.set("x", "<leader>x", "\"+x", { desc = "Cut to system clipboard" })
 
--- Paste from system clipboard
-vim.keymap.set("n", "<leader>p", "\"+p")
-vim.keymap.set("x", "<leader>p", "_d\"+P")
-vim.keymap.set({ "c", "i" }, "<C-v>", "<C-R>+")
+vim.keymap.set("n", "<leader>p", "\"+p", { desc = "Paste from system clipboard" })
+vim.keymap.set("x", "<leader>p", "_d\"+P", { desc = "Paste from system clipboard" })
+vim.keymap.set({ "c", "i" }, "<C-v>", "<C-R>+", { desc = "Paste from system clipboard" })
 
 -- H/L go to start/end of line
 vim.keymap.set({ "n", "o", "x" }, "L", "$")

@@ -22,7 +22,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("set")
-require("remaps")
+require("keymaps")
 require("autocmds")
 require("lazy").setup("plugins")
 
