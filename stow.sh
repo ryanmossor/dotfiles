@@ -47,12 +47,12 @@ packages=(
     bat
     cloc
     curl
-    # fzf -- installed below via git
     git
     htop
     jq
     neofetch
     ripgrep
+    shellcheck
     stow
     tmux
     vim
@@ -67,6 +67,7 @@ else
 fi
 
 install_packages() {
+    mkdir -p "$HOME"/code/work
     mkdir -p "$HOME"/.config
     mkdir -p "$HOME"/.local/bin
 
@@ -76,12 +77,10 @@ install_packages() {
         brew install "${packages[@]}"
         brew install --cask wezterm
         brew install azure-cli
-        sudo apt install openssh-server -y
     else
         sudo apt update
         sudo apt upgrade -y
-        sudo apt install "${packages[@]}" -y
-        sudo apt install xclip -y
+        sudo apt install "${packages[@]}" openssh-server xclip -y
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash # azure cli
     fi
 
