@@ -5,7 +5,7 @@ return {
         name = "alabaster",
         config = function()
             vim.g.alabaster_dim_comments = true
-        end
+        end,
     },
     {
         "catppuccin/nvim",
@@ -18,7 +18,9 @@ return {
                 transparent_background = true,
                 show_end_of_buffer = true,
                 styles = {
+                    comments = { "italic" },
                     conditionals = {},
+                    miscs = {},
                 },
                 integrations = {
                     treesitter = true,

@@ -9,7 +9,7 @@ vim.opt.relativenumber = true
 
 -- Minimum # of line numbers to display above/below cursor
 vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 999
+vim.opt.sidescrolloff = 20
 
 -- Ignore case when searching
 vim.opt.ignorecase = true

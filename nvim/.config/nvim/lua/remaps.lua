@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 -- Reload config
-vim.keymap.set("n", "<leader><leader>", ":source %<CR>", { silent = true })
+vim.keymap.set("n", "<leader><leader>", ":source %<CR>:nohlsearch<CR>", { silent = true })
 
 vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
 vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
@@ -104,14 +104,14 @@ vim.keymap.set("o", "H", "^")
 vim.keymap.set({ "n", "x" }, "^", "0^")
 
 -- Move selected text up/down, reformat, then reselect
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 -- Don't move cursor when joining below line
 vim.keymap.set("n", "J", "mzJ`z")
 
 -- Split (opposite of J for join)
-vim.keymap.set({ "n", "x" }, "S", ":s/,/,\\r/g<CR>:nohlsearch<CR>V'<=")
+vim.keymap.set({ "n", "x" }, "S", ":s/,/,\\r/g<CR>:nohlsearch<CR>V'<=", { silent = true })
 --vim.keymap.set("n", "S", "yl/<C-r>0<CR>Ncgn<C-r>0<Del><CR><Esc>n:nohlsearch<CR>")
 
 -- Reselect text after indenting/dedenting
