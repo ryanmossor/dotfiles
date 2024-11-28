@@ -7,6 +7,7 @@ local is_linux = wezterm.target_triple:find('linux') ~= nil
 local is_windows = wezterm.target_triple:find('windows') ~= nil
 
 local config = wezterm.config_builder()
+config.term = "xterm-256color"
 config.color_scheme = 'Catppuccin Mocha'
 config.window_close_confirmation = 'AlwaysPrompt'
 

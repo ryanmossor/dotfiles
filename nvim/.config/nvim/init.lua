@@ -26,4 +26,5 @@ require("remaps")
 require("autocmds")
 require("lazy").setup("plugins")
 
+vim.o.termguicolors = true
 vim.cmd.colorscheme "catppuccin"
