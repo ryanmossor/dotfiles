@@ -15,13 +15,23 @@ vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true, desc = "Toggle line
 
 vim.keymap.set("n", "<leader>3", ":set relativenumber!<CR>", { silent = true, desc = "Toggle relative line numbers" })
 
-vim.keymap.set({ "n", "x" }, "<leader><Esc>", "<Esc>:nohlsearch<CR>", { silent = true, desc = "Un-highlight search matches" })
+vim.keymap.set(
+    { "n", "x" },
+    "<leader><Esc>",
+    "<Esc>:nohlsearch<CR>",
+    { silent = true, desc = "Un-highlight search matches" }
+)
 
 -- Use 'very magic' mode for search
 --vim.keymap.set("n", "<leader>/", "/\v")
 --vim.keymap.set("n", "<leader>?", "?\v")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]], { desc = "Substitute word under cursor across entire file" })
+vim.keymap.set(
+    "n",
+    "<leader>s",
+    [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]],
+    { desc = "Substitute word under cursor across entire file" }
+)
 
 vim.keymap.set("n", "<leader>e", "*Ncgn", { desc = "Substite word under cursor once; use . to repeat" })
 
@@ -64,25 +74,25 @@ vim.keymap.set("n", "n", "/<CR>zz")
 vim.keymap.set("n", "N", "?<CR>zz")
 
 -- Paste while keeping current text in register
-vim.keymap.set("x", "p", "\"_dP")
+vim.keymap.set("x", "p", '"_dP')
 
 -- Delete to void register; preserves text currently in register
-vim.keymap.set({ "n", "x" }, "<leader>d", "\"_d")
-vim.keymap.set("n", "<leader>D", "\"_D")
+vim.keymap.set({ "n", "x" }, "<leader>d", '"_d')
+vim.keymap.set("n", "<leader>D", '"_D')
 
 -- Make Y behave like C and D
 vim.keymap.set("n", "Y", "y$")
 
 -- Yank to system clipboard
-vim.keymap.set({ "n", "x" }, "<leader>y", "\"+y")
-vim.keymap.set({ "n", "x" }, "<leader>Y", "\"+y$")
+vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
+vim.keymap.set({ "n", "x" }, "<leader>Y", '"+y$')
 
-vim.keymap.set("n", "<C-y>", "mygg\"+yG`y", { desc = "Yank entire file to system clipboard" })
+vim.keymap.set("n", "<C-y>", 'mygg"+yG`y', { desc = "Yank entire file to system clipboard" })
 
-vim.keymap.set("x", "<leader>x", "\"+x", { desc = "Cut to system clipboard" })
+vim.keymap.set("x", "<leader>x", '"+x', { desc = "Cut to system clipboard" })
 
-vim.keymap.set("n", "<leader>p", "\"+p", { desc = "Paste from system clipboard" })
-vim.keymap.set("x", "<leader>p", "_d\"+P", { desc = "Paste from system clipboard" })
+vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+vim.keymap.set("x", "<leader>p", '_d"+P', { desc = "Paste from system clipboard" })
 vim.keymap.set({ "c", "i" }, "<C-v>", "<C-R>+", { desc = "Paste from system clipboard" })
 
 -- H/L go to start/end of line
@@ -105,3 +115,6 @@ vim.keymap.set({ "n", "x" }, "S", ":s/,/,\\r/g<CR>:nohlsearch<CR>V'<=", { silent
 -- Reselect text after indenting/dedenting
 vim.keymap.set("x", ">", ">gv")
 vim.keymap.set("x", "<", "<gv")
+
+vim.keymap.set("n", "<leader>/", "gcc", { desc = "Toggle comment line", remap = true })
+vim.keymap.set("x", "<leader>/", "gc", { desc = "Toggle comment line", remap = true })
