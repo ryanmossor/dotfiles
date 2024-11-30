@@ -38,6 +38,8 @@ alias bp='dot && source ~/.zshrc && echo "~/.zshrc reloaded"'
 alias cbp='cat ~/.zshrc ~/.zsh/exports.zsh'
 alias ebp='$EDITOR ~/.zshrc'
 
+alias vim='nvim'
+
 alias cvrc='cat ~/.vimrc'
 alias evrc='$EDITOR ~/.vimrc'
 

@@ -1,5 +1,10 @@
 zsh_dir="$HOME/.zsh"
 
+function github_latest_tag() {
+    local repo="$1"
+    curl -s "https://api.github.com/repos/${repo}/releases/latest" | jq -r '.tag_name' | sed 's/v//'
+}
+
 function source_file() {
     [[ -f "$1" ]] && source "$1"
 }
@@ -37,14 +42,16 @@ function update() {
         sudo apt upgrade -y
 
         # update lazygit
-        LAZYGIT_LATEST=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r '.tag_name' | sed 's/v//')
         LAZYGIT_CURRENT=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
+        LAZYGIT_LATEST=$(github_latest_tag "jesseduffield/lazygit")
         if [[ "$LAZYGIT_CURRENT" != "$LAZYGIT_LATEST" ]]; then
             pushd /tmp > /dev/null || exit
             curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_LATEST}/lazygit_${LAZYGIT_LATEST}_Linux_x86_64.tar.gz"
             tar xf lazygit.tar.gz lazygit
             sudo install lazygit -D -t /usr/local/bin/
             popd > /dev/null || exit
+        else
+            echo "Lazygit already up to date"
         fi
     fi
     [[ $(uname -a) == *mint* ]] && flatpak update -y
@@ -57,11 +64,18 @@ function update() {
     popd > /dev/null
 
     # update neovim
-    [ ! -d ~/code/neovim ] && git clone https://github.com/neovim/neovim.git --branch=stable ~/code/neovim
-    pushd ~/code/neovim > /dev/null || exit
-    git checkout stable && git pull
-    make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
-    popd > /dev/null || exit
+    NVIM_CURRENT=$(nvim -v | head -n 1 | sed 's/NVIM v\(.*\)$/\1/')
+    NVIM_LATEST=$(github_latest_tag "neovim/neovim")
+
+    if [[ "$NVIM_CURRENT" != "$NVIM_LATEST" ]]; then
+        [ ! -d ~/code/neovim ] && git clone https://github.com/neovim/neovim.git --branch=stable ~/code/neovim
+        pushd ~/code/neovim > /dev/null || exit
+        git checkout stable && git pull
+        make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
+        popd > /dev/null || exit
+    else
+        echo "Neovim already up to date"
+    fi
 }
 
 function fzf-cd-code-projects() {
