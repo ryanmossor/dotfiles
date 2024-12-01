@@ -6,6 +6,8 @@ return {
             pattern = "floaterm",
             command = "set norelativenumber nonumber",
         })
+
+        vim.g.floaterm_title = ""
     end,
     keys = {
         {

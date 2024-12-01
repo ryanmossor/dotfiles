@@ -11,6 +11,15 @@ blue='\033[1;94m'
 green='\033[1;92m'
 clear='\033[0m'
 
+github_latest_tag() {
+    local repo="$1"
+    if command -v jq &> /dev/null; then
+        curl -s "https://api.github.com/repos/${repo}/releases/latest" | jq -r '.tag_name' | sed 's/v//'
+    else
+        curl -s "https://api.github.com/repos/${repo}/releases/latest" | grep "tag_name" | cut -d '"' -f 4 | sed 's/v//'
+    fi
+}
+
 stow_apps() {
     local target_dir="$1"
     shift # removes first param & shifts others 1 to left, allowing use of "$@" to reference list of app names
@@ -54,6 +63,7 @@ packages=(
     ripgrep
     shellcheck
     stow
+    tldr
     tmux
     vim
     wget
@@ -80,15 +90,17 @@ install_packages() {
     else
         sudo apt update
         sudo apt upgrade -y
-        sudo apt install -y "${packages[@]}" openssh-server xclip
+        sudo apt install -y "${packages[@]}" openssh-server xclip wezterm
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash # azure cli
 
-        LAZYGIT_LATEST=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | jq -r '.tag_name' | sed 's/v//')
+        LAZYGIT_LATEST=$(github_latest_tag "jesseduffield/lazygit")
         LAZYGIT_CURRENT=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
         if [[ "$LAZYGIT_CURRENT" != "$LAZYGIT_LATEST" ]]; then
+            pushd /tmp > /dev/null || exit
             curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_LATEST}/lazygit_${LAZYGIT_LATEST}_Linux_x86_64.tar.gz"
             tar xf lazygit.tar.gz lazygit
             sudo install lazygit -D -t /usr/local/bin/
+            popd > /dev/null || exit
         fi
     fi
 
@@ -100,18 +112,24 @@ install_packages() {
     # fzf latest version
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --key-bindings --completion --no-update-rc
-    
+
     # neovim latest stable
-    git clone https://github.com/neovim/neovim.git --branch=stable ~/code/neovim
-    pushd ~/code/neovim > /dev/null || exit
-    make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
-    popd > /dev/null || exit
+    NVIM_CURRENT=$(nvim -v | head -n 1 | sed 's/NVIM v\(.*\)$/\1/')
+    NVIM_LATEST=$(github_latest_tag "neovim/neovim")
+    if [[ "$NVIM_CURRENT" != "$NVIM_LATEST" ]]; then
+        [ ! -d ~/code/neovim ] && git clone https://github.com/neovim/neovim.git --branch=stable ~/code/neovim
+        pushd ~/code/neovim > /dev/null || exit
+        git checkout stable && git pull
+        make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
+        popd > /dev/null || exit
+    fi
 }
 
 base=(
     bat
     git
     ideavim
+    lazygit
     nvim
     scripts
     #tmux
@@ -168,3 +186,4 @@ if [ "$is_mac" ]; then
 else
     batcat cache --build &> /dev/null
 fi
+
