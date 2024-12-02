@@ -68,7 +68,7 @@ function update() {
     NVIM_LATEST=$(github_latest_tag "neovim/neovim")
 
     if [[ "$NVIM_CURRENT" != "$NVIM_LATEST" ]]; then
-        [ ! -d ~/code/neovim ] && git clone https://github.com/neovim/neovim.git --branch=stable ~/code/neovim
+        [ ! -d ~/code/neovim ] && git clone https://github.com/neovim/neovim.git ~/code/neovim
         pushd ~/code/neovim > /dev/null || exit
         git checkout stable && git pull
         make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
