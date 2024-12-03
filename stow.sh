@@ -76,6 +76,11 @@ else
     packages+=(fd-find)
 fi
 
+brew_packages=(
+    azure-cli
+    jesseduffield/lazygit/lazygit
+    yazi
+)
 install_packages() {
     mkdir -p "$HOME"/code/work
     mkdir -p "$HOME"/.config
@@ -85,8 +90,8 @@ install_packages() {
         brew update
         brew upgrade
         brew install "${packages[@]}"
+        brew install "${brew_packages[@]}"
         brew install --cask wezterm
-        brew install azure-cli jesseduffield/lazygit/lazygit
     else
         sudo apt update
         sudo apt upgrade -y
