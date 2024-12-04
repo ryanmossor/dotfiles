@@ -37,6 +37,9 @@ function add_completion() {
 } 
 
 function update() {
+    [ -x /usr/bin/flatpak ] && flatpak update -y
+    [[ $(uname -s) == "Darwin" ]] && brew update && brew upgrade
+
     if [[ $(uname -a) == *Ubuntu* ]]; then
         sudo apt update
         sudo apt upgrade -y
@@ -67,14 +70,6 @@ function update() {
             echo "Yazi already up to date."
         fi
     fi
-    [[ $(uname -a) == *mint* ]] && flatpak update -y
-    [[ $(uname -s) == "Darwin" ]] && brew update && brew upgrade
-
-    # update fzf
-    pushd ~/.fzf > /dev/null &&
-    git pull &&
-    ./install --key-bindings --completion --no-update-rc &&
-    popd > /dev/null
 
     # update neovim
     nvim_current=$(nvim -v | head -n 1 | sed 's/NVIM v\(.*\)$/\1/')
@@ -89,6 +84,12 @@ function update() {
     else
         echo "Neovim already up to date."
     fi
+
+    # update fzf
+    pushd ~/.fzf > /dev/null &&
+    git pull &&
+    ./install --key-bindings --completion --no-update-rc &&
+    popd > /dev/null
 }
 
 function fzf-cd-code-projects() {
