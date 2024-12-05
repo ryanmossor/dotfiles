@@ -5,7 +5,10 @@ alias sce='sudo crontab -e'
 
 alias wiiu='sudo wii-u-gc-adapter'
 
-alias update_all='sudo /home/$USER/code/Scripts/update_all.sh'
-
 alias audiofix='pulseaudio -k'
 alias cursor='sudo update-alternatives --config x-cursor-theme'
+
+class() {
+    echo 'Click a window'
+    xprop | grep WM_CLASS | awk '{ print $4 }'
+}

@@ -82,6 +82,18 @@ brew_packages=(
     yazi
 )
 
+linux_packages=(
+    i3
+    i3lock
+    pavucontrol
+    picom
+    polybar
+    pulseaudio
+    openssh-server
+    wezterm
+    xclip
+)
+
 install_packages() {
     mkdir -p "$HOME"/code/work
     mkdir -p "$HOME"/.config
@@ -96,8 +108,16 @@ install_packages() {
     else
         sudo apt update
         sudo apt upgrade -y
-        sudo apt install -y "${packages[@]}" openssh-server xclip wezterm
+        sudo apt install -y "${packages[@]}"
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash # azure cli
+
+        if [[ $(uname -a) == *mint* ]]; then
+            # wezterm repo
+            curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
+            echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+
+            sudo apt install -y "${linux_packages[@]}"
+        fi
 
         lazygit_latest=$(github_latest_tag "jesseduffield/lazygit")
         lazygit_current=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
@@ -157,7 +177,9 @@ base=(
 )
 
 personal=(
-    #i3
+    i3
+    picom
+    polybar
 )
 
 windows=(

@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader><leader>", ":source %<CR>:nohlsearch<CR>", { silent = true, desc = "Reload config" })
+-- vim.keymap.set("n", "<leader><leader>", ":source %<CR>:nohlsearch<CR>", { silent = true, desc = "Reload config" })
 
 vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
 vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
@@ -16,10 +16,10 @@ vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true, desc = "Toggle line
 vim.keymap.set("n", "<leader>3", ":set relativenumber!<CR>", { silent = true, desc = "Toggle relative line numbers" })
 
 vim.keymap.set(
-    { "n", "x" },
-    "<leader><Esc>",
-    "<Esc>:nohlsearch<CR>",
-    { silent = true, desc = "Un-highlight search matches" }
+	{ "n", "x" },
+	"<leader><Esc>",
+	"<Esc>:nohlsearch<CR>",
+	{ silent = true, desc = "Un-highlight search matches" }
 )
 
 -- Use 'very magic' mode for search
@@ -27,10 +27,10 @@ vim.keymap.set(
 --vim.keymap.set("n", "<leader>?", "?\v")
 
 vim.keymap.set(
-    "n",
-    "<leader>s",
-    [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]],
-    { desc = "Substitute word under cursor across entire file" }
+	"n",
+	"<leader>s",
+	[[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]],
+	{ desc = "Substitute word under cursor across entire file" }
 )
 
 vim.keymap.set("n", "<leader>e", "*Ncgn", { desc = "Substite word under cursor once; use . to repeat" })
