@@ -24,7 +24,11 @@ vim.opt.rtp:prepend(lazypath)
 require("set")
 require("keymaps")
 require("autocmds")
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+    change_detection = {
+        notify = false,
+    },
+})
 
 vim.o.termguicolors = true
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")
