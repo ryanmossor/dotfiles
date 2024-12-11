@@ -83,13 +83,17 @@ brew_packages=(
 )
 
 linux_packages=(
+    flameshot
+    gimp
     i3
     i3lock
+    lxappearance
     pavucontrol
     picom
-    polybar
+    #polybar
     pulseaudio
     openssh-server
+    rofi
     wezterm
     xclip
 )
@@ -177,9 +181,12 @@ base=(
 )
 
 personal=(
+    flameshot
+    gtk-3.0
     i3
     picom
     polybar
+    rofi
 )
 
 windows=(

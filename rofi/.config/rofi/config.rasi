@@ -1,0 +1,33 @@
+/* Location
+    1 2 3
+    8 0 4
+    7 6 5
+*/
+
+/*
+configuration{
+    modi: "run,drun,window";
+    icon-theme: "Papirus";
+    show-icons: true;
+    terminal: "wezterm";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "   Apps ";
+    display-run: "   Run ";
+    display-window: " 󰕰  Window";
+    display-Network: " 󰤨  Network";
+    sidebar-mode: true;
+}
+*/
+
+configuration{
+    // modi: "run,drun,window";
+    location: 0;
+    icon-theme: "Papirus";
+    show-icons: true;
+    drun-display-format: "{name}";
+}
+
+@theme "spotlight"
