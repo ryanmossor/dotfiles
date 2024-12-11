@@ -93,7 +93,13 @@ vim.keymap.set("x", "<leader>x", '"+x', { desc = "Cut to system clipboard" })
 
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set("x", "<leader>p", '_d"+P', { desc = "Paste from system clipboard" })
-vim.keymap.set({ "c", "i" }, "<C-v>", "<C-R>+", { desc = "Paste from system clipboard" })
+vim.keymap.set("c", "<C-v>", "<C-R>+", { desc = "Paste from system clipboard" })
+vim.keymap.set(
+	"i",
+	"<C-v>",
+	'<esc>:set paste<cr>a<c-r>=getreg("+")<cr><esc>:set nopaste<cr>mi`[=`]`ia',
+	{ desc = "Paste from system clipboard" }
+)
 
 -- H/L go to start/end of line
 vim.keymap.set({ "n", "o", "x" }, "L", "$")
