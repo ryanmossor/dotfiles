@@ -21,6 +21,7 @@ github_latest_tag() {
 }
 
 stow_apps() {
+    pushd "$DOTFILES/config" &> /dev/null || exit
     local target_dir="$1"
     shift # removes first param & shifts others 1 to left, allowing use of "$@" to reference list of app names
     local apps=("$@")
@@ -29,6 +30,7 @@ stow_apps() {
         echo -e "Stowing ${green}${app}${clear} in ${blue}${target_dir}${clear}"
         stow -Rt "$target_dir" "$app"
     done
+    popd &> /dev/null || exit
 }
 
 copy_windows_apps() {
@@ -38,18 +40,20 @@ copy_windows_apps() {
 
     for app in "${apps[@]}"; do
         echo -e "Copying ${green}${app}${clear} to ${blue}${target_dir}${clear}"
-        pushd "$DOTFILES"/"$app" > /dev/null || exit
+        pushd "$DOTFILES/config/$app" &> /dev/null || exit
         cp -r . "$target_dir"
-        popd > /dev/null || exit
+        popd &> /dev/null || exit
     done
 }
 
 unstow_apps() {
+    pushd "$DOTFILES/config" &> /dev/null || exit
     local apps=("$@")
     for app in "${apps[@]}"; do
         echo "Removing $app"
         stow -D "$app"
     done
+    popd &> /dev/null || exit
 }
 
 packages=(
@@ -126,22 +130,22 @@ install_packages() {
         lazygit_latest=$(github_latest_tag "jesseduffield/lazygit")
         lazygit_current=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
         if [[ "$lazygit_current" != "$lazygit_latest" ]]; then
-            pushd /tmp > /dev/null || exit
+            pushd /tmp &> /dev/null || exit
             curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${lazygit_latest}/lazygit_${lazygit_latest}_Linux_x86_64.tar.gz"
             tar xf lazygit.tar.gz lazygit
             sudo install lazygit -D -t /usr/local/bin/
-            popd > /dev/null || exit
+            popd &> /dev/null || exit
         fi
 
         yazi_latest=$(github_latest_tag "sxyazi/yazi")
         yazi_current=$(yazi --version | cut -d ' ' -f 2)
         if [[ "$yazi_current" != "$yazi_latest" ]]; then
-            pushd /tmp > /dev/null || exit
+            pushd /tmp &> /dev/null || exit
             curl -Lo yazi.zip "https://github.com/sxyazi/yazi/releases/download/v${yazi_latest}/yazi-x86_64-unknown-linux-gnu.zip"
             mkdir -p yazi
             unzip yazi.zip
             sudo install yazi-x86_64-unknown-linux-gnu/yazi -D -t /usr/local/bin/
-            popd > /dev/null || exit
+            popd &> /dev/null || exit
         fi
     fi
 
@@ -159,10 +163,10 @@ install_packages() {
     nvim_latest=$(github_latest_tag "neovim/neovim")
     if [[ "$nvim_current" != "$nvim_latest" ]]; then
         [ ! -d ~/code/neovim ] && git clone https://github.com/neovim/neovim.git ~/code/neovim
-        pushd ~/code/neovim > /dev/null || exit
+        pushd ~/code/neovim &> /dev/null || exit
         git checkout stable && git pull
         make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
-        popd > /dev/null || exit
+        popd &> /dev/null || exit
     fi
 }
 
