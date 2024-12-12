@@ -36,7 +36,17 @@ if ! ls /home/$USER/.fonts/FiraCodeNerdFont*.ttf &> /dev/null; then
     fonts_updated=true
 fi
 
-if ! ls /home/$USER/.fonts/CascadiaCode*.ttf &> /dev/null; then
+if ! ls /home/$USER/.fonts/UbuntuNerdFont*.ttf &> /dev/null; then
+    ubuntu_nerd_repo="ryanoasis/nerd-fonts"
+    ubuntu_nerd_ver=$(github_latest_tag "${ubuntu_nerd_repo}")
+    wget -O /tmp/Ubuntu.zip "https://github.com/${ubuntu_nerd_repo}/releases/download/v${ubuntu_nerd_ver}/Ubuntu.zip"
+    unzip /tmp/Ubuntu.zip -d /tmp/Ubuntu
+    mv /tmp/Ubuntu/*.ttf "/home/${USER}/.fonts"
+    rm -rf /tmp/Ubuntu.zip /tmp/Ubuntu/
+    fonts_updated=true
+fi
+
+if ! ls /home/$USER/.fonts/Cascadia*.ttf &> /dev/null; then
     cascadia_repo="microsoft/cascadia-code"
     cascadia_ver=$(github_latest_tag "${cascadia_repo}")
     wget -O /tmp/CascadiaCode.zip "https://github.com/${cascadia_repo}/releases/download/v${cascadia_ver}/CascadiaCode-${cascadia_ver}.zip"
