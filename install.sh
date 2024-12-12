@@ -12,6 +12,7 @@ export -f github_latest_tag
 
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/dotfiles"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+export script_dir
 
 green='\033[1;92m'
 clear='\033[0m'

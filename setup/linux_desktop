@@ -6,6 +6,9 @@ if [[ $(uname -a) != *mint* ]]; then
 fi
 
 mkdir -p "$HOME/Pictures/Wallpapers"
+if [ ! -f "$HOME/Pictures/Wallpapers/wall.png" ]; then
+    cp "$script_dir/resources/wall.png" "$script_dir/resources/blur.png" "$HOME/Pictures/Wallpapers"
+fi
 
 packages=(
     feh
