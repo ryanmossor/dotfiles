@@ -40,17 +40,6 @@ source_file "$HOME/.zsh/aliases/aliases.zsh"
 [[ $(uname -s) == "Darwin" ]] && source_file "$HOME/.zsh/aliases/macos-aliases.zsh"
 [[ $TERM_PROGRAM == "WezTerm" ]] && source_file "$HOME/.zsh/aliases/wezterm-aliases.zsh"
 
-if command -v fzf &> /dev/null; then
-    if [[ $(uname -s) == "Darwin" ]]; then
-        fzf_ver=$(fzf --version | cut -d " " -f 1)
-        source_file "/usr/local/Cellar/fzf/$fzf_ver/shell/key-bindings.zsh"
-        source_file "/usr/local/Cellar/fzf/$fzf_ver/shell/completion.zsh"
-    else
-        source_file "/usr/share/doc/fzf/examples/key-bindings.zsh"
-        source_file "/usr/share/doc/fzf/examples/completion.zsh"
-    fi
-fi
-
 bindkey -s ^f "fzf-cd-code-projects\n"
 
 # Plugins

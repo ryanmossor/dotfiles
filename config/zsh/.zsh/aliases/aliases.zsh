@@ -30,6 +30,8 @@ fi
 
 alias history='history -f 1'
 
+alias update='$DOTFILES/install.sh'
+
 alias cgc='cat ~/.gitconfig'
 alias gp='git push origin HEAD'
 alias gpf='git push origin HEAD --force-with-lease'

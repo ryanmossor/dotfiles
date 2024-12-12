@@ -36,62 +36,6 @@ function add_completion() {
 	[[ "$2" = true ]] && compinit "${completion_file:1}"
 } 
 
-function update() {
-    [ -x /usr/bin/flatpak ] && flatpak update -y
-    [[ $(uname -s) == "Darwin" ]] && brew update && brew upgrade
-
-    if [[ $(uname -a) == *Ubuntu* ]]; then
-        sudo apt update
-        sudo apt upgrade -y
-
-        # update lazygit
-        lazygit_current=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
-        lazygit_latest=$(github_latest_tag "jesseduffield/lazygit")
-        if [[ "$lazygit_current" != "$lazygit_latest" ]]; then
-            pushd /tmp > /dev/null || exit
-            curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${lazygit_latest}/lazygit_${lazygit_latest}_Linux_x86_64.tar.gz"
-            tar xf lazygit.tar.gz lazygit
-            sudo install lazygit -D -t /usr/local/bin/
-            popd > /dev/null || exit
-        else
-            echo "Lazygit already up to date."
-        fi
-
-        yazi_latest=$(github_latest_tag "sxyazi/yazi")
-        yazi_current=$(yazi --version | cut -d ' ' -f 2)
-        if [[ "$yazi_current" != "$yazi_latest" ]]; then
-            pushd /tmp > /dev/null || exit
-            curl -Lo yazi.zip "https://github.com/sxyazi/yazi/releases/download/v${yazi_latest}/yazi-x86_64-unknown-linux-gnu.zip"
-            mkdir -p yazi
-            unzip yazi.zip
-            sudo install yazi-x86_64-unknown-linux-gnu/yazi -D -t /usr/local/bin/
-            popd > /dev/null || exit
-        else
-            echo "Yazi already up to date."
-        fi
-    fi
-
-    # update neovim
-    nvim_current=$(nvim -v | head -n 1 | sed 's/NVIM v\(.*\)$/\1/')
-    nvim_latest=$(github_latest_tag "neovim/neovim")
-
-    if [[ "$nvim_current" != "$nvim_latest" ]]; then
-        [ ! -d ~/code/neovim ] && git clone https://github.com/neovim/neovim.git ~/code/neovim
-        pushd ~/code/neovim > /dev/null || exit
-        git checkout stable && git pull
-        make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
-        popd > /dev/null || exit
-    else
-        echo "Neovim already up to date."
-    fi
-
-    # update fzf
-    pushd ~/.fzf > /dev/null &&
-    git pull &&
-    ./install --key-bindings --completion --no-update-rc &&
-    popd > /dev/null
-}
-
 function fzf-cd-code-projects() {
     local dirs=(
         "$HOME/code"

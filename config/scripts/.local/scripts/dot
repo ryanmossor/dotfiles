@@ -17,17 +17,17 @@ options=()
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -h|--help) 
+        -h|--help)
             show_help
             ;;
-        -i|--init|--install) 
-            options+=('--install') 
+        -i|--init|--install)
+            options+=('--install')
             ;;
-        -p|--personal) 
-            options+=('--personal') 
+        -p|--personal)
+            options+=('--personal')
             ;;
-        -w|--windows) 
-            options+=('--windows') 
+        -w|--windows)
+            options+=('--windows')
             ;;
         *) echo "Unknown option: $1"
             exit

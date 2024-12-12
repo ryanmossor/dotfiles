@@ -9,7 +9,7 @@ if [[ "$1" == "-h" || "$1" == "--help" ]]; then
 elif [[ -n "$1" && -n "$2" ]]; then
     cloc --include-ext="$1" --vcs git --exclude-dir=archive,bin,build,dist,obj,node_modules "$2"
 elif [[ -d "$1" ]]; then
-    cloc --vcs git --exclude-dir=archive,bin,build,dist,obj,node_modules "$1" 
+    cloc --vcs git --exclude-dir=archive,bin,build,dist,obj,node_modules "$1"
 elif [[ -n "$1" && -z "$2" ]]; then
     cloc --include-ext="$1" --vcs git --exclude-dir=archive,bin,build,dist,obj,node_modules .
 else

@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# shellcheck disable=2154
+
+if [[ $(uname -a) != *mint* ]]; then
+    exit 0
+fi
+
+mkdir -p "$HOME/Pictures/Wallpapers"
+
+packages=(
+    feh
+    flameshot
+    gimp
+    i3
+    i3lock
+    lxappearance
+    openssh-server
+    pavucontrol
+    picom
+    pulseaudio
+    rofi
+    steam
+    ufw
+    xclip
+)
+sudo apt install -y "${packages[@]}"
+
+[ -x /usr/bin/flatpak ] && flatpak update -y
+flatpaks=(
+    com.chatterino.chatterino/x86_64/stable
+    com.discordapp.Discord
+    com.getpostman.Postman
+    com.obsproject.Studio
+    net.cozic.joplin_desktop
+    org.DolphinEmu.dolphin-emu
+    org.onlyoffice.desktopeditors
+)
+sudo flatpak install flathub --noninteractive --assumeyes "${flatpaks[@]}"
+
+# Qemu/Virt-manager
+vm_packages=(
+    bridge-utils
+    libvirt-clients
+    libvirt-daemon
+    libvirt-daemon-system
+    python3
+    python3-pip
+    qemu-kvm
+    qemu-system
+    qemu-utils
+    virt-manager
+    virtinst
+)
+sudo apt install -y "${vm_packages[@]}"
+# sudo virsh net-list --all
+sudo usermod -aG libvirt,libvirt-qemu,kvm,input,disk "$USER"

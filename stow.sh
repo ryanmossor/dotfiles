@@ -1,24 +1,11 @@
 #!/usr/bin/env bash
 
 [[ -z $WIN_HOME ]] && export WIN_HOME="/mnt/c/Users/$USER"
-[[ -z $DOTFILES ]] && export DOTFILES="$HOME/dotfiles"
-
-[[ $(uname -s) == "Darwin" ]] && is_mac=true
-[[ $(uname -a) == *Ubuntu* ]] && is_linux=true
-[[ $(uname -r) == *microsoft* ]] && is_windows=true
+[[ -z $DOTFILES ]] && export DOTFILES="$HOME/code/dotfiles"
 
 blue='\033[1;94m'
 green='\033[1;92m'
 clear='\033[0m'
-
-github_latest_tag() {
-    local repo="$1"
-    if command -v jq &> /dev/null; then
-        curl -s "https://api.github.com/repos/${repo}/releases/latest" | jq -r '.tag_name' | sed 's/v//'
-    else
-        curl -s "https://api.github.com/repos/${repo}/releases/latest" | grep "tag_name" | cut -d '"' -f 4 | sed 's/v//'
-    fi
-}
 
 stow_apps() {
     pushd "$DOTFILES/config" &> /dev/null || exit
@@ -29,6 +16,11 @@ stow_apps() {
     for app in "${apps[@]}"; do
         echo -e "Stowing ${green}${app}${clear} in ${blue}${target_dir}${clear}"
         stow -Rt "$target_dir" "$app"
+
+        if [[ "$app" == "bat" ]]; then
+            [[ $(uname -s) == "Darwin" ]] && bat cache --build &> /dev/null
+            [[ $(uname -a) == *Ubuntu* ]] && batcat cache --build &> /dev/null
+        fi
     done
     popd &> /dev/null || exit
 }
@@ -56,119 +48,6 @@ unstow_apps() {
     popd &> /dev/null || exit
 }
 
-packages=(
-    bat
-    cloc
-    curl
-    git
-    htop
-    jq
-    neofetch
-    ripgrep
-    shellcheck
-    stow
-    tldr
-    tmux
-    vim
-    wget
-    zsh
-)
-
-if [ "$is_mac" ]; then
-    packages+=(fd)
-else
-    packages+=(fd-find)
-fi
-
-brew_packages=(
-    azure-cli
-    jesseduffield/lazygit/lazygit
-    yazi
-)
-
-linux_packages=(
-    flameshot
-    gimp
-    i3
-    i3lock
-    lxappearance
-    pavucontrol
-    picom
-    #polybar
-    pulseaudio
-    openssh-server
-    rofi
-    wezterm
-    xclip
-)
-
-install_packages() {
-    mkdir -p "$HOME"/code/work
-    mkdir -p "$HOME"/.config
-    mkdir -p "$HOME"/.local/bin
-
-    if [ "$is_mac" ]; then
-        brew update
-        brew upgrade
-        brew install "${packages[@]}"
-        brew install "${brew_packages[@]}"
-        brew install --cask wezterm
-    else
-        sudo apt update
-        sudo apt upgrade -y
-        sudo apt install -y "${packages[@]}"
-        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash # azure cli
-
-        if [[ $(uname -a) == *mint* ]]; then
-            # wezterm repo
-            curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
-            echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-
-            sudo apt install -y "${linux_packages[@]}"
-        fi
-
-        lazygit_latest=$(github_latest_tag "jesseduffield/lazygit")
-        lazygit_current=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
-        if [[ "$lazygit_current" != "$lazygit_latest" ]]; then
-            pushd /tmp &> /dev/null || exit
-            curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${lazygit_latest}/lazygit_${lazygit_latest}_Linux_x86_64.tar.gz"
-            tar xf lazygit.tar.gz lazygit
-            sudo install lazygit -D -t /usr/local/bin/
-            popd &> /dev/null || exit
-        fi
-
-        yazi_latest=$(github_latest_tag "sxyazi/yazi")
-        yazi_current=$(yazi --version | cut -d ' ' -f 2)
-        if [[ "$yazi_current" != "$yazi_latest" ]]; then
-            pushd /tmp &> /dev/null || exit
-            curl -Lo yazi.zip "https://github.com/sxyazi/yazi/releases/download/v${yazi_latest}/yazi-x86_64-unknown-linux-gnu.zip"
-            mkdir -p yazi
-            unzip yazi.zip
-            sudo install yazi-x86_64-unknown-linux-gnu/yazi -D -t /usr/local/bin/
-            popd &> /dev/null || exit
-        fi
-    fi
-
-    if [[ $SHELL != "/bin/zsh" ]]; then
-        echo -e "${green}Changing shell to zsh${clear}"
-        sudo chsh -s /bin/zsh "$USER"
-    fi
-
-    # fzf latest version
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --key-bindings --completion --no-update-rc
-
-    # neovim latest stable
-    nvim_current=$(nvim -v | head -n 1 | sed 's/NVIM v\(.*\)$/\1/')
-    nvim_latest=$(github_latest_tag "neovim/neovim")
-    if [[ "$nvim_current" != "$nvim_latest" ]]; then
-        [ ! -d ~/code/neovim ] && git clone https://github.com/neovim/neovim.git ~/code/neovim
-        pushd ~/code/neovim &> /dev/null || exit
-        git checkout stable && git pull
-        make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install 
-        popd &> /dev/null || exit
-    fi
-}
 
 base=(
     bat
@@ -214,7 +93,7 @@ while [[ "$#" -gt 0 ]]; do
             exit
             ;;
         -i|--init|--install)
-            install_packages
+            "$DOTFILES/install.sh"
             ;;
         -p|--personal)
             stow_apps "$HOME" "${personal[@]}"
@@ -231,10 +110,4 @@ while [[ "$#" -gt 0 ]]; do
 done
  
 stow_apps "$HOME" "${base[@]}"
-
-if [ "$is_mac" ]; then
-    bat cache --build &> /dev/null
-else
-    batcat cache --build &> /dev/null
-fi
 
