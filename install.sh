@@ -84,7 +84,8 @@ if [[ $SHELL != "/bin/zsh" ]]; then
     sudo chsh -s /bin/zsh "$USER"
 fi
 
-setup=$(find "$script_dir/setup" -mindepth 1 -maxdepth 1 -executable)
+# Find all executable files
+setup=$(find "$script_dir/setup" -mindepth 1 -maxdepth 1 -type f -perm +111)
 
 for script in $setup; do
     # if echo "$script" | grep -vq "$grep"; then
