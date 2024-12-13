@@ -44,7 +44,9 @@ deps=(
     xcb-proto
 )
 
-sudo apt install -y "${deps[@]}"
+if ! have polybar; then
+    sudo apt install -y "${deps[@]}"
+fi
 
 pushd /tmp &> /dev/null || exit
 curl -Lo "polybar-${polybar_latest}.tar.gz" "https://github.com/polybar/polybar/releases/download/${polybar_latest}/polybar-${polybar_latest}.tar.gz"

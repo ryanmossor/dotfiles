@@ -5,6 +5,9 @@ if [[ $(uname -a) != *mint* ]]; then
     exit 0
 fi
 
-sudo apt-add-repository -y ppa:yktooo/ppa
-sudo apt update
-sudo apt install -y indicator-sound-switcher
+if ! have indicator-sound-switcher; then
+    sudo apt-add-repository -y ppa:yktooo/ppa
+    sudo apt update
+    sudo apt install -y indicator-sound-switcher
+fi
+

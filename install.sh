@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
+function have {
+  command -v "$1" &> /dev/null
+}
+export -f have
+
 github_latest_tag() {
     local repo="$1"
-    if command -v jq &> /dev/null; then
+    if have jq; then
         curl -s "https://api.github.com/repos/${repo}/releases/latest" | jq -r '.tag_name' | sed 's/v//'
     else
         curl -s "https://api.github.com/repos/${repo}/releases/latest" | grep "tag_name" | cut -d '"' -f 4 | sed 's/v//'

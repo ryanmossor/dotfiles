@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-if command -v az &> /dev/null; then
+if have az; then
     echo "az cli already installed"
     exit 0
 fi

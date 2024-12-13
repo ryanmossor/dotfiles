@@ -1,5 +1,9 @@
 zsh_dir="$HOME/.zsh"
 
+function have {
+  command -v "$1" &> /dev/null
+}
+
 function github_latest_tag() {
     local repo="$1"
     curl -s "https://api.github.com/repos/${repo}/releases/latest" | jq -r '.tag_name' | sed 's/v//'

@@ -2,7 +2,6 @@ alias a='alias | grep -vE "auto|which|alias" | awk -F= "{ printf \"\033[0;31m%s\
 alias fa='alias | grep -E "^fz" | awk -F= "{ printf \"\033[0;31m%s\033[0m = \033[0;36m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
 alias ga='git config --get-regexp "alias.*" | sed "s/alias\.//" | sed "s/[ ]/ = /"'
 
-[[ -x $BAT ]] && alias cat='$BAT --theme=Catppuccin-mocha --paging=never'
 alias ls='ls --color=auto'
 alias ll='ls -laF --color=auto'
 alias dir='dir --color=auto'
@@ -11,19 +10,18 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-if command -v xclip &> /dev/null; then
+if have xclip; then
     alias clip='xclip -selection clipboard'
-elif command -v pbcopy &> /dev/null; then
+elif have pbcopy; then
     alias clip='pbcopy'
 elif [[ $(uname -a) == *microsoft* ]]; then
     alias clip='clip.exe'
 fi
 
-if command -v fdfind &> /dev/null; then
-    alias fd='fdfind'
-fi
+have bat && alias cat='$BAT --theme=Catppuccin-mocha --paging=never'
+have fdfind && alias fd='fdfind'
 
-if command -v az &> /dev/null; then
+if have az; then
     alias azsubs="az account list | jq -r '.[] | \"[\(.tenantDisplayName)]\n\(.name)\n\(.id)\n\"'"
     alias azcurrent="az account list | jq -r '.[] | select(.isDefault == true) | .tenantDisplayName, .name, .id'"
 fi
