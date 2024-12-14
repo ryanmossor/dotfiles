@@ -68,6 +68,7 @@ fi
 mkdir -p "$HOME"/code/work
 mkdir -p "$HOME"/.config
 mkdir -p "$HOME"/.local/bin
+mkdir -p "$HOME"/.local/scripts
 
 if [[ "$os" == "mac" ]]; then
     brew update
@@ -85,7 +86,7 @@ if [[ $SHELL != "/bin/zsh" ]]; then
 fi
 
 # Find all executable files
-setup=$(find "$script_dir/setup" -mindepth 1 -maxdepth 1 -type f -perm +111)
+setup=$(find "$script_dir/setup" -mindepth 1 -maxdepth 1 -type f -perm -111)
 
 for script in $setup; do
     # if echo "$script" | grep -vq "$grep"; then

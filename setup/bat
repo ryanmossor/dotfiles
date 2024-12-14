@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
+if have bat; then
+    exit 0
+fi
+
 if [[ "$os" == "mac" ]]; then
     brew install --cask bat
 elif [[ "$os" == "ubuntu" || "$os" == "wsl" ]]; then

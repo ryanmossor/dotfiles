@@ -21,7 +21,6 @@ packages=(
     pavucontrol
     picom
     pulseaudio
-    rofi
     steam
     ufw
     xclip
