@@ -54,6 +54,7 @@ function fzf-cd-code-projects() {
     if [[ -n "$selected" ]]; then
         cd "$selected"
         [[ $TERM_PROGRAM == "WezTerm" ]] && wez cli set-tab-title $(basename $(pwd))
+        clear
     fi
 }
 
