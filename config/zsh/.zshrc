@@ -40,7 +40,7 @@ source_file "$HOME/.zsh/aliases/aliases.zsh"
 [[ $(uname -s) == "Darwin" ]] && source_file "$HOME/.zsh/aliases/macos-aliases.zsh"
 [[ $TERM_PROGRAM == "WezTerm" ]] && source_file "$HOME/.zsh/aliases/wezterm-aliases.zsh"
 
-bindkey -s ^f "fzf-cd-code-projects\n"
+bindkey -s ^f " fzf-cd-code-projects\n"
 
 # Plugins
 plug "Aloxaf/fzf-tab" && zstyle ':fzf-tab:*' fzf-min-height 80

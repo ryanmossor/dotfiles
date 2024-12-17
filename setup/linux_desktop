@@ -30,7 +30,6 @@ sudo apt install -y "${packages[@]}"
 [ -x /usr/bin/flatpak ] && flatpak update -y
 flatpaks=(
     com.chatterino.chatterino/x86_64/stable
-    com.discordapp.Discord
     com.getpostman.Postman
     com.obsproject.Studio
     net.cozic.joplin_desktop
