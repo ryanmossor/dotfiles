@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Discord
+Exec=brave-browser --app=https://discord.com/channels/@me
+Terminal=false
+Categories=Chat;
+Icon=~/Pictures/Icons/discord.png
+Type=Application

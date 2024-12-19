@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Teams
+Exec=brave-browser --app=https://teams.microsoft.com
+Terminal=false
+Categories=Chat;
+Icon=~/Pictures/Icons/teams.png
+Type=Application
+StartupWMClass=microsoft-teams

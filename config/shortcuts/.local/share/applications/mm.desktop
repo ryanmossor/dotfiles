@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Majora's Mask - Ship of Harkinian
+Exec=/home/ryan/Applications/majoras-mask/2ship.AppImage
+Comment=Majora's Mask - Ship of Harkinian
+Terminal=false
+Categories=Game;
+Icon=/home/ryan/Pictures/Icons/mm.png
+Type=Application

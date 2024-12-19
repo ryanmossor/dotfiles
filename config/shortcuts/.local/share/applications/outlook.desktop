@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Outlook
+Exec=brave-browser --app=https://outlook.office365.com/mail/
+Terminal=false
+Categories=Chat;
+Icon=~/Pictures/Icons/outlook.png
+Type=Application
+StartupWMClass=outlook

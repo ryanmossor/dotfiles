@@ -65,10 +65,12 @@ else
     packages+=(fd-find)
 fi
 
-mkdir -p "$HOME"/code/work
-mkdir -p "$HOME"/.config
-mkdir -p "$HOME"/.local/bin
-mkdir -p "$HOME"/.local/scripts
+mkdir -p "$HOME/Applications"
+mkdir -p "$HOME/code/work"
+mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.local/bin"
+mkdir -p "$HOME/.local/scripts"
+mkdir -p "$HOME/.local/share/applications"
 
 if [[ "$os" == "mac" ]]; then
     brew update

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=(Anchor) Ocarina of Time - Ship of Harkinian
+Exec=/home/ryan/Applications/ocarina-of-time/soh.AppImage
+Comment=Ship of Harkinian co-op mod
+Terminal=false
+Categories=Game;
+Icon=/home/ryan/Pictures/Icons/oot.png
+Type=Application

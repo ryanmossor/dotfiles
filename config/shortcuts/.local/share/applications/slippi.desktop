@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Slippi
+Exec=/home/ryan/Applications/Slippi.AppImage %u
+Comment=Melee Netplay Launcher
+Terminal=false
+Categories=Game;
+Icon=/home/ryan/Pictures/Icons/slippi.png
+Type=Application

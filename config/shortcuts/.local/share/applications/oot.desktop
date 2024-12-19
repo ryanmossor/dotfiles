@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Ocarina of Time - Ship of Harkinian
+Exec=/home/ryan/Applications/ocarina-of-time/soh.AppImage
+Comment=Ocarina of Time - Ship of Harkinian
+Terminal=false
+Categories=Game;
+Icon=/home/ryan/Pictures/Icons/oot.png
+Type=Application

@@ -70,6 +70,7 @@ personal=(
     picom
     polybar
     rofi
+    shortcuts
 )
 
 windows=(

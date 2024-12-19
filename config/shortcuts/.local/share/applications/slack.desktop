@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Slack
+Exec=brave-browser --app=https://copeland-software.slack.com/
+Terminal=false
+Categories=Chat;
+Icon=~/Pictures/Icons/slack.png
+Type=Application
+StartupWMClass=slack

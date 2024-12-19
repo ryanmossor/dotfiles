@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Cemu
+Exec=/home/ryan/Applications/Cemu.AppImage %u
+Comment=Wii U Emulator
+Terminal=false
+Categories=Game;
+Icon=cemu
+Type=Application
