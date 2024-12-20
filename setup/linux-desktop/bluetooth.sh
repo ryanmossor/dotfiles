@@ -7,7 +7,7 @@ fi
  
 wget -O "/tmp/asus_bluetooth.zip" https://dlcdnets.asus.com/pub/ASUS/wireless/USB-BT500/20200909_LINUX_BT_DRIVER_KERNEL_5.7_COEX_v0202.zip
 unzip "/tmp/asus_bluetooth.zip" -d "/tmp/asus_bluetooth"
-pushd "/tmp/asus_bluetooth/20200806_LINUX_BT_DRIVER_RTL8761B_COEX_v0202/" &> dev/null || exit
+pushd "/tmp/asus_bluetooth/20200806_LINUX_BT_DRIVER_RTL8761B_COEX_v0202/" &> /dev/null || exit
 sudo make install INTERFACE=usb
 popd &> /dev/null || exit
 
