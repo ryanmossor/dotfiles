@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Spotify
+Exec=brave-browser --app=https://open.spotify.com/
+Terminal=false
+Categories=Media;
+Icon=~/Pictures/Icons/spotify.png
+Type=Application
