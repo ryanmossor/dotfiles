@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=(Anchor) Ocarina of Time - Ship of Harkinian
-Exec=/home/ryan/Applications/ocarina-of-time/soh.appimage
+Exec=sh -c "cd /home/ryan/Applications/oot-anchor && ./soh.appimage"
 Comment=Ship of Harkinian co-op mod
 Terminal=false
 Categories=Game;

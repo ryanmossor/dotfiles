@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Ocarina of Time - Ship of Harkinian
-Exec=/home/ryan/Applications/ocarina-of-time/soh.appimage
+Exec=sh -c "cd /home/ryan/Applications/ocarina-of-time && ./soh.appimage"
 Comment=Ocarina of Time - Ship of Harkinian
 Terminal=false
 Categories=Game;
