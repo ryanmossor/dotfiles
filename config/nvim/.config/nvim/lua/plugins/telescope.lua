@@ -7,8 +7,8 @@ return {
 	},
 	config = function()
 		local builtin = require("telescope.builtin")
+        local actions = require("telescope.actions")
 
-		local actions = require("telescope.actions")
 		require("telescope").setup({
 			defaults = {
 				vimgrep_arguments = {
@@ -44,6 +44,12 @@ return {
                 find_files = {
                     theme = "dropdown",
                     previewer = false,
+                    layout_config = {
+                        center = {
+                            height = 0.75,
+                            width = 0.5,
+                        },
+                    },
                 },
 				grep_string = {
 					theme = "ivy",
