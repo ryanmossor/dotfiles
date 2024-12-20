@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-if [[ $(uname -a) != *mint* ]]; then
-    exit 0
-fi
-
 polybar_current=$(polybar --version | head -n 1 | awk '{print $NF}')
 polybar_latest=$(github_latest_tag "polybar/polybar")
 

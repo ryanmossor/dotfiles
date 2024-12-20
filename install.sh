@@ -28,6 +28,9 @@ os="ubuntu"
 [[ $(uname -r) == *microsoft* ]] && os="wsl"
 export os
 
+# HACK: for testing; make this an arg later
+[[ $(uname -a) == *desktop* ]] && linux_desktop=true
+
 grep=""
 dry_run="0"
 
@@ -91,6 +94,23 @@ fi
 setup=$(find "$script_dir/setup" -mindepth 1 -maxdepth 1 -type f -perm -111)
 
 for script in $setup; do
+    # if echo "$script" | grep -vq "$grep"; then
+    if echo "$script" | grep --invert-match --quiet "$grep"; then
+        echo "grep \"$grep\" filtered out $script"
+        continue
+    fi
+
+    # log "running script: $script"
+    echo "running script: $script"
+
+    # if [[ $dry_run == "0" ]]; then
+        $script
+    # fi
+done
+
+# TODO: extract duplicate logic to function & pass in list of executables
+desktop_setup=$(find "$script_dir/setup/linux-desktop" -mindepth 1 -maxdepth 1 -type f -perm -111)
+for script in $desktop_setup; do
     # if echo "$script" | grep -vq "$grep"; then
     if echo "$script" | grep --invert-match --quiet "$grep"; then
         echo "grep \"$grep\" filtered out $script"

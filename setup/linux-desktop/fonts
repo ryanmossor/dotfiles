@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-if [[ $(uname -a) != *mint* ]]; then
-    exit 0
-fi
-
 fonts_updated=false
 
 mkdir -p "$HOME/.fonts"
