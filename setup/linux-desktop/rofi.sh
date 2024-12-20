@@ -9,6 +9,7 @@ sudo apt install -y rofi
 
 rofimoji_deps=(
     python3
+    python3-pip
     xdotool
 )
 sudo apt install -y "${rofimoji_deps[@]}"
