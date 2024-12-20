@@ -38,6 +38,19 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
+		dependencies = {
+			{ "justinsgithub/wezterm-types", lazy = true },
+			{
+				-- Neovim completions
+				"folke/lazydev.nvim",
+				opts = {
+					library = {
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+						{ path = "wezterm-types", mods = { "wezterm" } },
+					},
+				},
+			},
+		},
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lspconfig = require("lspconfig")

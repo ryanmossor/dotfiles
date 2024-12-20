@@ -23,3 +23,4 @@ gui:
     searchingActiveBorderColor:
       - '#f9e2af'
   showFileTree: false
+  showCommandLog: false
