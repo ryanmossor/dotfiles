@@ -12,6 +12,7 @@ packages=(
     gimp
     i3
     i3lock
+    libfuse2
     lxappearance
     openssh-server
     pavucontrol
@@ -23,7 +24,6 @@ packages=(
 )
 sudo apt install -y "${packages[@]}"
 
-[ -x /usr/bin/flatpak ] && flatpak update -y
 flatpaks=(
     com.chatterino.chatterino/x86_64/stable
     com.getpostman.Postman
@@ -31,5 +31,8 @@ flatpaks=(
     org.DolphinEmu.dolphin-emu
     org.onlyoffice.desktopeditors
 )
-sudo flatpak install flathub --noninteractive --assumeyes "${flatpaks[@]}"
+if [ -x /usr/bin/flatpak ]; then
+    flatpak update -y
+    sudo flatpak install flathub --noninteractive --assumeyes "${flatpaks[@]}"
+fi
 
