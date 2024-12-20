@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Majora's Mask - Ship of Harkinian
-Exec=/home/ryan/Applications/majoras-mask/2ship.AppImage
+Exec=/home/ryan/Applications/majoras-mask/2ship.appimage
 Comment=Majora's Mask - Ship of Harkinian
 Terminal=false
 Categories=Game;
