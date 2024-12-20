@@ -12,7 +12,6 @@ packages=(
     gimp
     i3
     i3lock
-    libfuse2
     lxappearance
     openssh-server
     pavucontrol
