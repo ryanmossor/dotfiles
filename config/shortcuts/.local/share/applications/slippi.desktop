@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Slippi
-Exec=/home/ryan/Applications/Slippi.AppImage %u
+Exec=sh -c "/home/ryan/Applications/Slippi.AppImage --no-sandbox"
 Comment=Melee Netplay Launcher
 Terminal=false
 Categories=Game;
