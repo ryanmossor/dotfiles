@@ -33,8 +33,8 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>E", "<cmd>Oil --float<CR>", { desc = "File explorer" })
-		vim.keymap.set("n", "-", "<cmd>Oil --float<CR>", { desc = "File explorer" })
+		vim.keymap.set("n", "<leader>E", "<cmd>Oil<CR>", { desc = "File explorer" })
+		vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "File explorer" })
 
         -- Disable netrw as default file explorer
         vim.g.loaded_netrw = 1

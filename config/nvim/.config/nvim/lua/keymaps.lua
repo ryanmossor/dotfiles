@@ -35,7 +35,7 @@ vim.keymap.set(
 
 vim.keymap.set("n", "<leader>e", "*Ncgn", { desc = "Substite word under cursor once; use . to repeat" })
 
-vim.keymap.set({ "n", "x" }, "<leader>h", "<Esc><C-w>s", { desc = "Create horizontal split" })
+-- vim.keymap.set({ "n", "x" }, "<leader>h", "<Esc><C-w>s", { desc = "Create horizontal split" })
 vim.keymap.set({ "n", "x" }, "<leader>v", "<Esc><C-w>v", { desc = "Create vertical split" })
 
 -- Split navigation
