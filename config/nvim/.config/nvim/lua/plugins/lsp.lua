@@ -6,13 +6,15 @@ return {
 		end,
 	},
 	{
-		-- handle installation of LSPs
+        -- handle installation of LSPs
+        -- https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
 				auto_install = true,
 				ensure_installed = {
 					"gopls",
+					"jsonls",
 					"lua_ls",
 					"ts_ls",
 				},
@@ -58,15 +60,10 @@ return {
 			--	filetypes = { "sh", "zsh" },
 			--  capabilities = capabilities,
 			--})
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
+			lspconfig.gopls.setup({ capabilities = capabilities })
+			lspconfig.jsonls.setup({ capabilities = capabilities })
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
+			lspconfig.ts_ls.setup({ capabilities = capabilities })
 
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
