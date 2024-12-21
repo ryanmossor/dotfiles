@@ -18,7 +18,7 @@ wiiu_deps=(
 )
 sudo apt install -y "${wiiu_deps[@]}"
 
-git clone https://github.com/vgfreak95/wii-u-gc-adapter-service.git /tmp/wiiu
+git clone https://github.com/ryanmossor/wii-u-gc-adapter-service.git /tmp/wiiu
 pushd /tmp/wiiu &> /dev/null || exit
 sudo ./install.sh
 popd &> /dev/null || exit
