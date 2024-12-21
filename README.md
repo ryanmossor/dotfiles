@@ -1,6 +1,7 @@
 # dotfiles
 
-**Starting from fresh system:**
+## Starting from fresh system
+
 ```bash
 sudo apt update
 sudo apt install git -y

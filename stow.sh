@@ -48,7 +48,6 @@ unstow_apps() {
     popd &> /dev/null || exit
 }
 
-
 base=(
     bat
     git
