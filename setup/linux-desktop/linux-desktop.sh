@@ -17,7 +17,8 @@ packages=(
     pavucontrol
     picom
     pulseaudio
-    steam
+    screenkey
+    # steam
     ufw
     xclip
 )
