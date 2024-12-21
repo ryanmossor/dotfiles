@@ -2,6 +2,7 @@
 # shellcheck disable=2154
 
 if have rofi; then
+    have rofimoji && pip3 install --upgrade rofimoji
     exit 0
 fi
 
