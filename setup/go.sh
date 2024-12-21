@@ -29,6 +29,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf "/tmp/$download_filename"
+[ -d /usr/local/go ] && sudo rm -rf /usr/local/go
+sudo tar -C /usr/local -xzf "/tmp/$download_filename"
+
 echo -e "\nGo updated to $(go version)\n"
 
