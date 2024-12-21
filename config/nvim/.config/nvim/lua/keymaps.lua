@@ -5,10 +5,6 @@ vim.g.mapleader = " "
 vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
 vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
 
--- Enable standard Ctrl+Backspace/Ctrl+Del behavior in insert mode
-vim.keymap.set("i", "<C-Del>", "<C-o>dw")
-vim.keymap.set("i", "<C-BS>", "<C-o>db")
-
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { desc = "Write file as sudo" })
 
 vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true, desc = "Toggle line wrap" })
