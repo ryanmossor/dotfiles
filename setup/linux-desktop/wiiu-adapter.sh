@@ -23,5 +23,5 @@ pushd /tmp/wiiu &> /dev/null || exit
 sudo ./install.sh
 popd &> /dev/null || exit
 
-systemctl start wii-u-gc-adapter.service
+sudo systemctl start wii-u-gc-adapter.service
 
