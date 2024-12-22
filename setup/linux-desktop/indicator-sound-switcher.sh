@@ -3,7 +3,7 @@
 
 if ! have indicator-sound-switcher; then
     sudo apt-add-repository -y ppa:yktooo/ppa
-    sudo apt update
-    sudo apt install -y indicator-sound-switcher
+    sudo apt-get update
+    sudo apt-get install -y indicator-sound-switcher
 fi
 

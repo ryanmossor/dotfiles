@@ -8,7 +8,7 @@ mkdir -p "$HOME/.fonts"
 if ! dpkg -s ttf-mscorefonts-installer &> /dev/null; then
     # Auto agree to EULA prompt for Microsoft fonts
     echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-    sudo apt install -y ttf-mscorefonts-installer
+    sudo apt-get install -y ttf-mscorefonts-installer
     fonts_updated=true
 fi
 

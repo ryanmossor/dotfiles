@@ -16,7 +16,7 @@ wiiu_deps=(
     libusb-1.0-0-dev
     make
 )
-sudo apt install -y "${wiiu_deps[@]}"
+sudo apt-get install -y "${wiiu_deps[@]}"
 
 git clone https://github.com/ryanmossor/wii-u-gc-adapter-service.git /tmp/wiiu
 pushd /tmp/wiiu &> /dev/null || exit

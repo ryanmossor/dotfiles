@@ -7,7 +7,7 @@ if [ -d "$xpadneo_dir" ]; then
     git pull
     sudo ./update.sh
 else
-    sudo apt install -y dkms linux-headers-"$(uname -r)"
+    sudo apt-get install -y dkms linux-headers-"$(uname -r)"
     git clone https://github.com/atar-axis/xpadneo.git "$xpadneo_dir" 
     pushd "$xpadneo_dir" &> /dev/null || exit
     sudo ./install.sh

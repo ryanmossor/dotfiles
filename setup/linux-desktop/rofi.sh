@@ -6,14 +6,14 @@ if have rofi; then
     exit 0
 fi
 
-sudo apt install -y rofi
+sudo apt-get install -y rofi
 
 rofimoji_deps=(
     python3
     python3-pip
     xdotool
 )
-sudo apt install -y "${rofimoji_deps[@]}"
+sudo apt-get install -y "${rofimoji_deps[@]}"
 
 pip3 install rofimoji
 

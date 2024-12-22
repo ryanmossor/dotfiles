@@ -3,8 +3,8 @@
 ## Starting from fresh system
 
 ```bash
-sudo apt update
-sudo apt install git -y
+sudo apt-get update
+sudo apt-get install git -y
 
 mkdir -p ~/code
 git clone https://github.com/ryanmossor/dotfiles.git ~/code/dotfiles

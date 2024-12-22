@@ -22,7 +22,7 @@ packages=(
     ufw
     xclip
 )
-sudo apt install -y "${packages[@]}"
+sudo apt-get install -y "${packages[@]}"
 
 flatpaks=(
     com.chatterino.chatterino/x86_64/stable

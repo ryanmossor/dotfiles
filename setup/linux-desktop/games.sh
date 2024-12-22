@@ -35,7 +35,7 @@ fi
 if [[ "$slippi_current" == "$slippi_latest" ]]; then
     echo "Slippi already up to date."
 else
-    sudo apt install -y libopengl0
+    sudo apt-get install -y libopengl0
     echo "Updating Slippi to ${slippi_latest}"
     slippi_download=$(get_latest_appimage "${slippi_repo}" "AppImage")
     [ ! -d  "/home/${USER}/Applications/slippi" ] && mkdir "/home/${USER}/Applications/slippi"

@@ -32,7 +32,7 @@ else
         wget
     )
     if ! have scrcpy; then
-        sudo apt install -y "${deps[@]}"
+        sudo apt-get install -y "${deps[@]}"
     fi
 
     git clone --depth 1 --branch "v${scrcpy_latest}" https://github.com/Genymobile/scrcpy.git /tmp/scrcpy

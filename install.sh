@@ -80,9 +80,9 @@ if [[ "$os" == "mac" ]]; then
     brew upgrade
     brew install "${packages[@]}"
 else
-    sudo apt update
-    sudo apt upgrade -y
-    sudo apt install -y "${packages[@]}"
+    sudo apt-get update
+    sudo apt-get upgrade -y
+    sudo apt-get install -y "${packages[@]}"
 fi
 
 if [[ $SHELL != "/bin/zsh" ]]; then

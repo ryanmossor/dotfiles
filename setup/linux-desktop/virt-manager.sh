@@ -18,6 +18,6 @@ vm_packages=(
     virt-manager
     virtinst
 )
-sudo apt install -y "${vm_packages[@]}"
+sudo apt-get install -y "${vm_packages[@]}"
 # sudo virsh net-list --all
 sudo usermod -aG libvirt,libvirt-qemu,kvm,input,disk "$USER"

@@ -14,7 +14,7 @@ if ! have nvim; then
     if [[ "$os" == "mac" ]]; then
         brew install cmake curl gettext ninja
     elif [[ "$os" == "ubuntu" || "$os" == "wsl" ]]; then
-        sudo apt install -y build-essential cmake curl gettext ninja-build unzip
+        sudo apt-get install -y build-essential cmake curl gettext ninja-build unzip
     fi
 fi
 

@@ -41,7 +41,7 @@ deps=(
 )
 
 if ! have polybar; then
-    sudo apt install -y "${deps[@]}"
+    sudo apt-get install -y "${deps[@]}"
 fi
 
 pushd /tmp &> /dev/null || exit
