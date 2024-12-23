@@ -48,12 +48,11 @@ config.tab_max_width = 32
 -- font
 --local font_list = { "CaskaydiaMono NF", "Cascadia Mono", "Ubuntu Mono" }
 local font_list = { "Cascadia Mono", "Ubuntu Mono" }
-config.font_size = 14
+config.font_size = 16
 
-if is_mac then
-	config.font_size = 16
-	-- table.insert(font_list, 1, 'Consolas')
-end
+-- if is_mac then
+-- 	table.insert(font_list, 1, 'Consolas')
+-- end
 
 config.font = wezterm.font_with_fallback(font_list)
 
