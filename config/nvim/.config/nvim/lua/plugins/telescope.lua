@@ -47,7 +47,7 @@ return {
                     layout_config = {
                         center = {
                             height = 0.75,
-                            width = 0.5,
+                            width = 85,
                         },
                     },
                 },
