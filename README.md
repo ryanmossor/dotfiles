@@ -38,11 +38,6 @@ Initial installation/setup script. Can also be run to handle software updates.
 ./install.sh lazygit neovim
 ```
 
-**Exclude filters -- install everything *except for* `az`:**
-```bash
-./install.sh !az
-```
-
 ## Apply configurations
 
 **Apply base configs:**

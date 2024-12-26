@@ -1,26 +1,13 @@
 #!/usr/bin/env bash
 
-function have {
-  command -v "$1" &> /dev/null
-}
-export -f have
-
-github_latest_tag() {
-    local repo="$1"
-    if have jq; then
-        curl -s "https://api.github.com/repos/${repo}/releases/latest" | jq -r '.tag_name' | sed 's/v//'
-    else
-        curl -s "https://api.github.com/repos/${repo}/releases/latest" | grep "tag_name" | cut -d '"' -f 4 | sed 's/v//'
-    fi
-}
-export -f github_latest_tag
+blue='\033[1;94m'
+green='\033[1;92m'
+red='\033[1;91m'
+clear='\033[0m'
 
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/dotfiles"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 export script_dir
-
-green='\033[1;92m'
-clear='\033[0m'
 
 os="ubuntu"
 [[ $(uname -s) == "Darwin" ]] && os="mac"
@@ -28,19 +15,66 @@ os="ubuntu"
 [[ $(uname -r) == *microsoft* ]] && os="wsl"
 export os
 
-# HACK: for testing; make this an arg later
-[[ $(uname -a) == *desktop* ]] && linux_desktop=true
+have() {
+  command -v "$1" &> /dev/null
+}
+export -f have
 
-grep=""
-dry_run="0"
+github_latest_tag() {
+    local repo="$1"
+    curl -s "https://api.github.com/repos/${repo}/releases/latest" | jq -r '.tag_name' | sed 's/v//'
+}
+export -f github_latest_tag
+
+log() {
+    if [ $dry_run = true ]; then
+        echo -e "${red}[DRY_RUN]${clear} $1"
+    else
+        echo -e "$1"
+    fi
+}
+
+run_setup() {
+    local dir="$script_dir/setup"
+    [ -n "$1" ] && dir="$script_dir/setup/$1"
+
+    # Find all executable files
+    setup_dir=$(find "$dir" -mindepth 1 -maxdepth 1 -type f -perm -111)
+
+    for script in $setup_dir; do
+        if echo "$filter_list" | grep --invert-match --quiet "$(basename "$script" .sh)"; then
+            log "Filter list ${green}$filter_list${clear} filtered out ${blue}$script${clear}"
+            continue
+        fi
+
+        log "running script: ${blue}$script${clear}"
+
+        if [ $dry_run = false ]; then
+            $script
+        fi
+    done
+}
+
+dry_run=false
+install_personal=false
+filter_list=""
 
 while [[ $# -gt 0 ]]; do
-    echo "ARG: \"$1\""
-    if [[ "$1" == "--dry" ]]; then
-        dry_run="1"
-    else
-        grep="$1"
-    fi
+    case $1 in
+        --dry)
+            dry_run=true
+            ;;
+        -p|--personal)
+            install_personal=true
+            ;;
+        *)
+            if [[ "$filter_list" == "" ]]; then
+                filter_list="$1"
+            else
+                filter_list+=":$1"
+            fi
+            ;;
+    esac
     shift
 done
 
@@ -86,41 +120,15 @@ else
 fi
 
 if [[ $SHELL != "/bin/zsh" ]]; then
-    echo -e "${green}Changing shell to zsh${clear}"
+    log "${green}Changing shell to zsh${clear}"
     sudo chsh -s /bin/zsh "$USER"
 fi
 
-# Find all executable files
-setup=$(find "$script_dir/setup" -mindepth 1 -maxdepth 1 -type f -perm -111)
+run_setup
 
-for script in $setup; do
-    # if echo "$script" | grep -vq "$grep"; then
-    if echo "$script" | grep --invert-match --quiet "$grep"; then
-        echo "grep \"$grep\" filtered out $script"
-        continue
-    fi
+if [ $install_personal = false ]; then
+    exit 0
+fi
 
-    # log "running script: $script"
-    echo "running script: $script"
+run_setup "linux-desktop" 
 
-    # if [[ $dry_run == "0" ]]; then
-        $script
-    # fi
-done
-
-# TODO: extract duplicate logic to function & pass in list of executables
-desktop_setup=$(find "$script_dir/setup/linux-desktop" -mindepth 1 -maxdepth 1 -type f -perm -111)
-for script in $desktop_setup; do
-    # if echo "$script" | grep -vq "$grep"; then
-    if echo "$script" | grep --invert-match --quiet "$grep"; then
-        echo "grep \"$grep\" filtered out $script"
-        continue
-    fi
-
-    # log "running script: $script"
-    echo "running script: $script"
-
-    # if [[ $dry_run == "0" ]]; then
-        $script
-    # fi
-done
