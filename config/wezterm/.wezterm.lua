@@ -8,7 +8,39 @@ local is_windows = wezterm.target_triple:find("windows") ~= nil
 
 local config = wezterm.config_builder()
 config.term = "xterm-256color"
+
+local catppuccin_mocha = wezterm.get_builtin_color_schemes()["Catppuccin Mocha"]
+catppuccin_mocha.tab_bar = {
+    background = catppuccin_mocha.tab_bar.background,
+
+    active_tab = {
+        bg_color = catppuccin_mocha.tab_bar.background,
+        fg_color = "#89b4fa",
+        intensity = "Bold", -- "Half", "Normal", or "Bold"
+    },
+
+    inactive_tab = {
+        bg_color = catppuccin_mocha.tab_bar.background,
+        fg_color = "#7f849c",
+        intensity = "Normal",
+    },
+
+    inactive_tab_hover = catppuccin_mocha.tab_bar.inactive_tab_hover,
+
+    new_tab = {
+      bg_color = "#1b1032",
+      fg_color = "#808080",
+    },
+
+    new_tab_hover = catppuccin_mocha.tab_bar.new_tab_hover,
+}
+
+config.color_schemes = {
+    ["Catppuccin Mocha"] = catppuccin_mocha,
+}
+
 config.color_scheme = "Catppuccin Mocha"
+
 config.window_close_confirmation = "AlwaysPrompt"
 
 -- default window size
@@ -84,5 +116,23 @@ end)
 config.animation_fps = 1
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
+
+config.max_fps = 120
+
+function tab_title(tab_info)
+    local title = tab_info.tab_title
+    -- if the tab title is explicitly set, take that
+    if title and #title > 0 then
+        return title
+    end
+    -- Otherwise, use the title from the active pane in that tab
+    return tab_info.active_pane.title
+end
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  return {
+    { Text = string.format(" [%s] %s ", tab.tab_index + 1, tab_title(tab)) },
+  }
+end)
 
 return config

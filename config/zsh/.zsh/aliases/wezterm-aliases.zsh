@@ -1,6 +1,10 @@
 function t() {
     if [[ -z "$1" ]]; then
-        wez cli set-tab-title $(basename $SHELL)
+        if [[ $(pwd) == $HOME ]]; then
+            wez cli set-tab-title "home"
+        else
+            wez cli set-tab-title $(basename $(pwd))
+        fi
     else
         wez cli set-tab-title "$1"
     fi
