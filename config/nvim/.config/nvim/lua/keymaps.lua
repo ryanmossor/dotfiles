@@ -5,6 +5,8 @@ vim.g.mapleader = " "
 vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
 vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
 
+vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable", silent = true })
+
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { desc = "Write file as sudo" })
 
 vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true, desc = "Toggle line wrap" })
