@@ -42,7 +42,7 @@ run_setup() {
     setup_dir=$(find "$dir" -mindepth 1 -maxdepth 1 -type f -perm -111)
 
     for script in $setup_dir; do
-        if echo "$filter_list" | grep --invert-match --quiet "$(basename "$script" .sh)"; then
+        if [ -n "$filter_list" ] && echo "$filter_list" | grep --invert-match --quiet "$(basename "$script" .sh)"; then
             log "Filter list ${green}$filter_list${clear} filtered out ${blue}$script${clear}"
             continue
         fi
