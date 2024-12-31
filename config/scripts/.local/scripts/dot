@@ -20,9 +20,6 @@ while [[ $# -gt 0 ]]; do
         -h|--help)
             show_help
             ;;
-        -i|--init|--install)
-            options+=('--install')
-            ;;
         -p|--personal)
             options+=('--personal')
             ;;
@@ -40,3 +37,4 @@ pushd "$DOTFILES" > /dev/null || exit
 git pull
 ./stow.sh "${options[@]}"
 popd > /dev/null || exit
+

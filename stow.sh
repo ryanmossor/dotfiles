@@ -92,9 +92,6 @@ while [[ "$#" -gt 0 ]]; do
             unstow_apps "${base[@]}" "${personal[@]}" "${windows[@]}"
             exit
             ;;
-        -i|--init|--install)
-            "$DOTFILES/install.sh"
-            ;;
         -p|--personal)
             stow_apps "$HOME" "${personal[@]}"
             ;;
