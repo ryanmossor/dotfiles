@@ -49,7 +49,7 @@ function fzf-cd-code-projects() {
         "$WIN_HOME/code/work/candidates"
     )
 
-    local expanded_dirs=$(fd . "${dirs[@]}" --exact-depth 1 -t d)
+    local expanded_dirs=$(fd . "${dirs[@]}" --exact-depth 1 -t d 2> /dev/null)
     expanded_dirs+="\n$DOTFILES"
     local selected=$(echo "$expanded_dirs" | fzf)
 
