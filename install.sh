@@ -5,7 +5,7 @@ green='\033[1;92m'
 red='\033[1;91m'
 clear='\033[0m'
 
-[[ -z $DOTFILES ]] && export DOTFILES="$HOME/dotfiles"
+[ -z "$DOTFILES" ] && export DOTFILES="$HOME/dotfiles"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 export script_dir
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-[[ -z $DOTFILES ]] && export DOTFILES="$HOME/code/dotfiles"
+[ -z "$DOTFILES" ] && export DOTFILES="$HOME/dotfiles"
 
 show_help() {
     echo "USAGE:"

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-[[ -z $WIN_HOME ]] && export WIN_HOME="/mnt/c/Users/$USER"
-[[ -z $DOTFILES ]] && export DOTFILES="$HOME/code/dotfiles"
+[ -z "$WIN_HOME" ] && export WIN_HOME="/mnt/c/Users/$USER"
+[ -z "$DOTFILES" ] && export DOTFILES="$HOME/dotfiles"
 
 blue='\033[1;94m'
 green='\033[1;92m'
@@ -43,7 +43,7 @@ unstow_apps() {
     local apps=("$@")
     for app in "${apps[@]}"; do
         echo "Removing $app"
-        stow -D "$app"
+        stow -Dt "$HOME" "$app"
     done
     popd &> /dev/null || exit
 }

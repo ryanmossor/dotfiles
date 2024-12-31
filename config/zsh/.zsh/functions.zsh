@@ -49,9 +49,11 @@ function fzf-cd-code-projects() {
         "$WIN_HOME/code/work/candidates"
     )
 
-    local selected=$(fd . "${dirs[@]}" --exact-depth 1 -t d &> /dev/null | fzf)
+    local expanded_dirs=$(fd . "${dirs[@]}" --exact-depth 1 -t d)
+    expanded_dirs+="\n$DOTFILES"
+    local selected=$(echo "$expanded_dirs" | fzf)
 
-    if [[ -n "$selected" ]]; then
+    if [ -n "$selected" ]; then
         cd "$selected"
         [[ $TERM_PROGRAM == "WezTerm" ]] && wez cli set-tab-title $(basename $(pwd))
         clear

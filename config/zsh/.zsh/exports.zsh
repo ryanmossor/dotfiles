@@ -4,10 +4,10 @@ export PATH="$HOME/.local/bin":$PATH
 export PATH="$HOME/.local/scripts":$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-[[ -z $DOTFILES ]] && export DOTFILES="$HOME/code/dotfiles"
-[[ -x /usr/bin/batcat ]] && export BAT="/usr/bin/batcat"
-[[ -x /usr/local/bin/bat ]] && export BAT="/usr/local/bin/bat"
-[[ -x /usr/local/go/bin ]] && export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+[ -z "$DOTFILES" ] && export DOTFILES="$HOME/dotfiles"
+[ -x /usr/bin/batcat ] && export BAT="/usr/bin/batcat"
+[ -x /usr/local/bin/bat ] && export BAT="/usr/local/bin/bat"
+[ -x /usr/local/go/bin ] && export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 
 if command -v fdfind &> /dev/null; then
     export FD='fdfind'
