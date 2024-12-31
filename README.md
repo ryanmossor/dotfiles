@@ -6,9 +6,8 @@
 sudo apt-get update
 sudo apt-get install git -y
 
-mkdir -p ~/code
-git clone https://github.com/ryanmossor/dotfiles.git ~/code/dotfiles
-cd ~/code/dotfiles
+git clone https://github.com/ryanmossor/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 
 ./install.sh --personal | tee output.txt
 ./stow.sh --personal
