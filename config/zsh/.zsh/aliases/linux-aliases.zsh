@@ -5,7 +5,6 @@ alias sce='sudo crontab -e'
 
 alias wiiu='sudo wii-u-gc-adapter'
 
-alias audiofix='pulseaudio -k'
 alias cursor='sudo update-alternatives --config x-cursor-theme'
 
 class() {

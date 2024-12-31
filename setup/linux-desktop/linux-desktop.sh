@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-mkdir -p "$HOME/Pictures/Wallpapers" "$HOME/Pictures/Screenshots"
-if [ ! -f "$HOME/Pictures/Wallpapers/wall.png" ]; then
-    cp "$script_dir/resources/wall.png" "$script_dir/resources/blur.png" "$HOME/Pictures/Wallpapers"
-fi
-
 packages=(
     feh
     flameshot
@@ -16,7 +11,6 @@ packages=(
     openssh-server
     pavucontrol
     picom
-    pulseaudio
     screenkey
     # steam
     ufw
