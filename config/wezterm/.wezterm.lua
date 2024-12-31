@@ -11,32 +11,32 @@ config.term = "xterm-256color"
 
 local catppuccin_mocha = wezterm.get_builtin_color_schemes()["Catppuccin Mocha"]
 catppuccin_mocha.tab_bar = {
-    background = catppuccin_mocha.tab_bar.background,
+	background = catppuccin_mocha.tab_bar.background,
 
-    active_tab = {
-        bg_color = catppuccin_mocha.tab_bar.background,
-        fg_color = "#89b4fa",
-        intensity = "Bold", -- "Half", "Normal", or "Bold"
-    },
+	active_tab = {
+		bg_color = "#89b4fa",
+		fg_color = "#11111b",
+		intensity = "Normal", -- "Half", "Normal", or "Bold"
+	},
 
-    inactive_tab = {
-        bg_color = catppuccin_mocha.tab_bar.background,
-        fg_color = "#7f849c",
-        intensity = "Normal",
-    },
+	inactive_tab = {
+		bg_color = catppuccin_mocha.tab_bar.background,
+		fg_color = "#7f849c",
+		intensity = "Normal",
+	},
 
-    inactive_tab_hover = catppuccin_mocha.tab_bar.inactive_tab_hover,
+	inactive_tab_hover = catppuccin_mocha.tab_bar.inactive_tab_hover,
 
-    new_tab = {
-      bg_color = "#1b1032",
-      fg_color = "#808080",
-    },
+	new_tab = {
+		bg_color = "#1b1032",
+		fg_color = "#808080",
+	},
 
-    new_tab_hover = catppuccin_mocha.tab_bar.new_tab_hover,
+	new_tab_hover = catppuccin_mocha.tab_bar.new_tab_hover,
 }
 
 config.color_schemes = {
-    ["Catppuccin Mocha"] = catppuccin_mocha,
+	["Catppuccin Mocha"] = catppuccin_mocha,
 }
 
 config.color_scheme = "Catppuccin Mocha"
@@ -120,19 +120,23 @@ config.cursor_blink_ease_out = "Constant"
 config.max_fps = 120
 
 function tab_title(tab_info)
-    local title = tab_info.tab_title
-    -- if the tab title is explicitly set, take that
-    if title and #title > 0 then
-        return title
-    end
-    -- Otherwise, use the title from the active pane in that tab
-    return tab_info.active_pane.title
+	local title = tab_info.tab_title
+	-- if the tab title is explicitly set, take that
+	if title and #title > 0 then
+		return title
+	end
+	-- Otherwise, use the title from the active pane in that tab
+	return tab_info.active_pane.title
 end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-  return {
-    { Text = string.format(" [%s] %s ", tab.tab_index + 1, tab_title(tab)) },
-  }
+	local format_str = " %s:%s "
+	if tab.is_active then
+		format_str = " [%s:%s] "
+	end
+	return {
+		{ Text = string.format(format_str, tab.tab_index + 1, tab_title(tab)) },
+	}
 end)
 
 return config
