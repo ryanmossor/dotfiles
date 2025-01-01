@@ -130,12 +130,25 @@ function tab_title(tab_info)
 end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local format_str = " %s:%s "
-	if tab.is_active then
-		format_str = " [%s:%s] "
+	local format_str = "%s:%s"
+
+	local has_unseen_output = false
+	for _, pane in ipairs(tab.panes) do
+		if pane.has_unseen_output then
+			has_unseen_output = true
+			break
+		end
 	end
+	if has_unseen_output then
+        format_str = format_str .. "*"
+	end
+
+	if tab.is_active then
+        format_str = "[" .. format_str .. "]"
+	end
+
 	return {
-		{ Text = string.format(format_str, tab.tab_index + 1, tab_title(tab)) },
+		{ Text = " " .. string.format(format_str, tab.tab_index + 1, tab_title(tab)) .. " " },
 	}
 end)
 
