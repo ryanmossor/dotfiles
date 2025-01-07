@@ -63,6 +63,7 @@ base=(
 )
 
 personal=(
+    dunst
     flameshot
     gtk-3.0
     i3
