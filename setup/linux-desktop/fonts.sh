@@ -52,6 +52,16 @@ if ! ls /home/$USER/.fonts/Cascadia*.ttf &> /dev/null; then
     fonts_updated=true
 fi
 
+if ! ls /home/$USER/.fonts/JetBrainsMono*.ttf &> /dev/null; then
+    jetbrains_mono_repo="JetBrains/JetBrainsMono"
+    jetbrains_mono_ver=$(github_latest_tag "${jetbrains_mono_repo}")
+    wget -O /tmp/JetBrainsMono.zip "https://github.com/${jetbrains_mono_repo}/releases/download/v${jetbrains_mono_ver}/JetBrainsMono-${jetbrains_mono_ver}.zip"
+    unzip /tmp/JetBrainsMono.zip -d /tmp/JetBrainsMono
+    mv /tmp/JetBrainsMono/fonts/ttf/*.ttf "/home/${USER}/.fonts"
+    rm -rf /tmp/JetBrainsMono.zip /tmp/JetBrainsMono/
+    fonts_updated=true
+fi
+
 if [ "$fonts_updated" == true ]; then
     # Reload font cache
     fc-cache -f &> /dev/null
