@@ -78,15 +78,9 @@ config.use_fancy_tab_bar = false
 config.tab_max_width = 32
 
 -- font
---local font_list = { "CaskaydiaMono NF", "Cascadia Mono", "Ubuntu Mono" }
-local font_list = { "Cascadia Mono", "Ubuntu Mono" }
+config.font = wezterm.font_with_fallback({ "JetBrains Mono NL Medium", "Cascadia Mono", "Ubuntu Mono" })
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' } -- disable font ligatures
 config.font_size = 16
-
--- if is_mac then
--- 	table.insert(font_list, 1, 'Consolas')
--- end
-
-config.font = wezterm.font_with_fallback(font_list)
 
 local default_opacity = 0.90
 if is_windows then
