@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Postman
+Exec=sh -c "/home/ryan/Applications/Postman/Postman"
+Comment=Postman
+Terminal=false
+Categories=Development;
+Icon=/home/ryan/Pictures/Icons/postman.png
+Type=Application
