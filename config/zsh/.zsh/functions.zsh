@@ -15,14 +15,12 @@ function source_file() {
 
 function plug() {
     plugin_name=$(echo "$1" | cut -d "/" -f 2)
-    if [[ -d "$zsh_dir/plugins/$plugin_name" ]]; then 
-        source_file "$zsh_dir/plugins/$plugin_name/$plugin_name.plugin.zsh" || \
-        source_file "$zsh_dir/plugins/$plugin_name/$plugin_name.zsh"
-    else
+    if [[ ! -d "$zsh_dir/plugins/$plugin_name" ]]; then
         git clone "https://github.com/$1.git" "$zsh_dir/plugins/$plugin_name"
-        source_file "$zsh_dir/plugins/$plugin_name/$plugin_name.plugin.zsh" || \
-        source_file "$zsh_dir/plugins/$plugin_name/$plugin_name.zsh"
     fi
+
+    source_file "$zsh_dir/plugins/$plugin_name/$plugin_name.plugin.zsh" || \
+    source_file "$zsh_dir/plugins/$plugin_name/$plugin_name.zsh"
 }
 
 function add_completion() {
