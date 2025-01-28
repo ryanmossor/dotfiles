@@ -21,6 +21,9 @@ fi
 have bat && alias cat='$BAT --theme=Catppuccin-mocha --paging=never'
 have fdfind && alias fd='fdfind'
 
+alias ld='lazydocker'
+alias lg='lazygit'
+
 if have az; then
     alias azsubs="az account list | jq -r '.[] | \"[\(.tenantDisplayName)]\n\(.name)\n\(.id)\n\"'"
     alias azcurrent="az account list | jq -r '.[] | select(.isDefault == true) | .tenantDisplayName, .name, .id'"

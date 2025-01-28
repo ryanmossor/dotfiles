@@ -52,6 +52,7 @@ base=(
     bat
     git
     ideavim
+    lazydocker
     lazygit
     nvim
     scripts
