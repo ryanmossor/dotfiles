@@ -18,7 +18,7 @@ fi
 if [[ "$cemu_current" == "$cemu_latest" ]]; then
     echo "Cemu already up to date."
 else
-    echo "Updating Cemu to ${cemu_latest}"
+    echo "Updating Cemu from ${cemu_current} to ${cemu_latest}"
     cemu_download=$(get_latest_appimage "${cemu_repo}" "AppImage")
     wget -qO "/home/${USER}/Applications/Cemu.AppImage" "${cemu_download}"
     chmod +x "/home/${USER}/Applications/Cemu.AppImage"
@@ -36,7 +36,7 @@ if [[ "$slippi_current" == "$slippi_latest" ]]; then
     echo "Slippi already up to date."
 else
     sudo apt-get install -y libopengl0
-    echo "Updating Slippi to ${slippi_latest}"
+    echo "Updating Slippi from ${slippi_current} to ${slippi_latest}"
     slippi_download=$(get_latest_appimage "${slippi_repo}" "AppImage")
     [ ! -d  "/home/${USER}/Applications/slippi" ] && mkdir "/home/${USER}/Applications/slippi"
     wget -qO "/home/${USER}/Applications/slippi/Slippi.appimage" "${slippi_download}"
@@ -55,8 +55,8 @@ fi
 if [[ "$soh_current" == "$soh_latest" ]]; then
     echo "Ocarina of Time already up to date."
 else
-    echo "Updating Ocarina of Time to ${soh_latest}"
-    soh_download=$(get_latest_appimage "${soh_repo}" "Linux-Performance")
+    echo "Updating Ocarina of Time from ${soh_current} to ${soh_latest}"
+    soh_download=$(get_latest_appimage "${soh_repo}" "Linux")
     [ ! -d  "/home/${USER}/Applications/ocarina-of-time" ] && mkdir "/home/${USER}/Applications/ocarina-of-time"
     wget -qO "/tmp/soh.zip" "${soh_download}"
     unzip -uo /tmp/soh.zip -d "/home/${USER}/Applications/ocarina-of-time"
@@ -75,7 +75,7 @@ fi
 if [[ "$anchor_current" == "$anchor_latest" ]]; then
     echo "Anchor already up to date."
 else
-    echo "Updating Anchor to ${anchor_latest}"
+    echo "Updating Anchor from ${anchor_current} to ${anchor_latest}"
     anchor_download=$(get_latest_appimage "${anchor_repo}" "linux-performance")
     [ ! -d  "/home/${USER}/Applications/oot-anchor" ] && mkdir "/home/${USER}/Applications/oot-anchor"
     wget -qO "/tmp/anchor.zip" "${anchor_download}"
@@ -93,9 +93,9 @@ if [ -f "/home/${USER}/Applications/majoras-mask/version.txt" ];then
 fi
 
 if [[ "$mm_current" == "$mm_latest" ]]; then
-    echo "Ship of Harkinian already up to date."
+    echo "Majora's Mask already up to date."
 else
-    echo "Updating Majora's Mask to ${mm_latest}"
+    echo "Updating Majora's Mask from ${mm_current} to ${mm_latest}"
     mm_download=$(get_latest_appimage "${mm_repo}" "Linux")
     [ ! -d  "/home/${USER}/Applications/majoras-mask" ] && mkdir "/home/${USER}/Applications/majoras-mask"
     wget -qO "/tmp/2ship.zip" "${mm_download}"
