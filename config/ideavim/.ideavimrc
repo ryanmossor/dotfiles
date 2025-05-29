@@ -59,6 +59,7 @@ nmap [d <Action>(GotoPreviousError)
 
 " Project explorer
 nmap <leader>E <Action>(ActivateProjectToolWindow)
+nmap - <Action>(ActivateProjectToolWindow)
 
 nmap <leader>P <Action>(PinActiveEditorTab)
 nmap Q <Action>(CloseAllEditors)
