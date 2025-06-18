@@ -6,7 +6,7 @@ arch=""
 if [[ $(uname -s) == "Linux" ]]; then
     arch="linux-amd64"
 elif [[ $(uname -s) == "Darwin" ]]; then
-    arch="darwin-amd64"
+    arch="darwin-arm64"
 else
     echo "Operating system not recognized. Exiting go installation..."
     exit 1
