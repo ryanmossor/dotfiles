@@ -79,7 +79,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 packages=(
-    android-sdk-platform-tools
+    btop
     cloc
     curl
     git
@@ -87,7 +87,6 @@ packages=(
     jq
     neofetch
     ripgrep
-    shellcheck
     stow
     tldr
     tmux
@@ -99,6 +98,7 @@ packages=(
 if [[ "$os" == "mac" ]]; then
     packages+=(fd)
 else
+    packages+=(android-sdk-platform-tools)
     packages+=(fd-find)
 fi
 
@@ -109,7 +109,11 @@ mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/.local/scripts"
 mkdir -p "$HOME/.local/share/applications"
 
-if [[ "$os" == "mac" ]]; then
+if [ $dry_run = true ]; then
+    echo "Detected OS: $os"
+    echo "Updating packages" "${packages[@]}"
+elif [[ "$os" == "mac" ]]; then
+    brew install --cask android-commandlinetools
     brew update
     brew upgrade
     brew install "${packages[@]}"
@@ -117,6 +121,7 @@ else
     sudo apt-get update
     sudo apt-get upgrade -y
     sudo apt-get install -y "${packages[@]}"
+
 fi
 
 if [[ $SHELL != "/bin/zsh" ]]; then
@@ -126,9 +131,7 @@ fi
 
 run_setup
 
-if [ $install_personal = false ]; then
-    exit 0
+if [[ $(hostname) == *desktop* || $install_personal = true ]]; then
+    run_setup "linux-desktop" 
 fi
-
-run_setup "linux-desktop" 
 
