@@ -59,7 +59,6 @@ base=(
     #tmux
     vim
     wezterm
-    yazi
     zsh
 )
 
