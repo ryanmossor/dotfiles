@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-nvim_current=$(nvim -v | head -n 1 | sed 's/NVIM v\(.*\)$/\1/')
+nvim_current=$(nvim -v | head -n 1 | sed 's/NVIM v//')
 nvim_latest=$(github_latest_tag "neovim/neovim")
 
 if [[ "$nvim_current" == "$nvim_latest" ]]; then
