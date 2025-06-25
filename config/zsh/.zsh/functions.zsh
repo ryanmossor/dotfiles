@@ -60,20 +60,32 @@ function fzf-cd-code-projects() {
 
 function setdiff() {
     if [ ! -f /tmp/before.txt ]; then
-        adb shell settings list global > /tmp/before.txt
+        echo -e "===== GLOBAL =====\n" > /tmp/before.txt
+        adb shell settings list global >> /tmp/before.txt
+        echo -e "\n===== SECURE =====\n" >> /tmp/before.txt
         adb shell settings list secure >> /tmp/before.txt
+        echo -e "\n===== SYSTEM =====\n" >> /tmp/before.txt
         adb shell settings list system >> /tmp/before.txt
+        echo -e "\n===== LINEAGE GLOBAL =====\n" >> /tmp/before.txt
         adb shell settings list --lineage global >> /tmp/before.txt
+        echo -e "\n===== LINEAGE SECURE =====\n" >> /tmp/before.txt
         adb shell settings list --lineage secure >> /tmp/before.txt
+        echo -e "\n===== LINEAGE SYSTEM =====\n" >> /tmp/before.txt
         adb shell settings list --lineage system >> /tmp/before.txt
 
         echo "Current settings written to /tmp/before.txt"
     else
-        adb shell settings list global > /tmp/after.txt
+        echo -e "===== GLOBAL =====\n" > /tmp/after.txt
+        adb shell settings list global >> /tmp/after.txt
+        echo -e "\n===== SECURE =====\n" >> /tmp/after.txt
         adb shell settings list secure >> /tmp/after.txt
+        echo -e "\n===== SYSTEM =====\n" >> /tmp/after.txt
         adb shell settings list system >> /tmp/after.txt
+        echo -e "\n===== LINEAGE GLOBAL =====\n" >> /tmp/after.txt
         adb shell settings list --lineage global >> /tmp/after.txt
+        echo -e "\n===== LINEAGE SECURE =====\n" >> /tmp/after.txt
         adb shell settings list --lineage secure >> /tmp/after.txt
+        echo -e "\n===== LINEAGE SYSTEM =====\n" >> /tmp/after.txt
         adb shell settings list --lineage system >> /tmp/after.txt
 
         diff --color /tmp/before.txt /tmp/after.txt
