@@ -58,3 +58,5 @@ vim.opt.splitright = true -- split vertical window to the right
 vim.opt.splitbelow = true -- split horizontal window to the bottom
 
 vim.opt.swapfile = false
+
+vim.opt.winborder = "rounded"

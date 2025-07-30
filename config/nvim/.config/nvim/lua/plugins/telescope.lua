@@ -39,24 +39,28 @@ return {
                 path_display = {
                     "truncate",
                 },
+				border = false,
 			},
 			pickers = {
-                find_files = {
-                    theme = "dropdown",
-                    previewer = false,
-                    layout_config = {
-                        center = {
-                            height = 0.75,
-                            width = 85,
-                        },
-                    },
-                },
+				find_files = {
+					theme = "dropdown",
+					border = false,
+					previewer = false,
+					layout_config = {
+						center = {
+							height = 0.75,
+							width = 85,
+						},
+					},
+				},
 				grep_string = {
 					theme = "ivy",
+					border = false,
 					initial_mode = "normal",
 				},
 				lsp_references = {
 					theme = "ivy",
+					border = false,
 					initial_mode = "normal",
 				},
 			},
