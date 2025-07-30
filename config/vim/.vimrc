@@ -22,6 +22,8 @@ set history=10000
 set timeoutlen=500
 " Vim and system share same clipboard
 "set clipboard=unnamed
+" Disable swap files
+set noswapfile
 
 set tabstop=4
 set shiftwidth=4
