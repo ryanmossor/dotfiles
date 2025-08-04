@@ -7,7 +7,7 @@ return {
 	},
 	config = function()
 		local builtin = require("telescope.builtin")
-        local actions = require("telescope.actions")
+		local actions = require("telescope.actions")
 
 		require("telescope").setup({
 			defaults = {
@@ -36,31 +36,24 @@ return {
 				-- 	},
 				-- },
 				initial_mode = "insert",
-                path_display = {
-                    "truncate",
-                },
-				border = false,
+				path_display = {
+					"truncate",
+				},
 			},
 			pickers = {
 				find_files = {
 					theme = "dropdown",
-					border = false,
 					previewer = false,
 					layout_config = {
-						center = {
-							height = 0.75,
-							width = 85,
-						},
+						center = { height = 0.75, width = 85 },
 					},
 				},
 				grep_string = {
 					theme = "ivy",
-					border = false,
 					initial_mode = "normal",
 				},
 				lsp_references = {
 					theme = "ivy",
-					border = false,
 					initial_mode = "normal",
 				},
 			},
