@@ -143,7 +143,9 @@ xnoremap K :m '<-2<CR>gv=gv
 nnoremap J mzJ0`z
 
 " Split (opposite of J for join)
-nnoremap S yl/<C-r>0<CR>Ncgn<C-r>0<Del><CR><Esc>n:nohlsearch<CR>
+"nnoremap S yl/<C-r>0<CR>Ncgn<C-r>0<Del><CR><Esc>n:nohlsearch<CR>
+nnoremap S :s/,/,\\r/g<CR>:nohlsearch<CR>V'<=
+xnoremap S :s/,/,\\r/g<CR>:nohlsearch<CR>V'<=
 
 " Reselect text after indenting/dedenting
 xnoremap > >gv
@@ -154,3 +156,11 @@ nnoremap ' `
 nnoremap '' ``
 "nnoremap ` '
 "nnoremap `` ''
+
+" Insert shebang at top of file
+nnoremap <leader># mSggO#!/usr/bin/env bash<Esc><CR>`S
+" Insert mode shebang shortcut
+inoremap #! #!/usr/bin/env bash
+
+" Make current file executable
+nnoremap <leader>X :silent !chmod +x %<CR>

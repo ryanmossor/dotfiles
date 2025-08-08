@@ -5,8 +5,6 @@ vim.g.mapleader = " "
 vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
 vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { desc = "Make current file executable", silent = true })
-
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { desc = "Write file as sudo" })
 
 vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true, desc = "Toggle line wrap" })
@@ -14,10 +12,10 @@ vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true, desc = "Toggle line
 vim.keymap.set("n", "<leader>3", ":set relativenumber!<CR>", { silent = true, desc = "Toggle relative line numbers" })
 
 vim.keymap.set(
-	{ "n", "x" },
-	"<leader><Esc>",
-	"<Esc>:nohlsearch<CR>",
-	{ silent = true, desc = "Un-highlight search matches" }
+    { "n", "x" },
+    "<leader><Esc>",
+    "<Esc>:nohlsearch<CR>",
+    { silent = true, desc = "Un-highlight search matches" }
 )
 
 -- Use 'very magic' mode for search
@@ -25,10 +23,10 @@ vim.keymap.set(
 --vim.keymap.set("n", "<leader>?", "?\v")
 
 vim.keymap.set(
-	"n",
-	"<leader>s",
-	[[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]],
-	{ desc = "Substitute word under cursor across entire file" }
+    "n",
+    "<leader>s",
+    [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]],
+    { desc = "Substitute word under cursor across entire file" }
 )
 
 vim.keymap.set("n", "<leader>e", "*Ncgn", { desc = "Substite word under cursor once; use . to repeat" })
@@ -93,10 +91,10 @@ vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" }
 vim.keymap.set("x", "<leader>p", '_d"+P', { desc = "Paste from system clipboard" })
 vim.keymap.set("c", "<C-v>", "<C-R>+", { desc = "Paste from system clipboard" })
 vim.keymap.set(
-	"i",
-	"<C-v>",
-	'<esc>:set paste<cr>a<c-r>=getreg("+")<cr><esc>:set nopaste<cr>mi`[=`]`ia',
-	{ desc = "Paste from system clipboard" }
+    "i",
+    "<C-v>",
+    '<esc>:set paste<cr>a<c-r>=getreg("+")<cr><esc>:set nopaste<cr>mi`[=`]`ia',
+    { desc = "Paste from system clipboard" }
 )
 
 -- H/L go to start/end of line
@@ -122,3 +120,27 @@ vim.keymap.set("x", "<", "<gv")
 
 vim.keymap.set("n", "<leader>/", "gcc", { desc = "Toggle comment line", remap = true })
 vim.keymap.set("x", "<leader>/", "gc", { desc = "Toggle comment line", remap = true })
+
+-- .sh file mappings
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "sh",
+    callback = function()
+        vim.keymap.set("i", "#!", "#!/usr/bin/env bash", { desc = "Autocomplete shebang", buffer = true, remap = true })
+
+        vim.keymap.set("n", "<leader>#", function()
+            local first_line = vim.api.nvim_buf_get_lines(0, 0, 1, false)[1]
+            if not first_line or not first_line:match("^#!") then
+                vim.cmd("normal! mS")
+                vim.cmd("normal! mSggO#!/usr/bin/env bash")
+                vim.cmd("normal! `S")
+            end
+        end, { desc = "Insert shebang at top of file", buffer = true, silent = true })
+
+        vim.keymap.set(
+            "n",
+            "<leader>X",
+            "<cmd>!chmod +x %<CR>",
+            { desc = "Make current file executable", buffer = true, silent = true }
+        )
+    end,
+})

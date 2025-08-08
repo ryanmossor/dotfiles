@@ -14,8 +14,8 @@ return {
             "<leader>G",
             function()
                 vim.cmd.FloatermNew({
-                    "--height=0.95",
-                    "--width=0.9",
+                    "--height=1.0",
+                    "--width=1.0",
                     "--wintype=float",
                     "--name=lazygit",
                     "--autoclose=2",
