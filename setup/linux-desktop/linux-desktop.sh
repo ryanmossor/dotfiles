@@ -11,6 +11,7 @@ packages=(
     openssh-server
     pavucontrol
     picom
+    playerctl
     screenkey
     # steam
     ufw
@@ -21,8 +22,10 @@ sudo apt-get install -y "${packages[@]}"
 flatpaks=(
     com.chatterino.chatterino/x86_64/stable
     com.getpostman.Postman
+    com.github.PintaProject.Pinta
     com.obsproject.Studio
     org.DolphinEmu.dolphin-emu
+    org.localsend.localsend_app
     org.onlyoffice.desktopeditors
 )
 if [ -x /usr/bin/flatpak ]; then

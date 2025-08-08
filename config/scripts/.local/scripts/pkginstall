@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+pkg_name=$(apt-cache search . | awk '{print $1}' | fzf --multi --preview 'apt-cache show {1}' --preview-window=down:65%)
+
+if [[ -n "$pkg_name" ]]; then
+  sudo apt-get update
+  sudo apt-get install -y "$pkg_name"
+  sudo updatedb
+fi
+

@@ -25,8 +25,8 @@ alias ld='lazydocker'
 alias lg='lazygit'
 
 if have az; then
-    alias azsubs="az account list | jq -r '.[] | \"[\(.tenantDisplayName)]\n\(.name)\n\(.id)\n\"'"
-    alias azcurrent="az account list | jq -r '.[] | select(.isDefault == true) | .tenantDisplayName, .name, .id'"
+    alias azsubs="az account list | jq -r '.[] | \"\(.name)\n\(.id)\n\"'"
+    alias azcurrent="az account list | jq -r '.[] | select(.isDefault == true) | .name, .id'"
 fi
 
 alias history='history -f 1'
