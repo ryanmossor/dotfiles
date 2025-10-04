@@ -82,4 +82,5 @@ if &ide =~? 'rider'
     nmap <leader>bd <Action>(Debug)
     nmap <leader>bs <Action>(BuildWholeSolutionAction)
     nmap <leader>bt <Action>(RiderUnitTestRunSolutionAction)
+    nmap <leader>i <Action>(RiderNuGetManagePackagesForCurrentProjectAction)
 endif
