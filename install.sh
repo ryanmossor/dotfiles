@@ -82,6 +82,7 @@ packages=(
     btop
     cloc
     curl
+    eza
     git
     htop
     jq

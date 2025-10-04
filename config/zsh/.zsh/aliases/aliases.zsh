@@ -2,8 +2,16 @@ alias a='alias | grep -vE "auto|which|alias" | awk -F= "{ printf \"\033[0;31m%s\
 alias fa='alias | grep -E "^fz" | awk -F= "{ printf \"\033[0;31m%s\033[0m = \033[0;36m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
 alias ga='git config --get-regexp "alias.*" | sed "s/alias\.//" | sed "s/[ ]/ = /"'
 
-alias ls='ls --color=auto'
-alias ll='ls -laF --color=auto'
+if have eza; then
+    alias ls='eza -lh --group-directories-first --icons=auto'
+    alias ll='ls -a'
+    alias lt='eza --tree --level=2 --long --icons --git'
+    alias lta='lt -a'
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -laF --color=auto'
+fi
+
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
