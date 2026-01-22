@@ -1,5 +1,5 @@
 gui:
- # Use the mocha catppuccin theme
+  # Use the mocha catppuccin theme
   theme:
     activeBorderColor:
       - '#89b4fa'
@@ -24,3 +24,5 @@ gui:
       - '#f9e2af'
   showFileTree: false
   showCommandLog: false
+git:
+  ignoreWhitespaceInDiffView: true
