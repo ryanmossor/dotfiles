@@ -9,6 +9,10 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 [ -x /usr/local/bin/bat ] && export BAT="/usr/local/bin/bat"
 [ -x /usr/local/go/bin ] && export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 
+if have dotnet; then
+    [[ $(uname -s) == "Darwin" ]] && export PATH="$PATH:/Users/$USER/.dotnet/tools"
+fi
+
 if command -v fdfind &> /dev/null; then
     export FD='fdfind'
 elif command -v fd &> /dev/null; then
