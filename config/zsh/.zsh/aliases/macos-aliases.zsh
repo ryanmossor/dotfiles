@@ -9,16 +9,11 @@ function work() {
       *) echo "Usage: switch_desktop <1-5>"; return 1 ;;
     esac
     osascript -e "tell application \"System Events\" to key code $key using control down"
-    sleep 1
+    sleep 1.5
   }
 
-  switch_desktop 3
   open -a "Microsoft Teams"
-
-  switch_desktop 4
   open -a "Microsoft Outlook"
-
-  switch_desktop 5
   open -a "Slack"
 }
 
