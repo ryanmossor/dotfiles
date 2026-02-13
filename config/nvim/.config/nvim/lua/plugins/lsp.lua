@@ -6,20 +6,20 @@ return {
         end,
     },
     {
-        -- handle installation of LSPs
-        -- https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
         "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup({
-                auto_install = true,
-                ensure_installed = {
-                    "gopls",
-                    "jsonls",
-                    "lua_ls",
-                    "ts_ls",
-                },
-            })
-        end,
+        opts = {
+            ensure_installed = {
+                "gopls",
+                "jsonls",
+                "lua_ls",
+                "ts_ls",
+            },
+            automatic_enable = true, -- disables need to setup handlers manually
+        },
+        dependencies = {
+            { "williamboman/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
     },
     {
         -- handle installation of formatters/linters
