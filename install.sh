@@ -101,6 +101,7 @@ if [[ "$os" == "mac" ]]; then
 else
     packages+=(android-sdk-platform-tools)
     packages+=(fd-find)
+    packages+=(xsel)
 fi
 
 mkdir -p "$HOME/Applications"
