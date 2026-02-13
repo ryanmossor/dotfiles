@@ -2,15 +2,11 @@
 # shellcheck disable=2154
 
 packages=(
-    feh
     flameshot
     gimp
-    i3
-    i3lock
     lxappearance
     openssh-server
     pavucontrol
-    picom
     playerctl
     screenkey
     # steam
