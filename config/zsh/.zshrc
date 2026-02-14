@@ -38,7 +38,6 @@ source_file "$HOME/.zsh/aliases/aliases.zsh"
 [[ $(uname -a) == *microsoft* ]] && source_file "$HOME/.zsh/aliases/windows-aliases.zsh"
 [[ $(uname -a) == *Ubuntu* ]] && source_file "$HOME/.zsh/aliases/linux-aliases.zsh"
 [[ $(uname -s) == "Darwin" ]] && source_file "$HOME/.zsh/aliases/macos-aliases.zsh"
-[[ $TERM_PROGRAM == "WezTerm" ]] && source_file "$HOME/.zsh/aliases/wezterm-aliases.zsh"
 
 bindkey -s ^f " fzf-cd-code-projects\n"
 

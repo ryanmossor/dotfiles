@@ -1,0 +1,57 @@
+theme = Catppuccin Mocha
+# theme = dark:Catppuccin Mocha,light:Catppuccin Latte
+
+font-family = "JetBrains Mono NL"
+font-size = 16
+
+# background-opacity = 0.85
+window-decoration = none
+window-new-tab-position = end
+window-padding-x = 12
+window-padding-y = 12
+window-padding-balance = true
+window-title-font-family = "JetBrains Mono NL"
+
+# gtk-titlebar = false
+gtk-wide-tabs = false
+# gtk-tabs-location = bottom
+
+mouse-scroll-multiplier = 0.5
+mouse-hide-while-typing = true
+
+selection-foreground = cell-background
+selection-background = cell-foreground
+
+copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
+
+# Hold alt while clicking to move cursor in prompt
+cursor-click-to-move = true
+
+# Scrollback buffer (bytes)
+scrollback-limit = 100000000
+
+# Disable Ctrl+Enter fullscreen keybind
+keybind = ctrl+enter=unbind
+
+keybind = performable:ctrl+1=goto_tab:1
+keybind = performable:ctrl+2=goto_tab:2
+keybind = performable:ctrl+3=goto_tab:3
+keybind = performable:ctrl+4=goto_tab:4
+keybind = performable:ctrl+5=goto_tab:5
+keybind = performable:ctrl+6=goto_tab:6
+keybind = performable:ctrl+7=goto_tab:7
+keybind = performable:ctrl+8=goto_tab:8
+keybind = performable:ctrl+9=goto_tab:9
+
+# Disable shell from setting title automatically; allows setting title with printf\e]2;TITLE
+shell-integration-features = no-title
+
+#########
+# MacOS #
+#########
+
+macos-option-as-alt = true
+macos-non-native-fullscreen = true
+macos-titlebar-style = tabs
+window-save-state = never

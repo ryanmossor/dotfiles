@@ -50,6 +50,7 @@ unstow_apps() {
 
 base=(
     bat
+    ghostty
     git
     ideavim
     lazydocker

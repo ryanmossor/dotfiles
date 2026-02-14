@@ -36,7 +36,42 @@ function add_completion() {
     fi
 	completion_file="$(basename "${completion_file_path}")"
 	[[ "$2" = true ]] && compinit "${completion_file:1}"
-} 
+}
+
+function set_tab_title() {
+    if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
+        wez cli set-tab-title "$*"
+    elif [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+        printf "\e]2;$*"
+    fi
+}
+
+function t() {
+    if [[ -z "$1" ]]; then
+        if [[ $(pwd) == $HOME ]]; then
+            set_tab_title "\e]2;home"
+        else
+            set_tab_title "\e]2;$(basename $(pwd))"
+        fi
+    else
+        set_tab_title "\e]2;$*"
+    fi
+}
+
+# title first word
+function tfw() {
+    set_tab_title "\e]2;$(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $1}')"
+}
+
+# title last word
+function tlw() {
+    set_tab_title "\e]2;$(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $NF}')"
+}
+
+# title working dir
+function twd() {
+    set_tab_title "\e]2;$(basename $(pwd))"
+}
 
 function fzf-cd-code-projects() {
     local dirs=(
@@ -53,7 +88,7 @@ function fzf-cd-code-projects() {
 
     if [ -n "$selected" ]; then
         cd "$selected"
-        [[ $TERM_PROGRAM == "WezTerm" ]] && wez cli set-tab-title $(basename $(pwd))
+        set_tab_title $(basename $(pwd))
         clear
     fi
 }
