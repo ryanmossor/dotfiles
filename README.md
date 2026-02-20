@@ -9,8 +9,8 @@ sudo apt-get install git -y
 git clone https://github.com/ryanmossor/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
-./install.sh --personal | tee output.txt
-./stow.sh --personal
+./install.sh --linux | tee output.txt
+./stow.sh --linux
 ```
 
 ## Install examples
@@ -24,7 +24,7 @@ Initial installation/setup script. Can also be run to handle software updates.
 
 **Base install plus Linux desktop setup (WM, fonts, desktop apps, etc.):**
 ```bash
-./install.sh --personal | tee output.txt
+./install.sh --linux | tee output.txt
 ```
 
 **Dry run (print what *would* be executed, but don't execute it):**
@@ -52,9 +52,12 @@ Initial installation/setup script. Can also be run to handle software updates.
 -d, -r, --delete, --remove
     Remove all config files
 
--p, --personal
-    Apply personal configs
+-l, --linux
+    Apply Linux-specific configs
+
+-m, --macos
+    Apply MacOS-specific configs
 
 -w, --windows
-    Apply Windows configs (copies files; no symlinks)
+    Apply Windows-specific configs (copies files; no symlinks)
 ```

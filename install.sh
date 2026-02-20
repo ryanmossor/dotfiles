@@ -56,7 +56,7 @@ run_setup() {
 }
 
 dry_run=false
-install_personal=false
+install_linux=false
 filter_list=""
 
 while [[ $# -gt 0 ]]; do
@@ -64,8 +64,8 @@ while [[ $# -gt 0 ]]; do
         --dry)
             dry_run=true
             ;;
-        -p|--personal)
-            install_personal=true
+        -l|--linux)
+            install_linux=true
             ;;
         *)
             if [[ "$filter_list" == "" ]]; then
@@ -133,7 +133,7 @@ fi
 
 run_setup
 
-if [[ $(hostname) == *desktop* || $install_personal = true ]]; then
+if [[ $(hostname) == *desktop* || $install_linux = true ]]; then
     run_setup "linux-desktop" 
 fi
 

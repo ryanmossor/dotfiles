@@ -8,8 +8,9 @@ show_help() {
     echo -e "\nOPTIONS:"
     echo "    -h, --help                Show this help message"
     echo "    -i, --init, --install     Install/update required packages"
-    echo "    -p, --personal            Set up personal configurations"
-    echo "    -w, --windows             Set up Windows configurations"
+    echo "    -l, --linux               Set up Linux-specific configurations"
+    echo "    -m, --macos               Set up MacOS-specific configurations"
+    echo "    -w, --windows             Set up Windows-specific configurations"
     exit
 }
 
@@ -20,8 +21,11 @@ while [[ $# -gt 0 ]]; do
         -h|--help)
             show_help
             ;;
-        -p|--personal)
-            options+=('--personal')
+        -l|--linux)
+            options+=('--linux')
+            ;;
+        -m|--macos)
+            options+=('--macos')
             ;;
         -w|--windows)
             options+=('--windows')

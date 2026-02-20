@@ -17,3 +17,4 @@ function work() {
   open -a "Slack"
 }
 
+alias bp='dot --macos && source ~/.zshrc && echo "~/.zshrc reloaded"'

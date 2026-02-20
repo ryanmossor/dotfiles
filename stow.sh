@@ -63,7 +63,7 @@ base=(
     zsh
 )
 
-personal=(
+linux=(
     dunst
     flameshot
     gtk-3.0
@@ -91,11 +91,14 @@ while [[ "$#" -gt 0 ]]; do
             exit
             ;;
         -d|-r|--delete|--remove)
-            unstow_apps "${base[@]}" "${personal[@]}" "${windows[@]}"
+            unstow_apps "${base[@]}" "${linux[@]}" "${windows[@]}"
             exit
             ;;
-        -p|--personal)
-            stow_apps "$HOME" "${personal[@]}"
+        -l|--linux)
+            stow_apps "$HOME" "${linux[@]}"
+            ;;
+        -m|--macos)
+            stow_apps "$HOME" "${macos[@]}"
             ;;
         -w|--windows)
             copy_windows_apps "$WIN_HOME" "${windows[@]}"

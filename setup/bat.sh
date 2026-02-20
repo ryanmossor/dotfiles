@@ -6,7 +6,7 @@ if have bat; then
 fi
 
 if [[ "$os" == "mac" ]]; then
-    brew install --cask bat
+    brew install bat
 elif [[ "$os" == "ubuntu" || "$os" == "wsl" ]]; then
     sudo apt-get install -y bat
     mkdir -p ~/.local/bin
