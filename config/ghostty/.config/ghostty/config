@@ -47,11 +47,4 @@ keybind = performable:ctrl+9=goto_tab:9
 # Disable shell from setting title automatically; allows setting title with printf\e]2;TITLE
 shell-integration-features = no-title
 
-#########
-# MacOS #
-#########
-
-macos-option-as-alt = true
-macos-non-native-fullscreen = true
-macos-titlebar-style = tabs
-window-save-state = never
+config-file = ?ghostty-config-macos

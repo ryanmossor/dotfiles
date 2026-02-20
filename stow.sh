@@ -56,11 +56,16 @@ base=(
     lazydocker
     lazygit
     nvim
+    opencode
     scripts
     tmux
     vim
     wezterm
     zsh
+)
+
+macos=(
+    ghostty-macos
 )
 
 linux=(

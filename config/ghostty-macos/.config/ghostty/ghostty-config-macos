@@ -1,0 +1,13 @@
+font-size = 18
+
+# window-decoration = auto
+window-save-state = never
+
+window-height=999
+window-width=999
+
+macos-option-as-alt = true
+macos-non-native-fullscreen = true
+macos-titlebar-style = tabs
+
+keybind = performable:cmd+shift+t=new_tab
