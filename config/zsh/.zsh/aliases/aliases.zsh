@@ -25,7 +25,7 @@ elif [[ $(uname -a) == *microsoft* ]]; then
     alias clip='clip.exe'
 fi
 
-have bat && alias cat='$BAT --theme=Catppuccin-mocha --paging=never'
+have bat && alias cat='bat --theme=Catppuccin-mocha --paging=never'
 have fdfind && alias fd='fdfind'
 
 alias ld='lazydocker'
