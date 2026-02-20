@@ -1,4 +1,5 @@
 export EDITOR="nvim"
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export MANWIDTH=999
 export PATH="$HOME/.local/bin":$PATH
 export PATH="$HOME/.local/scripts":$PATH
