@@ -87,3 +87,10 @@ if &ide =~? 'rider'
     nmap <leader>bt <Action>(RiderUnitTestRunSolutionAction)
     nmap <leader>i <Action>(RiderNuGetManagePackagesForCurrentProjectAction)
 endif
+
+" Project file search
+nmap <leader>pfs :action Macro.pfs<CR>
+" Project word search
+nmap <leader>pws :action Macro.pws<CR>
+" Project WORD search
+nmap <leader>pWs :action Macro.pWs<CR>
