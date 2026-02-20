@@ -1,5 +1,4 @@
 alias a='alias | grep -vE "auto|which|alias" | awk -F= "{ printf \"\033[0;31m%s\033[0m = \033[0;36m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
-alias fa='alias | grep -E "^fz" | awk -F= "{ printf \"\033[0;31m%s\033[0m = \033[0;36m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
 alias ga='git config --get-regexp "alias.*" | sed "s/alias\.//" | sed "s/[ ]/ = /"'
 
 if have eza; then
@@ -55,13 +54,6 @@ alias cvrc='cat ~/.vimrc'
 alias evrc='$EDITOR ~/.vimrc'
 
 alias hosts='cat ~/.ssh/config'
-
-alias fzp='fzf --preview "$BAT --color=always --theme=Catppuccin-mocha --style=numbers --line-range=:500 {}"'
-alias fzc='fzf-cd-code-projects'
-alias fze='fzp | xargs -ro code'
-alias fzv='fzp | xargs -ro vim'
-#alias fzx='fzp | xargs realpath | tr "\n" " " | clip'
-alias fzx='fzp | tr "\n" " " | clip'
 
 wez() {
     if [[ $(uname -a) == *microsoft* ]]; then
