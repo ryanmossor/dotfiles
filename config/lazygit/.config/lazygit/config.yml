@@ -26,3 +26,5 @@ gui:
   showCommandLog: false
 git:
   ignoreWhitespaceInDiffView: true
+os:
+  editPreset: 'nvim'
