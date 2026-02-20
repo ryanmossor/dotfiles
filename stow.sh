@@ -57,7 +57,7 @@ base=(
     lazygit
     nvim
     scripts
-    #tmux
+    tmux
     vim
     wezterm
     zsh

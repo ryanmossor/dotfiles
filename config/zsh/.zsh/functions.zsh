@@ -39,7 +39,9 @@ function add_completion() {
 }
 
 function set_tab_title() {
-    if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
+    if [ -n "$TMUX" ]; then
+        tmux rename-window "$*"
+    elif [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
         wez cli set-tab-title "$*"
     elif [[ "$TERM_PROGRAM" == "ghostty" ]]; then
         printf "\e]2;$*"
@@ -49,28 +51,28 @@ function set_tab_title() {
 function t() {
     if [[ -z "$1" ]]; then
         if [[ $(pwd) == $HOME ]]; then
-            set_tab_title "\e]2;home"
+            set_tab_title "home"
         else
-            set_tab_title "\e]2;$(basename $(pwd))"
+            set_tab_title "$(basename $(pwd))"
         fi
     else
-        set_tab_title "\e]2;$*"
+        set_tab_title "$*"
     fi
 }
 
 # title first word
 function tfw() {
-    set_tab_title "\e]2;$(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $1}')"
+    set_tab_title "$(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $1}')"
 }
 
 # title last word
 function tlw() {
-    set_tab_title "\e]2;$(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $NF}')"
+    set_tab_title "$(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $NF}')"
 }
 
 # title working dir
 function twd() {
-    set_tab_title "\e]2;$(basename $(pwd))"
+    set_tab_title "$(basename $(pwd))"
 }
 
 function fzf-cd-code-projects() {
@@ -125,5 +127,52 @@ function setdiff() {
 
         diff --color /tmp/before.txt /tmp/after.txt
         rm /tmp/before.txt /tmp/after.txt
+    fi
+}
+
+# Open neovim + terminal in current dir
+function nt() {
+  local current_dir=$(pwd)
+  local editor_pane ai_pane
+  local ai="$1"
+
+  Get current pane ID (will become editor pane after splits)
+  editor_pane=$(tmux display-message -p '#{pane_id}')
+
+  # Split window vertically - top 80%, bottom 20%
+  tmux split-window -v -p 20 -c "$current_dir"
+
+  # Go back to top pane (editor_pane) and split it horizontally
+  if [ -n "$ai" ] && command -v "$ai"; then
+      tmux select-pane -t "$editor_pane"
+      tmux split-window -h -p 30 -c "$current_dir"
+
+      # After horizontal split, cursor is in the right pane (new pane)
+      # Get its ID and run ai there
+      ai_pane=$(tmux display-message -p '#{pane_id}')
+      tmux send-keys -t "$ai_pane" "$ai" C-m
+  fi
+
+  # Run nvim in the left pane
+  tmux send-keys -t "$editor_pane" "$EDITOR ." C-m
+
+  # Select the nvim pane for focus
+  tmux select-pane -t "$editor_pane"
+}
+
+# Open neovim, terminal, and AI (opencode)
+function nta() {
+    nt opencode
+}
+
+function s() {
+    if [ -n "$TMUX" ] && [ $# -gt 0 ]; then
+        tmux rename-session "$*"
+    fi
+}
+
+function sln() {
+    if command -v rider; then
+        rider *.sln
     fi
 }
