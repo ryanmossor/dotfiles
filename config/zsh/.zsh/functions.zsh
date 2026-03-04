@@ -136,7 +136,7 @@ function nt() {
   local editor_pane ai_pane
   local ai="$1"
 
-  Get current pane ID (will become editor pane after splits)
+  # Get current pane ID (will become editor pane after splits)
   editor_pane=$(tmux display-message -p '#{pane_id}')
 
   # Split window vertically - top 80%, bottom 20%
