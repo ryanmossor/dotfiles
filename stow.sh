@@ -50,6 +50,7 @@ unstow_apps() {
 
 base=(
     bat
+    btop
     ghostty
     git
     ideavim
