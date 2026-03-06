@@ -34,15 +34,51 @@ vim.keymap.set("n", "<leader>e", "*Ncgn", { desc = "Substite word under cursor o
 -- vim.keymap.set({ "n", "x" }, "<leader>h", "<Esc><C-w>s", { desc = "Create horizontal split" })
 vim.keymap.set({ "n", "x" }, "<leader>v", "<Esc><C-w>v", { desc = "Create vertical split" })
 
+-- Go to definition split
+vim.keymap.set("n", "gs", function()
+    vim.cmd("vsplit") -- vertical split
+    vim.cmd("wincmd l") -- move to split
+    vim.lsp.buf.definition()
+    vim.defer_fn(function()
+        vim.api.nvim_feedkeys("zt", "n", false) -- set current line to top of window
+    end, 50)
+end)
+
 -- Split navigation
 vim.keymap.set({ "n", "x" }, "<Up>", "<Esc><C-W>k")
 vim.keymap.set({ "n", "x" }, "<Down>", "<Esc><C-W>j")
 vim.keymap.set({ "n", "x" }, "<Left>", "<Esc><C-W>h")
 vim.keymap.set({ "n", "x" }, "<Right>", "<Esc><C-W>l")
 
+local function get_pane()
+    local pos = vim.api.nvim_win_get_position(0)
+    local row, col = pos[1], pos[2]
+    if col == 0 then
+        return "left"
+    else
+        return "right"
+    end
+end
+
 -- Resize split
-vim.keymap.set({ "n", "x" }, "<M-,>", "<C-w>5<")
-vim.keymap.set({ "n", "x" }, "<M-.>", "<C-w>5>")
+-- vim.keymap.set({ "n", "x" }, "<M-,>", "<C-w>5<")
+-- vim.keymap.set({ "n", "x" }, "<M-.>", "<C-w>5>")
+vim.keymap.set({ "n", "x" }, "<M-,>", function()
+    local pane = get_pane()
+    if pane == "left" then
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5<", true, false, true), "n", false)
+    else
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5>", true, false, true), "n", false)
+    end
+end)
+vim.keymap.set({ "n", "x" }, "<M-.>", function()
+    local pane = get_pane()
+    if pane == "left" then
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5>", true, false, true), "n", false)
+    else
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5<", true, false, true), "n", false)
+    end
+end)
 vim.keymap.set({ "n", "x" }, "<M-t>", "<C-w>+")
 vim.keymap.set({ "n", "x" }, "<M-s>", "<C-w>-")
 
