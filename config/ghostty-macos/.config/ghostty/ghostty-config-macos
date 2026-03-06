@@ -11,3 +11,4 @@ macos-non-native-fullscreen = true
 macos-titlebar-style = tabs
 
 keybind = performable:cmd+shift+t=new_tab
+keybind = performable:ctrl+shift+v=paste_from_clipboard

@@ -34,3 +34,7 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+
+if [ "$TERM_PROGRAM" = "ghostty" ]; then
+    export TERM=xterm-256color
+fi

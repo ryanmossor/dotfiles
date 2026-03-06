@@ -45,6 +45,7 @@ keybind = performable:ctrl+8=goto_tab:8
 keybind = performable:ctrl+9=goto_tab:9
 
 # Disable shell from setting title automatically; allows setting title with printf\e]2;TITLE
-shell-integration-features = no-title
+shell-integration-features = no-title,ssh-terminfo,ssh-env
 
 config-file = ?ghostty-config-macos
+term=xterm-256color
