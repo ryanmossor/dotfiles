@@ -4,7 +4,8 @@ theme = Catppuccin Mocha
 font-family = "JetBrains Mono NL"
 font-size = 16
 
-# background-opacity = 0.85
+background-opacity = 0.9
+bell-features = system,audio
 window-decoration = none
 window-new-tab-position = end
 window-padding-x = 12
@@ -46,6 +47,6 @@ keybind = performable:ctrl+9=goto_tab:9
 
 # Disable shell from setting title automatically; allows setting title with printf\e]2;TITLE
 shell-integration-features = no-title,ssh-terminfo,ssh-env
+term=xterm-256color
 
 config-file = ?ghostty-config-macos
-term=xterm-256color

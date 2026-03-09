@@ -35,6 +35,5 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 
-if [ -n "$SSH_CONNECTION" ]; then
-    export TERM=xterm-256color
-fi
+# Force this since ghostty has rendering issues over SSH otherwise
+export TERM=xterm-256color

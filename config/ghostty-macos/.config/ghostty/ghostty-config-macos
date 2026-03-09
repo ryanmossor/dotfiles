@@ -1,5 +1,7 @@
 font-size = 20
 
+background-blur = 30
+
 # window-decoration = auto
 window-save-state = never
 
