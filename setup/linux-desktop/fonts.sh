@@ -62,6 +62,11 @@ if ! ls /home/$USER/.fonts/JetBrainsMono*.ttf &> /dev/null; then
     fonts_updated=true
 fi
 
+if ! ls /home/$USER/.fonts/NotoColorEmoji*.ttf &> /dev/null; then
+    wget -O "/home/$USER/.fonts/NotoColorEmoji.ttf" "https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf"
+    fonts_updated=true
+fi
+
 if [ "$fonts_updated" == true ]; then
     # Reload font cache
     fc-cache -f &> /dev/null
