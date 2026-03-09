@@ -14,6 +14,10 @@ class() {
 
 scratch() {
     if ! pgrep -f "i3.scratch" >/dev/null; then
-        ghostty --class=i3.scratch -e nvim ~/scratch.txt & disown
+        if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
+            wezterm start --class "i3.scratch" nvim ~/scratch.txt & disown
+        elif [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+            ghostty --class=i3.scratch -e nvim ~/scratch.txt & disown
+        fi
     fi
 }
