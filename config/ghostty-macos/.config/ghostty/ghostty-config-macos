@@ -14,3 +14,5 @@ macos-titlebar-style = tabs
 
 keybind = performable:cmd+shift+t=new_tab
 keybind = performable:ctrl+shift+v=paste_from_clipboard
+keybind = performable:super+shift+v=paste_from_clipboard
+keybind = global:ctrl+backquote=toggle_quick_terminal
