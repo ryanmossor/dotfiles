@@ -176,3 +176,26 @@ function sln() {
         rider *.sln
     fi
 }
+
+function tma() {
+    if [ $# -eq 0 ]; then
+        active_sessions=$(tmux list-sessions -F '#{session_name}' -f '#{?session_attached,0,1}' 2>/dev/null)
+        if [[ $(echo "$active_sessions" | wc -l) -le 1 ]]; then
+            # 0 or 1 sessions; attach to default
+            tmux attach
+        else
+            # Multiple active sessions; show fzf picker
+            tmux attach -t $(echo "$active_sessions" | fzf)
+        fi
+    else
+        if [[ -n "$TMUX" ]]; then
+            # Tmux active, create new session then switch to it
+            tmux new-session -d -s "$1"
+            tmux switch-client -t "$1"
+        else
+            # Tmux not active, attach to session or create if doesn't exist
+            tmux new-session -A -s "$1"
+        fi
+    fi
+}
+
