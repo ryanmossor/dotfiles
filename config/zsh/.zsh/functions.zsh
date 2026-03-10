@@ -179,13 +179,13 @@ function sln() {
 
 function tma() {
     if [ $# -eq 0 ]; then
-        active_sessions=$(tmux list-sessions -F '#{session_name}' -f '#{?session_attached,0,1}' 2>/dev/null)
+        active_sessions=$(tmux list-sessions -F '#{session_name}' 2>/dev/null)
         if [[ $(echo "$active_sessions" | wc -l) -le 1 ]]; then
             # 0 or 1 sessions; attach to default
             tmux attach
         else
             # Multiple active sessions; show fzf picker
-            tmux attach -t $(echo "$active_sessions" | fzf)
+            tmux attach -t $(echo "$active_sessions" | fzf --height 15%)
         fi
     else
         if [[ -n "$TMUX" ]]; then
