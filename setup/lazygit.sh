@@ -16,5 +16,10 @@ else
     tar xf lazygit.tar.gz lazygit
     sudo install lazygit -D -t /usr/local/bin/
     popd &> /dev/null || exit
+
+    # Diff-so-fancy for custom pager
+    sudo add-apt-repository ppa:aos1/diff-so-fancy
+    sudo apt update
+    sudo apt install diff-so-fancy -y
 fi
 
