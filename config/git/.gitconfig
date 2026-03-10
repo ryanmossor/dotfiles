@@ -26,3 +26,6 @@
 	
 [include]
     path = ~/.gitconfig_user
+    
+[diff-so-fancy]
+    markEmptyLines = false
