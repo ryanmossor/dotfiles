@@ -157,6 +157,10 @@ vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("n", "<leader>/", "gcc", { desc = "Toggle comment line", remap = true })
 vim.keymap.set("x", "<leader>/", "gc", { desc = "Toggle comment line", remap = true })
 
+-- Up/down to pick command autocomplete
+vim.keymap.set("c", "<Up>", "<C-p>", { desc = "Previous autocomplete suggestion", remap = true })
+vim.keymap.set("c", "<Down>", "<C-n>", { desc = "Next autocomplete suggestion", remap = true })
+
 -- .sh file mappings
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "sh",
