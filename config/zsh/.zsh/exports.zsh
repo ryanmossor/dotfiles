@@ -10,6 +10,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 if have dotnet; then
     [[ $(uname -s) == "Darwin" ]] && export PATH="$PATH:/Users/$USER/.dotnet/tools"
+    export PATH="$HOME/.aspire/bin:$PATH"
 fi
 
 if command -v fdfind &> /dev/null; then
@@ -29,7 +30,8 @@ export FZF_DEFAULT_OPTS="--highlight-line --reverse --border=rounded --info=inli
 # export FZF_ALT_C_OPTS="--height=100%"
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="" # Disable fzf Alt+C so tmux can use as copy mode keybind
 
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
