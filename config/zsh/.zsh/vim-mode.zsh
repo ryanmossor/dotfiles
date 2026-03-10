@@ -2,8 +2,8 @@ bindkey -v
 export KEYTIMEOUT=1
 
 # Ctrl-e to edit current command in editor
-# autoload edit-command-line; zle -N edit-command-line
-# bindkey '^e' edit-command-line
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 # Change cursor shape for different vi modes.
 function _set_cursor() {
@@ -25,6 +25,11 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
+
+# Make sure M-c is not intercepted by zle
+bindkey -M viins '^[c' undefined-key
+bindkey -M vicmd '^[c' undefined-key
+
 # ensure beam cursor when starting new terminal
 precmd_functions+=(_set_beam_cursor)
 # ensure insert mode and beam cursor when exiting vim
