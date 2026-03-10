@@ -55,7 +55,7 @@ alias evrc='$EDITOR ~/.vimrc'
 
 alias hosts='cat ~/.ssh/config'
 
-alias tmd='tmux detach'
+alias td='tmux detach'
 
 wez() {
     if [[ $(uname -a) == *microsoft* ]]; then

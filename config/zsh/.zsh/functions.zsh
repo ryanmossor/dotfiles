@@ -177,7 +177,7 @@ function sln() {
     fi
 }
 
-function tma() {
+function ta() {
     if [ $# -eq 0 ]; then
         active_sessions=$(tmux list-sessions -F '#{session_name}' 2>/dev/null)
         if [[ $(echo "$active_sessions" | wc -l) -le 1 ]]; then
