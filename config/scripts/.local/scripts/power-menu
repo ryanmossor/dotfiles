@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+confirm() {
+    printf "No\nYes\n" \
+        | fzf --no-input \
+        --header="$1" \
+        --border=none \
+        --cycle \
+        --gutter ' ' \
+        --color='current-fg:#89b4fa,current-bg:#1c1c2b,pointer:#1c1c2b'
+}
+
+items=("󰤄 Sleep" "󰍃 Log out" " Lock" "󰜉 Restart" " Shutdown")
+choice=$(printf "%s\n" "${items[@]}" \
+    | fzf --no-input \
+    --border=none \
+    --cycle \
+    --gutter ' ' \
+    --color='current-fg:#89b4fa,current-bg:#1c1c2b,pointer:#1c1c2b')
+
+case "$choice" in
+    "󰤄 Sleep")
+        setsid -f i3lock --color 000000
+        sleep 0.5
+        systemctl suspend
+        ;;
+    " Lock")
+        setsid -f i3lock --color 000000
+        ;;
+    "󰍃 Log out")
+        if [[ $(confirm "Log out?") == "Yes" ]]; then
+            i3-msg exit
+        fi
+        ;;
+    "󰜉 Restart")
+        if [[ $(confirm "Restart?") == "Yes" ]]; then
+            systemctl reboot
+        fi
+        ;;
+    " Shutdown")
+        if [[ $(confirm "Shutdown?") == "Yes" ]]; then
+            systemctl poweroff
+        fi
+        ;;
+esac
