@@ -10,7 +10,7 @@ confirm() {
         --color='current-fg:#89b4fa,current-bg:#1c1c2b,pointer:#1c1c2b'
 }
 
-items=("󰤄 Sleep" "󰍃 Log out" " Lock" "󰜉 Restart" " Shutdown")
+items=("󰤄  Sleep" "󰍃  Log out" "  Lock" "󰜉  Restart" "  Shutdown")
 choice=$(printf "%s\n" "${items[@]}" \
     | fzf --no-input \
     --border=none \
@@ -19,25 +19,25 @@ choice=$(printf "%s\n" "${items[@]}" \
     --color='current-fg:#89b4fa,current-bg:#1c1c2b,pointer:#1c1c2b')
 
 case "$choice" in
-    "󰤄 Sleep")
+    "󰤄  Sleep")
         setsid -f i3lock --color 000000
         sleep 0.5
         systemctl suspend
         ;;
-    " Lock")
+    "  Lock")
         setsid -f i3lock --color 000000
         ;;
-    "󰍃 Log out")
+    "󰍃  Log out")
         if [[ $(confirm "Log out?") == "Yes" ]]; then
             i3-msg exit
         fi
         ;;
-    "󰜉 Restart")
+    "󰜉  Restart")
         if [[ $(confirm "Restart?") == "Yes" ]]; then
             systemctl reboot
         fi
         ;;
-    " Shutdown")
+    "  Shutdown")
         if [[ $(confirm "Shutdown?") == "Yes" ]]; then
             systemctl poweroff
         fi
