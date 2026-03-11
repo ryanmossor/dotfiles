@@ -6,9 +6,8 @@ if have az; then
     exit 0
 fi
 
-if [[ "$os" == "mac" ]]; then
+if [[ $os == "mac" ]]; then
     brew install azure-cli
-else
+elif [[ $os == "ubuntu" ]]; then
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 fi
-

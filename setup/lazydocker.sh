@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-if [[ "$os" == "mac" ]]; then
+if [[ $os == "omarchy" ]]; then
+    sudo pacman -S --noconfirm --needed lazydocker
+elif [[ $os == "mac" ]]; then
     brew install jesseduffield/lazydocker/lazydocker
-else
+elif [[ $os == "ubuntu" ]]; then
     lazydocker_latest=$(github_latest_tag "jesseduffield/lazydocker")
     lazydocker_current=$(lazydocker -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
     if [[ "$lazydocker_current" == "$lazydocker_latest" ]]; then
@@ -17,4 +19,3 @@ else
     sudo install lazydocker -D -t /usr/local/bin/
     popd &> /dev/null || exit
 fi
-

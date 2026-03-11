@@ -5,11 +5,12 @@ if have bat; then
     exit 0
 fi
 
-if [[ "$os" == "mac" ]]; then
+if [[ $os == "omarchy" ]]; then
+    sudo pacman -S --noconfirm --needed bat
+elif [[ $os == "mac" ]]; then
     brew install bat
-elif [[ "$os" == "ubuntu" || "$os" == "wsl" ]]; then
+elif [[ $os == "ubuntu" || $os == "wsl" ]]; then
     sudo apt-get install -y bat
     mkdir -p ~/.local/bin
     ln -s /usr/bin/batcat ~/.local/bin/bat
 fi
-

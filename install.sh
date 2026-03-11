@@ -12,6 +12,7 @@ export script_dir
 os="ubuntu"
 [[ $(uname -s) == "Darwin" ]] && os="mac"
 [[ $(uname -a) == *Ubuntu* ]] && os="ubuntu"
+[[ $(uname -a) == *omarchy* ]] && os="omarchy"
 [[ $(uname -r) == *microsoft* ]] && os="wsl"
 export os
 
@@ -86,7 +87,7 @@ packages=(
     git
     htop
     jq
-    neofetch
+    # neofetch # deprecated
     ripgrep
     stow
     tldr
@@ -96,9 +97,9 @@ packages=(
     zsh
 )
 
-if [[ "$os" == "mac" ]]; then
+if [[ $os == "mac" ]]; then
     packages+=(fd)
-else
+elif [[ $os == "ubuntu" ]]; then
     packages+=(android-sdk-platform-tools)
     packages+=(fd-find)
     packages+=(xsel)
@@ -114,17 +115,17 @@ mkdir -p "$HOME/.local/share/applications"
 if [ $dry_run = true ]; then
     echo "Detected OS: $os"
     echo "Updating packages" "${packages[@]}"
-elif [[ "$os" == "mac" ]]; then
+elif [[ $os == "omarchy" ]]; then
+    sudo pacman -S --noconfirm --needed "${packages[@]}"
+elif [[ $os == "mac" ]]; then
     brew install --cask android-commandlinetools
-    brew install --cask ghostty
     brew update
     brew upgrade
     brew install "${packages[@]}"
-else
+elif [[ $os == "ubuntu" ]]; then
     sudo apt-get update
     sudo apt-get upgrade -y
     sudo apt-get install -y "${packages[@]}"
-
 fi
 
 if [[ $SHELL != "/bin/zsh" ]]; then

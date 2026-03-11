@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
+if [[ $os == "omarchy" ]]; then
+    sudo pacman -S --noconfirm --needed neovim
+    exit 0
+fi
+
 nvim_current=$(nvim -v | head -n 1 | sed 's/NVIM v//')
 nvim_latest=$(github_latest_tag "neovim/neovim")
 
@@ -11,9 +16,9 @@ fi
 
 # Install build deps if neovim not already installed
 if ! have nvim; then
-    if [[ "$os" == "mac" ]]; then
+    if [[ $os == "mac" ]]; then
         brew install cmake curl gettext ninja
-    elif [[ "$os" == "ubuntu" || "$os" == "wsl" ]]; then
+    elif [[ $os == "ubuntu" || $os == "wsl" ]]; then
         sudo apt-get install -y build-essential cmake curl gettext ninja-build unzip
     fi
 fi
@@ -22,4 +27,3 @@ git clone --branch stable --depth 1 https://github.com/neovim/neovim.git /tmp/ne
 pushd /tmp/neovim &> /dev/null || exit
 make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
 popd &> /dev/null || exit
-

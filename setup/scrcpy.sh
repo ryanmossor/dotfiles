@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-if [[ "$os" == "mac" ]]; then
+if [[ $os == "omarchy" ]]; then
+    sudo pacman -S --noconfirm --needed scrcpy
+elif [[ $os == "mac" ]]; then
     brew install scrcpy
-else
+elif [[ $os == "ubuntu" ]]; then
     scrcpy_latest=$(github_latest_tag "Genymobile/scrcpy")
     scrcpy_current=$(scrcpy --version | head -n 1 | awk '{print $2}')
 

@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
+# shellcheck disable=2154
 
 set -e
+
+if [[ $os == "omarchy" ]]; then
+    omarchy-install-dev-env go
+    exit 0
+fi
 
 arch=""
 if [[ $(uname -s) == "Linux" ]]; then

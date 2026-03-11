@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-if [[ "$os" == "mac" ]]; then
+if [[ $os == "omarchy" ]]; then
+    sudo pacman -S --noconfirm --needed lazygit diff-so-fancy
+elif [[ $os == "mac" ]]; then
     brew install jesseduffield/lazygit/lazygit
     brew install diff-so-fancy
-else
+elif [[ $os == "ubuntu" ]]; then
     lazygit_latest=$(github_latest_tag "jesseduffield/lazygit")
     lazygit_current=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
     if [[ "$lazygit_current" == "$lazygit_latest" ]]; then
@@ -20,7 +22,7 @@ else
 
     # Diff-so-fancy for custom pager
     sudo add-apt-repository ppa:aos1/diff-so-fancy
-    sudo apt update
-    sudo apt install diff-so-fancy -y
+    sudo apt-get update
+    sudo apt-get install diff-so-fancy -y
 fi
 
