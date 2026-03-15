@@ -5,7 +5,7 @@ set number
 " Relative line numbers
 set relativenumber
 " Minimum # of line numbers to display above/below cursor
-set scrolloff=8
+set scrolloff=5
 " Ignore case when searching
 set ignorecase
 " Overrides ignorecase if search pattern includes uppercase letters

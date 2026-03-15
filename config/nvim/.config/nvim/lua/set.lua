@@ -8,7 +8,7 @@ vim.opt.showmode = false
 vim.opt.relativenumber = true
 
 -- Minimum # of line numbers to display above/below cursor
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 20
 
 -- Ignore case when searching
