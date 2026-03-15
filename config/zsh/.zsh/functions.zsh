@@ -86,7 +86,7 @@ function fzf-cd-code-projects() {
 
     local expanded_dirs=$(fd . "${dirs[@]}" --exact-depth 1 -t d 2> /dev/null)
     expanded_dirs+="\n$DOTFILES"
-    local selected=$(echo "$expanded_dirs" | fzf)
+    local selected=$(echo "$expanded_dirs" | fzf --cycle)
 
     if [ -n "$selected" ]; then
         cd "$selected"
