@@ -1,23 +1,29 @@
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         config = function()
-            require("mason").setup()
+            require("mason").setup({
+                registries = {
+                    "github:Crashdummyy/mason-registry", -- this contains the register for Roslyn
+                    "github:mason-org/mason-registry",
+                },
+            })
         end,
     },
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         opts = {
             ensure_installed = {
                 "gopls",
                 "jsonls",
                 "lua_ls",
                 "ts_ls",
+                -- "roslyn",
             },
             automatic_enable = true, -- disables need to setup handlers manually
         },
         dependencies = {
-            { "williamboman/mason.nvim", opts = {} },
+            { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
         },
     },
@@ -26,7 +32,7 @@ return {
         "jay-babu/mason-null-ls.nvim",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "williamboman/mason.nvim",
+            "mason-org/mason.nvim",
             "nvimtools/none-ls.nvim",
         },
         config = function()
@@ -84,6 +90,23 @@ return {
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
             vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Show function signature help" })
+        end,
+    },
+    {
+        "seblyng/roslyn.nvim",
+        enabled = true,
+        ft = "cs",
+        config = function()
+            vim.lsp.config("roslyn", {
+                -- on_attach = function()
+                --     print("This will run when the server attaches!")
+                -- end,
+                settings = {
+                    -- Check settings in https://github.com/seblyng/roslyn.nvim
+                },
+            })
+            local roslyn = require("roslyn")
+            roslyn.setup()
         end,
     },
 }

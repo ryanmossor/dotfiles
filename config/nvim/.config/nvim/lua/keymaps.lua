@@ -119,13 +119,13 @@ vim.keymap.set("n", "Y", "y$")
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 vim.keymap.set({ "n", "x" }, "<leader>Y", '"+y$')
 
-vim.keymap.set("n", "<C-y>", 'mygg"+yG`y', { desc = "Yank entire file to system clipboard" })
+vim.keymap.set("n", "<C-y>", ":%y<CR>", { desc = "Yank entire file to system clipboard" })
 
 vim.keymap.set("x", "<leader>x", '"+x', { desc = "Cut to system clipboard" })
 
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set("x", "<leader>p", '_d"+P', { desc = "Paste from system clipboard" })
-vim.keymap.set("c", "<C-v>", "<C-R>+", { desc = "Paste from system clipboard" })
+vim.keymap.set("c", "<C-S-v>", "<C-R>+", { desc = "Paste from system clipboard" })
 vim.keymap.set(
     "i",
     "<C-v>",
