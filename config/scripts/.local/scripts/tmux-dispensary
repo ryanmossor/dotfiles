@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+DIRS=(
+    "$HOME/code"
+    "$HOME/work"
+)
+
+hydrate() {
+    local session_name=$1
+    local dir=$2
+
+    tmux send-keys -t "$session_name:1" "nvim ." C-m # C-m = enter
+    tmux new-window -t "$session_name" -c "$dir"
+    tmux select-window -t "$session_name:1"
+}
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    expanded_dirs=$(fd . "${DIRS[@]}" --exact-depth 1 -t d 2> /dev/null | sed "s|^$HOME/||; s|/$||")
+    expanded_dirs+=$(echo -e "\n$DOTFILES" | sed "s|^$HOME/||")
+    selected=$(echo "$expanded_dirs" | fzf --cycle)
+
+    [[ $selected ]] && selected="$HOME/$selected"
+fi
+
+[[ ! $selected ]] && exit 0
+
+selected_name=$(basename "$selected" | tr . _)
+
+if ! tmux has-session -t "$selected_name" 2>/dev/null; then
+    tmux new-session -ds "$selected_name" -c "$selected"
+
+    if [[ -f "$selected/.tmux-init" ]]; then
+        tmux send-keys -t "$selected_name" "source .tmux-init" C-m
+    else
+        hydrate "$selected_name" "$selected"
+    fi
+fi
+
+if [[ -z "$TMUX" ]]; then
+    tmux attach-session -t "$selected_name"
+else
+    tmux switch-client -t "$selected_name"
+fi

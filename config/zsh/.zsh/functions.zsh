@@ -62,7 +62,7 @@ function t() {
 
 # title first word
 function tfw() {
-    set_tab_title "$(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $1}')"
+set_tab_title "$(basename $(pwd) | sed 's/[._-]/ /g' | awk '{print $1}')"
 }
 
 # title last word
@@ -78,18 +78,18 @@ function twd() {
 function fzf-cd-code-projects() {
     local dirs=(
         "$HOME/code"
-        "$HOME/code/work"
+        "$HOME/work"
         "$WIN_HOME/code"
         "$WIN_HOME/code/work"
         "$WIN_HOME/code/work/candidates"
     )
 
-    local expanded_dirs=$(fd . "${dirs[@]}" --exact-depth 1 -t d 2> /dev/null)
-    expanded_dirs+="\n$DOTFILES"
+    local expanded_dirs=$(fd . "${dirs[@]}" --exact-depth 1 -t d 2> /dev/null | sed "s|^$HOME/||")
+    expanded_dirs+=$(echo -e "\n$DOTFILES" | sed "s|^$HOME/||")
     local selected=$(echo "$expanded_dirs" | fzf --cycle)
 
     if [ -n "$selected" ]; then
-        cd "$selected"
+        cd "$HOME/$selected"
         set_tab_title $(basename $(pwd))
         clear
     fi
@@ -166,8 +166,12 @@ function nta() {
 }
 
 function s() {
-    if [ -n "$TMUX" ] && [ $# -gt 0 ]; then
-        tmux rename-session "$*"
+    if [ -n "$TMUX" ]; then
+        if [ $# -gt 0 ]; then
+            tmux rename-session "$*"
+        else
+            tmux rename-session "$(basename $(pwd))"
+        fi
     fi
 }
 
@@ -177,25 +181,19 @@ function sln() {
     fi
 }
 
-function ta() {
-    if [ $# -eq 0 ]; then
-        active_sessions=$(tmux list-sessions -F '#{session_name}' 2>/dev/null)
-        if [[ $(echo "$active_sessions" | wc -l) -le 1 ]]; then
-            # 0 or 1 sessions; attach to default
-            tmux attach
-        else
-            # Multiple active sessions; show fzf picker
-            tmux attach -t $(echo "$active_sessions" | fzf --height 15%)
+function ogh() {
+    # cd $(tmux run "echo #{pane_start_path}")
+    url=$(git remote get-url origin)
+
+    if [[ $url == *github.com* ]]; then
+        if [[ $url == git@* ]]; then
+            url="${url#git@}"
+            # url="${url/:/\/}"
+            url="${url/://}"
+            url="https://$url"
         fi
+        open "$url"
     else
-        if [[ -n "$TMUX" ]]; then
-            # Tmux active, create new session then switch to it
-            tmux new-session -d -s "$1"
-            tmux switch-client -t "$1"
-        else
-            # Tmux not active, attach to session or create if doesn't exist
-            tmux new-session -A -s "$1"
-        fi
+        echo "This repository is not hosted on GitHub"
     fi
 }
-
