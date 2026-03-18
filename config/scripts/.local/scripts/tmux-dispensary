@@ -17,7 +17,8 @@ hydrate() {
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    expanded_dirs=$(fd . "${DIRS[@]}" --exact-depth 1 -t d 2> /dev/null | sed "s|^$HOME/||; s|/$||")
+    expanded_dirs=$(find "${DIRS[@]}" -maxdepth 1 -mindepth 1 -type d 2>/dev/null \
+        | sed "s|^$HOME/||; s|/$||")
     expanded_dirs+=$(echo -e "\n$DOTFILES" | sed "s|^$HOME/||")
     selected=$(echo "$expanded_dirs" | fzf --cycle)
 
