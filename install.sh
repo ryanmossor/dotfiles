@@ -116,7 +116,6 @@ if [ $dry_run = true ]; then
     echo "Updating packages" "${packages[@]}"
 elif [[ "$os" == "mac" ]]; then
     brew install --cask android-commandlinetools
-    brew install --cask ghostty
     brew update
     brew upgrade
     brew install "${packages[@]}"
