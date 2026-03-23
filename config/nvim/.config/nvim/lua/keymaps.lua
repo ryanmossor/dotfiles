@@ -42,7 +42,7 @@ vim.keymap.set("n", "gs", function()
     vim.defer_fn(function()
         vim.api.nvim_feedkeys("zt", "n", false) -- set current line to top of window
     end, 50)
-end)
+end, { desc = "Go to definition in vertical split" })
 
 -- Split navigation
 vim.keymap.set({ "n", "x" }, "<Up>", "<Esc><C-W>k")
