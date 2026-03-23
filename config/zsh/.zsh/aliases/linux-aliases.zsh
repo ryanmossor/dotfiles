@@ -21,6 +21,3 @@ scratch() {
         fi
     fi
 }
-
-# opencode
-export PATH=/home/ryan/.opencode/bin:$PATH

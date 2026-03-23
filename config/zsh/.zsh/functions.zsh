@@ -197,3 +197,19 @@ function ogh() {
         echo "This repository is not hosted on GitHub"
     fi
 }
+
+function append_path() {
+    if [[ "$PATH" != *"$1"* ]]; then
+        export PATH=$PATH:$1
+    fi
+}
+
+function prepend_path() {
+    if [[ -n "$2" ]] || [[ "$PATH" != *"$1"* ]]; then
+        export PATH=$1:$PATH
+    fi
+}
+
+function path() {
+    echo "$PATH" | tr ':' '\n'
+}

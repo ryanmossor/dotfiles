@@ -1,17 +1,24 @@
 export EDITOR="nvim"
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export MANWIDTH=999
-export PATH="$HOME/.local/bin":$PATH
-export PATH="$HOME/.local/scripts":$PATH
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 [ -z "$DOTFILES" ] && export DOTFILES="$HOME/dotfiles"
-[ -x /usr/local/go/bin ] && export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+
+prepend_path "$HOME/.local/bin"
+prepend_path "$HOME/.local/scripts"
+
+if have go; then
+    append_path "/usr/local/go/bin"
+    append_path "$HOME/go/bin"
+fi
 
 if have dotnet; then
-    [[ $(uname -s) == "Darwin" ]] && export PATH="$PATH:/Users/$USER/.dotnet/tools"
-    export PATH="$HOME/.aspire/bin:$PATH"
+    [[ $(uname -s) == "Darwin" ]] && prepend_path "$HOME/.dotnet/tools"
+    prepend_path "$HOME/.aspire/bin"
 fi
+
+prepend_path "$HOME/.opencode/bin"
 
 if command -v fdfind &> /dev/null; then
     export FD='fdfind'
