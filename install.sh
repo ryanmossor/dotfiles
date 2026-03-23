@@ -105,7 +105,8 @@ else
 fi
 
 mkdir -p "$HOME/Applications"
-mkdir -p "$HOME/code/work"
+mkdir -p "$HOME/code"
+mkdir -p "$HOME/work"
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.local/bin"
 mkdir -p "$HOME/.local/scripts"
@@ -123,7 +124,6 @@ else
     sudo apt-get update
     sudo apt-get upgrade -y
     sudo apt-get install -y "${packages[@]}"
-
 fi
 
 if [[ $SHELL != "/bin/zsh" ]]; then
