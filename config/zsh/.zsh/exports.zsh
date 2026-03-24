@@ -8,15 +8,11 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 prepend_path "$HOME/.local/bin"
 prepend_path "$HOME/.local/scripts"
 
-if have go; then
-    append_path "/usr/local/go/bin"
-    append_path "$HOME/go/bin"
-fi
+append_path "/usr/local/go/bin"
+append_path "$HOME/go/bin"
 
-if have dotnet; then
-    [[ $(uname -s) == "Darwin" ]] && prepend_path "$HOME/.dotnet/tools"
-    prepend_path "$HOME/.aspire/bin"
-fi
+prepend_path "$HOME/.dotnet/tools"
+prepend_path "$HOME/.aspire/bin"
 
 prepend_path "$HOME/.opencode/bin"
 
