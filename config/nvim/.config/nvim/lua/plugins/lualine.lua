@@ -10,7 +10,10 @@ return {
                 lualine_b = {
                     { "branch", icon = "󰘬" },
                     "diff",
-                    "diagnostics",
+                    {
+                        "diagnostics",
+                        symbols = { error = " ", warn = " ", hint = " ", info = " " },
+                    },
                 },
                 lualine_c = {
                     -- 0: Just the filename

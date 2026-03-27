@@ -139,6 +139,8 @@ vim.keymap.set({ "n", "x" }, "H", "0^")
 vim.keymap.set("o", "H", "^")
 vim.keymap.set({ "n", "x" }, "^", "0^")
 
+vim.keymap.set("v", "gJ", "J", { silent = true })
+
 -- Move selected text up/down, reformat, then reselect
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })

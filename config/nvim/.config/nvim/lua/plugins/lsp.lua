@@ -18,6 +18,7 @@ return {
                 "jsonls",
                 "lua_ls",
                 "ts_ls",
+                "bicep",
                 -- "roslyn",
             },
             automatic_enable = true, -- disables need to setup handlers manually
@@ -68,6 +69,7 @@ return {
             vim.lsp.config("jsonls", {})
             vim.lsp.config("lua_ls", {})
             vim.lsp.config("ts_ls", {})
+            vim.lsp.config("bicep", {})
 
             vim.lsp.enable({
                 "bashls",
@@ -75,6 +77,7 @@ return {
                 "jsonls",
                 "lua_ls",
                 "ts_ls",
+                "bicep",
             })
 
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
@@ -90,6 +93,38 @@ return {
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
             vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Show function signature help" })
+
+            local diagnostic_signs = {
+                Error = " ",
+                Warn = " ",
+                Hint = "",
+                Info = "",
+            }
+
+            vim.diagnostic.config({
+                virtual_text = { prefix = "●", spacing = 4 },
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = diagnostic_signs.Error,
+                        [vim.diagnostic.severity.WARN] = diagnostic_signs.Warn,
+                        [vim.diagnostic.severity.INFO] = diagnostic_signs.Info,
+                        [vim.diagnostic.severity.HINT] = diagnostic_signs.Hint,
+                    },
+                },
+                underline = true,
+                update_in_insert = false,
+                severity_sort = true,
+                float = {
+                    border = "rounded",
+                    source = "always",
+                    header = "",
+                    prefix = "",
+                    focusable = false,
+                    style = "minimal",
+                },
+            })
+
+            vim.keymap.set("n", "<leader>K", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
         end,
     },
     {
