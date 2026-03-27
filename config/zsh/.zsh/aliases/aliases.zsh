@@ -1,6 +1,9 @@
 alias a='alias | grep -vE "auto|which|alias" | awk -F= "{ printf \"\033[0;31m%s\033[0m = \033[0;36m\", \$1; for (i = 2; i <= NF; i++) printf \"%s%s\", \$i, (i == NF ? \"\033[0m\n\" : \"=\") }"'
 alias ga='git config --get-regexp "alias.*" | sed "s/alias\.//" | sed "s/[ ]/ = /"'
 
+alias scl='sudo crontab -l'
+alias sce='sudo crontab -e'
+
 if have eza; then
     alias ls='eza -lh --group-directories-first --icons=auto'
     alias ll='ls -a'

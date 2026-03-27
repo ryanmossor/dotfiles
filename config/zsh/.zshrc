@@ -12,7 +12,7 @@ setopt HIST_IGNORE_SPACE    # Do not record an event starting with a space
 setopt SHARE_HISTORY        # Share history between all sessions
 
 # Disable Ctrl-s to freeze terminal
-stty stop undef 
+stty stop undef
 # Don't highlight pasted text
 zle_highlight=('paste:none')
 
@@ -24,7 +24,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zmodload zsh/complist
-_comp_options+=(globdots) # Include hidden files. 
+_comp_options+=(globdots) # Include hidden files.
 
 # Imports
 source "$HOME/.zsh/functions.zsh"
@@ -36,7 +36,7 @@ source_file "$HOME/.fzf.zsh"
 # Aliases
 source_file "$HOME/.zsh/aliases/aliases.zsh"
 [[ $(uname -a) == *microsoft* ]] && source_file "$HOME/.zsh/aliases/windows-aliases.zsh"
-[[ $(uname -a) == *Ubuntu* ]] && source_file "$HOME/.zsh/aliases/linux-aliases.zsh"
+[[ $(hostname) == *desktop* ]] && source_file "$HOME/.zsh/aliases/linux-aliases.zsh"
 [[ $(uname -s) == "Darwin" ]] && source_file "$HOME/.zsh/aliases/macos-aliases.zsh"
 
 bindkey -s ^f " $HOME/.local/scripts/tmux-dispensary\n"
@@ -50,4 +50,4 @@ plug "zsh-users/zsh-syntax-highlighting"
 # Remove underline from syntax highlighting
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
-ZSH_HIGHLIGHT_STYLES[path_prefix]=none 
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none
