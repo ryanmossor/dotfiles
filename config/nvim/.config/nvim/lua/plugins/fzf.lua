@@ -8,11 +8,32 @@ return {
         require("fzf-lua").setup({
             files = {
                 previewer = false,
+                cwd_prompt = false,
             },
 
             grep = {
                 rg_opts =
                 "--color=never --no-heading --with-filename --line-number --column --smart-case --hidden --ignore --trim --glob !**/.git/** --glob !**/node_modules/**",
+
+                winopts = {
+                    width = 0.9,
+                    height = 0.95,
+                    preview = {
+                        layout = "vertical",
+                        vertical = "down:65%",
+                    },
+                },
+            },
+
+            live_grep = {
+                winopts = {
+                    width = 0.9,
+                    height = 0.95,
+                    preview = {
+                        layout = "vertical",
+                        vertical = "down:65%",
+                    },
+                },
             },
 
             winopts = {
