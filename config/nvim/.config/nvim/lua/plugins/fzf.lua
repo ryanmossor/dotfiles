@@ -6,6 +6,14 @@ return {
     ---@diagnostic enable: missing-fields
     config = function()
         require("fzf-lua").setup({
+            keymap = {
+                fzf = {
+                    ["ctrl-d"] = "preview-page-down",
+                    ["ctrl-u"] = "preview-page-up",
+                    ["ctrl-q"] = "select-all+accept",
+                },
+            },
+
             files = {
                 previewer = false,
                 cwd_prompt = false,
@@ -14,30 +22,14 @@ return {
             grep = {
                 rg_opts =
                 "--color=never --no-heading --with-filename --line-number --column --smart-case --hidden --ignore --trim --glob !**/.git/** --glob !**/node_modules/**",
-
-                winopts = {
-                    width = 0.9,
-                    height = 0.95,
-                    preview = {
-                        layout = "vertical",
-                        vertical = "down:65%",
-                    },
-                },
-            },
-
-            live_grep = {
-                winopts = {
-                    width = 0.9,
-                    height = 0.95,
-                    preview = {
-                        layout = "vertical",
-                        vertical = "down:65%",
-                    },
-                },
             },
 
             winopts = {
+                width = 0.9,
+                height = 0.95,
                 preview = {
+                    layout = "vertical",
+                    vertical = "down:65%",
                     horizontal = "right:50%",
                 },
             },
