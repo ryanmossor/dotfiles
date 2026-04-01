@@ -11,21 +11,30 @@
 	st = status --short --branch
 	undo = reset --soft HEAD^
 
-# select files for git add w/ fzf and diff view
-	a = "!f() { preview=\"git diff $@ --color=always -- {1}\"; git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"$preview\" | xargs -0 -t -r git add; }; f"
-	fzd = "!f() { preview=\"git diff $@ --color=always -- {1}\"; git ls-files -m -o --exclude-standard | fzf -m --print0 --preview \"$preview\" | xargs -0 -t -r git add; }; f"
-
-# select files w/ fzf, no diff view
-	fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
-
 [core]
 	editor = vim
 
 [fetch]
 	prune = true
-	
+
 [include]
     path = ~/.gitconfig_user
-    
+
 [diff-so-fancy]
     markEmptyLines = false
+
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
