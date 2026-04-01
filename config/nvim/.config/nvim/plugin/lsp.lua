@@ -39,12 +39,35 @@ vim.lsp.config["*"] = {
 
 -- LSP names: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 vim.lsp.config("bashls", {})
-vim.lsp.config("bicep", {})
-vim.lsp.config("gopls", {})
+vim.lsp.config("bicep", {
+	cmd = {
+		"dotnet",
+		vim.fs.normalize(
+			vim.fn.stdpath("data") .. "/mason/packages/bicep-lsp/extension/bicepLanguageServer/Bicep.LangServer.dll"
+		),
+	},
+})
+vim.lsp.config("gopls", {
+	settings = {
+		gopls = {
+			hints = {
+				rangeVariableTypes = true,
+				parameterNames = true,
+				constantValues = true,
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				functionTypeParameters = true,
+			},
+		},
+	},
+})
 vim.lsp.config("jsonls", {})
 vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
+			hint = { enable = true },
+
 			diagnostics = {
 				globals = { "vim" },
 			},
@@ -52,7 +75,32 @@ vim.lsp.config("lua_ls", {
 	},
 })
 vim.lsp.config("roslyn", {})
-vim.lsp.config("ts_ls", {})
+vim.lsp.config("ts_ls", {
+	settings = {
+		typescript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+		javascript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+	},
+})
+
+vim.cmd([[ autocmd BufNewFile,BufRead *.bicep set filetype=bicep ]])
 
 vim.lsp.enable({
 	"bashls",
@@ -82,6 +130,11 @@ local lsp_on_attach = function()
 		"<C-w>v<cmd>lua vim.lsp.buf.definition()<CR>zz",
 		{ desc = "Go to definition in vertical split" }
 	)
+
+	vim.keymap.set("n", "<leader>th", function()
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		vim.notify(vim.lsp.inlay_hint.is_enabled() and "Inlay hints enabled" or "Inlay hints disabled")
+	end, { desc = "Toggle inlay hints" })
 
 	-- Disable built-in LSP ref keymaps to prevent gr from being slow; pcall swallows error
 	pcall(vim.keymap.del, { "n", "x" }, "gra")

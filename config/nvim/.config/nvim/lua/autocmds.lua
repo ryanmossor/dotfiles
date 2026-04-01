@@ -1,13 +1,16 @@
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = false })
 
+-- highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking text",
-	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+	group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
+	pattern = "*",
+	desc = "highlight selection on yank",
 	callback = function()
-		vim.highlight.on_yank()
+		vim.highlight.on_yank({ timeout = 150, visual = true })
 	end,
 })
 
+-- open help in vertical split
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "help",
 	callback = function()
@@ -15,25 +18,18 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- return to last cursor position
+-- restore cursor to file position in previous editing session
 vim.api.nvim_create_autocmd("BufReadPost", {
-	group = augroup,
-	desc = "Restore last cursor position",
-	callback = function()
-		if vim.o.diff then -- except in diff mode
-			return
+	callback = function(args)
+		local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+		local line_count = vim.api.nvim_buf_line_count(args.buf)
+		if mark[1] > 0 and mark[1] <= line_count then
+			vim.api.nvim_win_set_cursor(0, mark)
+			-- defer centering slightly so it's applied after render
+			vim.schedule(function()
+				vim.cmd("normal! zz")
+			end)
 		end
-
-		local last_pos = vim.api.nvim_buf_get_mark(0, '"') -- {line, col}
-		local last_line = vim.api.nvim_buf_line_count(0)
-
-		local row = last_pos[1]
-		if row < 1 or row > last_line then
-			return
-		end
-
-		pcall(vim.api.nvim_win_set_cursor, 0, last_pos)
-		vim.cmd("normal! zz") -- center cursor on screen
 	end,
 })
 
@@ -45,5 +41,27 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.wrap = true
 		vim.opt_local.linebreak = true
 		vim.opt_local.spell = true
+	end,
+})
+
+-- auto resize splits when the terminal's window is resized
+vim.api.nvim_create_autocmd("VimResized", {
+	command = "wincmd =",
+})
+
+-- no auto continue comments on new line
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("no_auto_comment", {}),
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+	end,
+})
+
+-- syntax highlighting for dotenv files
+vim.api.nvim_create_autocmd("BufRead", {
+	group = vim.api.nvim_create_augroup("dotenv_ft", { clear = true }),
+	pattern = { ".env", ".env.*" },
+	callback = function()
+		vim.bo.filetype = "dosini"
 	end,
 })

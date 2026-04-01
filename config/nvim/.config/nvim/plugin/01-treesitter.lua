@@ -11,6 +11,7 @@ local setup_treesitter = function()
 	treesitter.setup({})
 	local ensure_installed = {
 		"bash",
+		"bicep",
 		"c",
 		"c_sharp",
 		"css",
