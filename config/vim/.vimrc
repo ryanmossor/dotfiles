@@ -123,10 +123,10 @@ nnoremap <C-y> mygg"+yG`y
 xnoremap <leader>x "+x
 
 " Paste from system clipboard
-nnoremap <leader>p "+p
-xnoremap <leader>p "_d"+P
-cnoremap <C-v> <C-R>+
-inoremap <C-v> <C-R>+ 
+"nnoremap <leader>p "+p
+"xnoremap <leader>p "_d"+P
+cnoremap <C-S-v> <C-R>+
+inoremap <C-v> <C-R>+
 
 " H/L go to start/end of line
 noremap H 0^
@@ -141,6 +141,9 @@ xnoremap K :m '<-2<CR>gv=gv
 
 " Don't move cursor when joining below line
 nnoremap J mzJ0`z
+
+" Join highlighted lines
+xnoremap gJ J
 
 " Split (opposite of J for join)
 "nnoremap S yl/<C-r>0<CR>Ncgn<C-r>0<Del><CR><Esc>n:nohlsearch<CR>
@@ -163,4 +166,4 @@ nnoremap <leader># mSggO#!/usr/bin/env bash<Esc><CR>`S
 inoremap #! #!/usr/bin/env bash
 
 " Make current file executable
-nnoremap <leader>X :silent !chmod +x %<CR>
+nnoremap <leader>X :silent !chmod +x %<CR><CR>

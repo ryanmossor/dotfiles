@@ -60,3 +60,8 @@ vim.opt.splitbelow = true -- split horizontal window to the bottom
 vim.opt.swapfile = false
 
 vim.opt.winborder = "rounded"
+
+-- vim.opt.guicursor = ""
+
+-- Disable tilde characters at end of buffer
+vim.opt.fillchars = { eob = " " }

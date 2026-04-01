@@ -134,6 +134,6 @@ fi
 run_setup
 
 if [[ $(hostname) == *desktop* || $install_linux = true ]]; then
-    run_setup "linux-desktop" 
+    run_setup "linux-desktop"
 fi
 

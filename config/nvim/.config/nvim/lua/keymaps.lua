@@ -2,8 +2,8 @@ vim.g.mapleader = " "
 
 -- vim.keymap.set("n", "<leader><leader>", ":source %<CR>:nohlsearch<CR>", { silent = true, desc = "Reload config" })
 
-vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
-vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
+-- vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
+-- vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
 
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { desc = "Write file as sudo" })
 
@@ -12,10 +12,10 @@ vim.keymap.set("n", "gw", ":set wrap!<CR>", { silent = true, desc = "Toggle line
 vim.keymap.set("n", "<leader>3", ":set relativenumber!<CR>", { silent = true, desc = "Toggle relative line numbers" })
 
 vim.keymap.set(
-    { "n", "x" },
-    "<leader><Esc>",
-    "<Esc>:nohlsearch<CR>",
-    { silent = true, desc = "Un-highlight search matches" }
+	{ "n", "x" },
+	"<leader><Esc>",
+	"<Esc>:nohlsearch<CR>",
+	{ silent = true, desc = "Un-highlight search matches" }
 )
 
 -- Use 'very magic' mode for search
@@ -23,10 +23,10 @@ vim.keymap.set(
 --vim.keymap.set("n", "<leader>?", "?\v")
 
 vim.keymap.set(
-    "n",
-    "<leader>s",
-    [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]],
-    { desc = "Substitute word under cursor across entire file" }
+	"n",
+	"<leader>s",
+	[[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]],
+	{ desc = "Substitute word under cursor across entire file" }
 )
 
 vim.keymap.set("n", "<leader>e", "*Ncgn", { desc = "Substite word under cursor once; use . to repeat" })
@@ -34,50 +34,45 @@ vim.keymap.set("n", "<leader>e", "*Ncgn", { desc = "Substite word under cursor o
 -- vim.keymap.set({ "n", "x" }, "<leader>h", "<Esc><C-w>s", { desc = "Create horizontal split" })
 vim.keymap.set({ "n", "x" }, "<leader>v", "<Esc><C-w>v", { desc = "Create vertical split" })
 
--- Go to definition split
-vim.keymap.set("n", "gs", function()
-    vim.cmd("vsplit") -- vertical split
-    vim.cmd("wincmd l") -- move to split
-    vim.lsp.buf.definition()
-    vim.defer_fn(function()
-        vim.api.nvim_feedkeys("zt", "n", false) -- set current line to top of window
-    end, 50)
-end, { desc = "Go to definition in vertical split" })
-
 -- Split navigation
 vim.keymap.set({ "n", "x" }, "<Up>", "<Esc><C-W>k")
 vim.keymap.set({ "n", "x" }, "<Down>", "<Esc><C-W>j")
 vim.keymap.set({ "n", "x" }, "<Left>", "<Esc><C-W>h")
 vim.keymap.set({ "n", "x" }, "<Right>", "<Esc><C-W>l")
 
+vim.keymap.set({ "n", "x" }, "<C-k>", "<Esc><C-W>k")
+vim.keymap.set({ "n", "x" }, "<C-j>", "<Esc><C-W>j")
+vim.keymap.set({ "n", "x" }, "<C-h>", "<Esc><C-W>h")
+vim.keymap.set({ "n", "x" }, "<C-l>", "<Esc><C-W>l")
+
 local function get_pane()
-    local pos = vim.api.nvim_win_get_position(0)
-    local row, col = pos[1], pos[2]
-    if col == 0 then
-        return "left"
-    else
-        return "right"
-    end
+	local pos = vim.api.nvim_win_get_position(0)
+	local row, col = pos[1], pos[2]
+	if col == 0 then
+		return "left"
+	else
+		return "right"
+	end
 end
 
 -- Resize split
 -- vim.keymap.set({ "n", "x" }, "<M-,>", "<C-w>5<")
 -- vim.keymap.set({ "n", "x" }, "<M-.>", "<C-w>5>")
 vim.keymap.set({ "n", "x" }, "<M-,>", function()
-    local pane = get_pane()
-    if pane == "left" then
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5<", true, false, true), "n", false)
-    else
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5>", true, false, true), "n", false)
-    end
+	local pane = get_pane()
+	if pane == "left" then
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5<", true, false, true), "n", false)
+	else
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5>", true, false, true), "n", false)
+	end
 end)
 vim.keymap.set({ "n", "x" }, "<M-.>", function()
-    local pane = get_pane()
-    if pane == "left" then
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5>", true, false, true), "n", false)
-    else
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5<", true, false, true), "n", false)
-    end
+	local pane = get_pane()
+	if pane == "left" then
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5>", true, false, true), "n", false)
+	else
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5<", true, false, true), "n", false)
+	end
 end)
 vim.keymap.set({ "n", "x" }, "<M-t>", "<C-w>+")
 vim.keymap.set({ "n", "x" }, "<M-s>", "<C-w>-")
@@ -117,21 +112,18 @@ vim.keymap.set("n", "Y", "y$")
 
 -- Yank to system clipboard
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
-vim.keymap.set({ "n", "x" }, "<leader>Y", '"+y$')
+vim.keymap.set("n", "<leader>Y", '"+y$')
+vim.keymap.set("x", "<leader>Y", '"+y')
 
-vim.keymap.set("n", "<C-y>", ":%y<CR>", { desc = "Yank entire file to system clipboard" })
+vim.keymap.set("n", "<C-y>", ":%y<CR>", { desc = "Yank entire file" })
+vim.keymap.set("n", "<leader><C-y>", ":%y+<CR>", { desc = "Yank entire file to system clipboard" })
 
-vim.keymap.set("x", "<leader>x", '"+x', { desc = "Cut to system clipboard" })
+-- vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+-- vim.keymap.set("x", "<leader>p", '_d"+P', { desc = "Paste from system clipboard" })
 
-vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
-vim.keymap.set("x", "<leader>p", '_d"+P', { desc = "Paste from system clipboard" })
+-- C-S-v on command mode so C-v can be used for 'verbatim' keystrokes (e.g., <Esc> in :norm command)
 vim.keymap.set("c", "<C-S-v>", "<C-R>+", { desc = "Paste from system clipboard" })
-vim.keymap.set(
-    "i",
-    "<C-v>",
-    '<esc>:set paste<cr>a<c-r>=getreg("+")<cr><esc>:set nopaste<cr>mi`[=`]`ia',
-    { desc = "Paste from system clipboard" }
-)
+vim.keymap.set("i", "<C-v>", "<C-R>+", { desc = "Paste from system clipboard" })
 
 -- H/L go to start/end of line
 vim.keymap.set({ "n", "o", "x" }, "L", "$")
@@ -139,7 +131,7 @@ vim.keymap.set({ "n", "x" }, "H", "0^")
 vim.keymap.set("o", "H", "^")
 vim.keymap.set({ "n", "x" }, "^", "0^")
 
-vim.keymap.set("v", "gJ", "J", { silent = true })
+vim.keymap.set("v", "gJ", "J", { silent = true, desc = "Join selected lines" })
 
 -- Move selected text up/down, reformat, then reselect
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
@@ -165,24 +157,23 @@ vim.keymap.set("c", "<Down>", "<C-n>", { desc = "Next autocomplete suggestion", 
 
 -- .sh file mappings
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "sh",
-    callback = function()
-        vim.keymap.set("i", "#!", "#!/usr/bin/env bash", { desc = "Autocomplete shebang", buffer = true, remap = true })
+	pattern = "sh",
+	callback = function()
+		vim.keymap.set("i", "#!", "#!/usr/bin/env bash", { desc = "Autocomplete shebang", buffer = true, remap = true })
 
-        vim.keymap.set("n", "<leader>#", function()
-            local first_line = vim.api.nvim_buf_get_lines(0, 0, 1, false)[1]
-            if not first_line or not first_line:match("^#!") then
-                vim.cmd("normal! mS")
-                vim.cmd("normal! mSggO#!/usr/bin/env bash")
-                vim.cmd("normal! `S")
-            end
-        end, { desc = "Insert shebang at top of file", buffer = true, silent = true })
-
-        vim.keymap.set(
-            "n",
-            "<leader>X",
-            "<cmd>!chmod +x %<CR>",
-            { desc = "Make current file executable", buffer = true, silent = true }
-        )
-    end,
+		vim.keymap.set("n", "<leader>#", function()
+			local first_line = vim.api.nvim_buf_get_lines(0, 0, 1, false)[1]
+			if not first_line or not first_line:match("^#!") then
+				vim.cmd("normal! mS")
+				vim.cmd("normal! mSggO#!/usr/bin/env bash")
+				vim.cmd("normal! `S")
+			end
+		end, { desc = "Insert shebang at top of file", buffer = true, silent = true })
+	end,
 })
+
+vim.keymap.set("n", "<leader>X", function()
+	vim.fn.system({ "chmod", "+x", vim.fn.expand("%") })
+end, { desc = "Make current file executable" })
+
+vim.api.nvim_create_user_command("PackUpdate", "lua vim.pack.update()", { desc = "Update vim.pack plugins" })
