@@ -175,5 +175,3 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set("n", "<leader>X", function()
 	vim.fn.system({ "chmod", "+x", vim.fn.expand("%") })
 end, { desc = "Make current file executable" })
-
-vim.api.nvim_create_user_command("PackUpdate", "lua vim.pack.update()", { desc = "Update vim.pack plugins" })
