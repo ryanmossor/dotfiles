@@ -56,9 +56,9 @@ vim.keymap.set("n", "<leader>k", function()
 	require("fzf-lua").keymaps()
 end, { desc = "FZF keymaps" })
 
-vim.keymap.set("n", "<leader>wd", function()
-	require("fzf-lua").diagnostics_workspace()
-end, { desc = "FZF diagnostics workspace" })
+-- vim.keymap.set("n", "<leader>wd", function()
+-- 	require("fzf-lua").diagnostics_workspace()
+-- end, { desc = "FZF diagnostics workspace" })
 
 vim.keymap.set("n", "<leader>qf", function()
 	require("fzf-lua").lgrep_quickfix()

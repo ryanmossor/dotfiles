@@ -2,8 +2,8 @@ vim.g.mapleader = " "
 
 -- vim.keymap.set("n", "<leader><leader>", ":source %<CR>:nohlsearch<CR>", { silent = true, desc = "Reload config" })
 
--- vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
--- vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
+vim.keymap.set({ "n", "x" }, "<leader>w", "<Esc>:w<CR>")
+vim.keymap.set("n", "<leader>x", ":q!<CR>", { silent = true })
 
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { desc = "Write file as sudo" })
 
@@ -74,8 +74,8 @@ vim.keymap.set({ "n", "x" }, "<M-.>", function()
 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>5<", true, false, true), "n", false)
 	end
 end)
-vim.keymap.set({ "n", "x" }, "<M-t>", "<C-w>+")
-vim.keymap.set({ "n", "x" }, "<M-s>", "<C-w>-")
+-- vim.keymap.set({ "n", "x" }, "<M-t>", "<C-w>+")
+-- vim.keymap.set({ "n", "x" }, "<M-s>", "<C-w>-")
 
 -- Tab navigation
 --vim.keymap.set("n", "<S-h>", "gT")
