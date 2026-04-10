@@ -5,7 +5,8 @@ parse_git_branch() {
 autoload -Uz colors && colors
 setopt PROMPT_SUBST
 
-ARROW="%{$fg_bold[green]%}>%{$reset_color%}"
+# ARROW="%{$fg_bold[green]%}>%{$reset_color%}"
+ARROW='%(?.%{$fg_bold[green]%}>.%(130?.%{$fg_bold[green]%}>.%{$fg_bold[red]%}✘))%{$reset_color%}'
 DIR="%{$fg_bold[blue]%}%~%{$reset_color%}"
 BRANCH="%{$fg_bold[yellow]%}\$(parse_git_branch)%{$reset_color%}"
 
