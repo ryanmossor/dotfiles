@@ -64,26 +64,6 @@ else
     echo "$soh_latest" > "/home/${USER}/Applications/ocarina-of-time/version.txt"
 fi
 
-# SoH (Anchor) - https://github.com/garrettjoecox/OOT/pull/64
-anchor_repo="garrettjoecox/OOT"
-anchor_latest=$(github_latest_tag "${anchor_repo}")
-anchor_current=""
-if [ -f "/home/${USER}/Applications/oot-anchor/version.txt" ];then
-    anchor_current=$(<"/home/${USER}/Applications/oot-anchor/version.txt")
-fi
-
-if [[ "$anchor_current" == "$anchor_latest" ]]; then
-    echo "Anchor already up to date."
-else
-    echo "Updating Anchor from ${anchor_current} to ${anchor_latest}"
-    anchor_download=$(get_latest_appimage "${anchor_repo}" "linux-performance")
-    [ ! -d  "/home/${USER}/Applications/oot-anchor" ] && mkdir "/home/${USER}/Applications/oot-anchor"
-    wget -qO "/tmp/anchor.zip" "${anchor_download}"
-    unzip -uo /tmp/anchor.zip -d "/home/${USER}/Applications/oot-anchor"
-    chmod +x "/home/${USER}/Applications/oot-anchor/soh.appimage"
-    echo "$anchor_latest" > "/home/${USER}/Applications/oot-anchor/version.txt"
-fi
-
 # MM Ship of Harkinian
 mm_repo="HarbourMasters/2ship2harkinian"
 mm_latest=$(github_latest_tag "${mm_repo}")
