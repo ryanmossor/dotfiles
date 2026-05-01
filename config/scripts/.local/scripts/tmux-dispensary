@@ -20,7 +20,7 @@ else
     expanded_dirs=$(find "${DIRS[@]}" -maxdepth 1 -mindepth 1 -type d 2>/dev/null \
         | sed "s|^$HOME/||; s|/$||")
     expanded_dirs+=$(echo -e "\n$DOTFILES" | sed "s|^$HOME/||")
-    selected=$(echo "$expanded_dirs" | fzf --cycle)
+    selected=$(echo "$expanded_dirs" | fzf --style full --header 'Choose session' --header-border inline)
 
     [[ $selected ]] && selected="$HOME/$selected"
 fi

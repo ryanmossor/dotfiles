@@ -3,15 +3,13 @@
 confirm() {
     printf "No\nYes\n" \
         | fzf \
+        --style full \
         --header="Kill session $1?" \
-        --border=none \
-        --cycle \
-        --gutter ' ' \
-        --color='current-fg:#89b4fa,current-bg:#1c1c2b,pointer:#1c1c2b'
+        --header-border inline \
+        --gutter ' '
 }
 
-selected=$(tmux list-sessions -F '#{session_name}' \
-    | fzf --reverse --header 'Kill session')
+selected=$(tmux list-sessions -F '#{session_name}' | fzf --style full --header 'Kill session' --header-border inline)
 
 [[ ! $selected ]] && exit 0
 
