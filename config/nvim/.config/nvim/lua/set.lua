@@ -63,5 +63,16 @@ vim.opt.winborder = "rounded"
 
 -- vim.opt.guicursor = ""
 
--- Disable tilde characters at end of buffer
-vim.opt.fillchars = { eob = " " }
+vim.opt.foldenable = true
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.fillchars = {
+	eob = " ",
+	fold = " ",
+	foldopen = "⌄",
+	foldclose = ">",
+	foldinner = " ",
+	foldsep = " ",
+}
+vim.opt.foldlevelstart = 99
+-- vim.opt.foldcolumn = "auto"
