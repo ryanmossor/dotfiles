@@ -4,7 +4,7 @@
 	discard = "!f() { git checkout HEAD -- \"$1\"; }; f"
 	ff = pull --ff-only
 	gp = push origin HEAD
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %cn)%Creset' --abbrev-commit --date=relative
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr by %cn)%Creset' --abbrev-commit --date=relative --shortstat
 	rm-branches = "!git branch | grep -vE 'main|master|DEV' | xargs git branch -D"
 	suc = "!git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current)"
