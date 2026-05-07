@@ -5,14 +5,12 @@ parse_git_branch() {
 autoload -Uz colors && colors
 setopt PROMPT_SUBST
 
-# ARROW="%{$fg_bold[green]%}>%{$reset_color%}"
-ARROW='%(?.%{$fg_bold[green]%}>.%{$fg_bold[red]%}✘)%{$reset_color%}'
+ARROW='%(?.%{$fg_bold[green]%}→.%{$fg_bold[red]%}✘)%{$reset_color%}'
 DIR="%{$fg_bold[blue]%}%~%{$reset_color%}"
 BRANCH="%{$fg_bold[yellow]%}\$(parse_git_branch)%{$reset_color%}"
 
 if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
-    HOST_NAME="%{$fg_bold[green]%}%n@%m%{$reset_color%}:"
-    PS1="%B${HOST_NAME}${DIR}${BRANCH}%b$ "
-else
-    PS1="%B${DIR}${BRANCH} ${ARROW}%b "
+    HOST_NAME="%{$fg_bold[green]%}%n@%m%{$reset_color%} "
 fi
+
+PS1="%B${ARROW} ${HOST_NAME}${DIR}${BRANCH}%b "
