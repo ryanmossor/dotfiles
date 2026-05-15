@@ -14,7 +14,7 @@ stow_apps() {
     local apps=("$@")
 
     for app in "${apps[@]}"; do
-        echo -e "Stowing ${green}${app}${clear} in ${blue}${target_dir}${clear}"
+        # echo -e "Stowing ${green}${app}${clear} in ${blue}${target_dir}${clear}"
         stow -Rt "$target_dir" "$app"
 
         if [[ "$app" == "bat" ]]; then
@@ -31,7 +31,7 @@ copy_windows_apps() {
     local apps=("$@")
 
     for app in "${apps[@]}"; do
-        echo -e "Copying ${green}${app}${clear} to ${blue}${target_dir}${clear}"
+        # echo -e "Copying ${green}${app}${clear} to ${blue}${target_dir}${clear}"
         pushd "$DOTFILES/config/$app" &> /dev/null || exit
         cp -r . "$target_dir"
         popd &> /dev/null || exit
@@ -116,6 +116,6 @@ while [[ "$#" -gt 0 ]]; do
     esac
     shift
 done
- 
+
 stow_apps "$HOME" "${base[@]}"
 

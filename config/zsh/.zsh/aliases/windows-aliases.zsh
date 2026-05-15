@@ -5,7 +5,7 @@ wsl_git_path=$(type -p git | awk '{print $NF}')
 alias vs="/mnt/c/Program\ Files/Microsoft\ Visual\ Studio/2022/Professional/Common7/IDE/devenv.exe"
 alias keys='$WIN_HOME/code/KeyCastOW/build/keycastow.exe &'
 
-alias bp='dot --windows && source ~/.zshrc && echo "~/.zshrc reloaded"'
+alias bp='dot --windows && source ~/.zshrc'
 alias gt='$wsl_git_path team'
 alias gtc='$wsl_git_path commit'
 alias work='cd $WIN_HOME/code/work'

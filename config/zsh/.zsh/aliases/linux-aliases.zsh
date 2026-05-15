@@ -1,4 +1,4 @@
-alias bp='dot --linux && source ~/.zshrc && echo "~/.zshrc reloaded"'
+alias bp='dot --linux && source ~/.zshrc'
 
 alias wiiu='sudo wii-u-gc-adapter'
 
