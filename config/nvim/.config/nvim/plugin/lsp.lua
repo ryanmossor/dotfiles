@@ -18,6 +18,7 @@ local ensure_installed = {
 	"gopls",
 	"json-lsp",
 	"lua-language-server",
+	"powershell-editor-services",
 	"roslyn",
 	-- "tailwindcss-language-server",
 	"tree-sitter-cli",
@@ -74,6 +75,9 @@ vim.lsp.config("lua_ls", {
 		},
 	},
 })
+vim.lsp.config("powershell_es", {
+	bundle_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "powershell-editor-services"),
+})
 vim.lsp.config("roslyn", {})
 vim.lsp.config("ts_ls", {
 	settings = {
@@ -108,6 +112,7 @@ vim.lsp.enable({
 	"gopls",
 	"jsonls",
 	"lua_ls",
+	"powershell_es",
 	"roslyn",
 	"ts_ls",
 })
