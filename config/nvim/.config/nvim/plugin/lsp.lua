@@ -178,7 +178,7 @@ vim.diagnostic.config({
 		source = "always",
 		header = "",
 		prefix = "",
-		focusable = false,
+		focusable = true,
 		style = "minimal",
 	},
 })
