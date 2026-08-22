@@ -15,9 +15,9 @@ trap "toggle" USR1
 
 while true; do
     if [ $t -eq 0 ]; then
-        date "+%A, %B %e   %l:%M %p"
+        date "+%a %b %e   %l:%M %p"
     else
-        date -u "+%A, %B %e   %H:%M UTC"
+        date -u "+%a %b %e   %H:%M UTC"
     fi
     sleep 1 &
     sleep_pid=$!

@@ -27,7 +27,7 @@ gui:
   showCommandLog: false
 git:
   ignoreWhitespaceInDiffView: true
-  pagers:
-    - pager: diff-so-fancy
+  diffRenderers:
+    - command: diff-so-fancy
 os:
   editPreset: 'nvim'

@@ -12,6 +12,7 @@ else
         exit 0
     fi
 
+
     deps=(
         adb
         ffmpeg
@@ -21,9 +22,10 @@ else
         libavdevice-dev
         libavformat-dev
         libavutil-dev
-        libsdl2-2.0-0
-        libsdl2-dev
+        libsdl3-0
+        libsdl3-dev
         libswresample-dev
+        libv4l-dev
         libusb-1.0-0
         libusb-1.0-0-dev
         meson
