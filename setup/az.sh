@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-if have az; then
-    echo "az cli already installed"
-    exit 0
-fi
+have az && exit 0
 
-if [[ "$os" == "mac" ]]; then
-    brew install azure-cli
-else
-    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-fi
-
+case "$os" in
+    mac)     brew install azure-cli ;;
+    omarchy) omarchy-pkg-add azure-cli ;;
+    ubuntu)  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash ;;
+    *)       echo "OS not supported. Skipping azure-cli installation." ;;
+esac

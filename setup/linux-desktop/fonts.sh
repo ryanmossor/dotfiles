@@ -2,14 +2,20 @@
 # shellcheck disable=2154
 
 fonts_updated=false
-
 mkdir -p "$HOME/.fonts"
 
-if ! dpkg -s ttf-mscorefonts-installer &> /dev/null; then
-    # Auto agree to EULA prompt for Microsoft fonts
-    echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
-    sudo apt-get install -y ttf-mscorefonts-installer
-    fonts_updated=true
+if [[ "$os" == "ubuntu" ]]; then
+    if ! dpkg -s ttf-mscorefonts-installer &> /dev/null; then
+        # Auto agree to EULA prompt for Microsoft fonts
+        echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+        sudo apt-get install -y ttf-mscorefonts-installer
+        fonts_updated=true
+    fi
+
+    if ! ls /home/$USER/.fonts/NotoColorEmoji*.ttf &> /dev/null; then
+        wget -O "/home/$USER/.fonts/NotoColorEmoji.ttf" "https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf"
+        fonts_updated=true
+    fi
 fi
 
 if ! ls /home/$USER/.fonts/FiraCode-*.ttf &> /dev/null; then
@@ -62,13 +68,7 @@ if ! ls /home/$USER/.fonts/JetBrainsMono*.ttf &> /dev/null; then
     fonts_updated=true
 fi
 
-if ! ls /home/$USER/.fonts/NotoColorEmoji*.ttf &> /dev/null; then
-    wget -O "/home/$USER/.fonts/NotoColorEmoji.ttf" "https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf"
-    fonts_updated=true
-fi
-
 if [ "$fonts_updated" == true ]; then
     # Reload font cache
     fc-cache -f &> /dev/null
 fi
-

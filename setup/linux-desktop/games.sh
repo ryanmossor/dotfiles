@@ -68,7 +68,7 @@ fi
 mm_repo="HarbourMasters/2ship2harkinian"
 mm_latest=$(github_latest_tag "${mm_repo}")
 mm_current=""
-if [ -f "/home/${USER}/Applications/majoras-mask/version.txt" ];then
+if [ -f "/home/${USER}/Applications/majoras-mask/version.txt" ]; then
     mm_current=$(<"/home/${USER}/Applications/majoras-mask/version.txt")
 fi
 

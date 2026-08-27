@@ -2,7 +2,11 @@ theme = Catppuccin Mocha
 # theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 
 font-family = "JetBrains Mono NL"
-font-size = 16
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 
 background-opacity = 0.9
 bell-features = system,audio

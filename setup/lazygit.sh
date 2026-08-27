@@ -1,26 +1,35 @@
 #!/usr/bin/env bash
 # shellcheck disable=2154
 
-if [[ "$os" == "mac" ]]; then
-    brew install jesseduffield/lazygit/lazygit
-    brew install diff-so-fancy
-else
-    lazygit_latest=$(github_latest_tag "jesseduffield/lazygit")
-    lazygit_current=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
-    if [[ "$lazygit_current" == "$lazygit_latest" ]]; then
-        echo "Lazygit already up to date."
-        exit 0
-    fi
+case "$os" in
+    mac)
+        if ! have lazygit; then
+            brew install jesseduffield/lazygit/lazygit
+            brew install diff-so-fancy
+        fi
+        ;;
+    omarchy)
+        ! have lazygit && omarchy-pkg-add lazygit ;;
+    ubuntu)
+        lazygit_latest=$(github_latest_tag "jesseduffield/lazygit")
+        lazygit_current=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')
+        if [[ "$lazygit_current" == "$lazygit_latest" ]]; then
+            echo "Lazygit already up to date."
+            exit 0
+        fi
 
-    pushd /tmp &> /dev/null || exit
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${lazygit_latest}/lazygit_${lazygit_latest}_Linux_x86_64.tar.gz"
-    tar xf lazygit.tar.gz lazygit
-    sudo install lazygit -D -t /usr/local/bin/
-    popd &> /dev/null || exit
+        pushd /tmp &> /dev/null || exit
+        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${lazygit_latest}/lazygit_${lazygit_latest}_Linux_x86_64.tar.gz"
+        tar xf lazygit.tar.gz lazygit
+        sudo install lazygit -D -t /usr/local/bin/
+        popd &> /dev/null || exit
 
-    # Diff-so-fancy for custom pager
-    sudo add-apt-repository ppa:aos1/diff-so-fancy
-    sudo apt update
-    sudo apt install diff-so-fancy -y
+        # Diff-so-fancy for custom pager
+        sudo add-apt-repository ppa:aos1/diff-so-fancy
+        sudo apt update
+        sudo apt install diff-so-fancy -y
+        ;;
+    *)
+        echo "OS not supported. Skipping lazygit installation." ;;
 fi
 

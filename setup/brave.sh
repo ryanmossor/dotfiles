@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-if have brave-browser || [[ "$os" == "wsl" ]]; then
-    exit 0
-fi
+(have brave || have brave-browser) && exit 0
 
-curl -fsS https://dl.brave.com/install.sh | sh
-
+case "$os" in
+    omarchy) omarchy-install-browser brave ;;
+    ubuntu)  curl -fsS https://dl.brave.com/install.sh | sh ;;
+esac

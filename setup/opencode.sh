@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-if have opencode; then
-    exit 0
-fi
+have opencode && exit 0
 
-if [[ "$os" == "mac" ]]; then
-    brew install anomalyco/tap/opencode
-else
-    curl -fsSL https://opencode.ai/install | bash
-fi
+case "$os" in
+    mac)     brew install anomalyco/tap/opencode ;;
+    omarchy) omarchy-default-agent --install "opencode" ;;
+    ubuntu)  curl -fsSL https://opencode.ai/install | bash ;;
+    *)       echo "OS not supported. Skipping opencode installation." ;;
+esac

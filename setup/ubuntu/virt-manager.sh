@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-if have virt-manager; then
-    exit 0
-fi
+have virt-manager && exit 0
 
 # Qemu/Virt-manager
 vm_packages=(

@@ -16,8 +16,8 @@ packages=(
 sudo apt-get install -y "${packages[@]}"
 
 flatpaks=(
-    com.chatterino.chatterino/x86_64/stable
-    com.getpostman.Postman
+    # com.chatterino.chatterino/x86_64/stable
+    # com.getpostman.Postman
     com.github.PintaProject.Pinta
     com.obsproject.Studio
     org.DolphinEmu.dolphin-emu
