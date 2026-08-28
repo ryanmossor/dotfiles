@@ -9,14 +9,19 @@ clear='\033[0m'
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 export script_dir
 
-os="ubuntu"
 [[ $(uname -s) == "Darwin" ]] && os="mac"
+[[ $(uname -a) == *omarchy* ]] && os="omarchy"
 [[ $(uname -a) == *Ubuntu* ]] && os="ubuntu"
 [[ $(uname -r) == *microsoft* ]] && os="wsl"
+
+if [ -z "$os" ]; then
+    echo "OS not recognized. Exiting."
+    exit 1
+fi
 export os
 
 have() {
-  command -v "$1" &> /dev/null
+    command -v "$1" &> /dev/null
 }
 export -f have
 
@@ -56,16 +61,12 @@ run_setup() {
 }
 
 dry_run=false
-install_linux=false
 filter_list=""
 
 while [[ $# -gt 0 ]]; do
     case $1 in
         --dry)
             dry_run=true
-            ;;
-        -l|--linux)
-            install_linux=true
             ;;
         *)
             if [[ "$filter_list" == "" ]]; then
@@ -83,10 +84,9 @@ packages=(
     cloc
     curl
     eza
+    fastfetch
     git
-    htop
     jq
-    neofetch
     ripgrep
     stow
     tldr
@@ -98,10 +98,12 @@ packages=(
 
 if [[ "$os" == "mac" ]]; then
     packages+=(fd)
-else
+elif [[ "$os" == "ubuntu" ]]; then
     packages+=(android-sdk-platform-tools)
     packages+=(fd-find)
     packages+=(xsel)
+elif [[ "$os" == "omarchy" ]]; then
+    packages+=(fd)
 fi
 
 mkdir -p "$HOME/Applications"
@@ -115,12 +117,17 @@ mkdir -p "$HOME/.local/share/applications"
 if [ $dry_run = true ]; then
     echo "Detected OS: $os"
     echo "Updating packages" "${packages[@]}"
+
+elif [[ "$os" == "omarchy" ]]; then
+    omarchy-pkg-add "${packages[@]}"
+
 elif [[ "$os" == "mac" ]]; then
     brew install --cask android-commandlinetools
     brew update
     brew upgrade
     brew install "${packages[@]}"
-else
+
+elif [[ "$os" == "ubuntu" ]]; then
     sudo apt-get update
     sudo apt-get upgrade -y
     sudo apt-get install -y "${packages[@]}"
@@ -133,7 +140,11 @@ fi
 
 run_setup
 
-if [[ $(hostname) == *desktop* || $install_linux = true ]]; then
+if [[ "$os" == "ubuntu" ]]; then
     run_setup "linux-desktop"
+    run_setup "ubuntu"
+elif [[ "$os" == "omarchy" ]]; then
+    run_setup "linux-desktop"
+    run_setup "omarchy"
 fi
 

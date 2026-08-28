@@ -31,5 +31,5 @@ case "$os" in
         ;;
     *)
         echo "OS not supported. Skipping lazygit installation." ;;
-fi
+esac
 

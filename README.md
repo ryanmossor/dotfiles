@@ -2,6 +2,20 @@
 
 ## Starting from fresh system
 
+### Omarchy
+
+```bash
+omarchy update
+
+git clone https://github.com/ryanmossor/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+
+./install.sh --omarchy | tee output.txt
+./stow.sh --omarchy
+```
+
+### Ubuntu/Mint
+
 ```bash
 sudo apt-get update
 sudo apt-get install git -y
@@ -9,8 +23,8 @@ sudo apt-get install git -y
 git clone https://github.com/ryanmossor/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
-./install.sh --linux | tee output.txt
-./stow.sh --linux
+./install.sh --ubuntu | tee output.txt
+./stow.sh --ubuntu
 ```
 
 ## Install examples
@@ -22,9 +36,9 @@ Initial installation/setup script. Can also be run to handle software updates.
 ./install.sh | tee output.txt
 ```
 
-**Base install plus Linux desktop setup (WM, fonts, desktop apps, etc.):**
+**Base install plus Omarchy desktop setup (WM, fonts, desktop apps, etc.):**
 ```bash
-./install.sh --linux | tee output.txt
+./install.sh --omarchy | tee output.txt
 ```
 
 **Dry run (print what *would* be executed, but don't execute it):**
@@ -52,11 +66,14 @@ Initial installation/setup script. Can also be run to handle software updates.
 -d, -r, --delete, --remove
     Remove all config files
 
--l, --linux
-    Apply Linux-specific configs
-
 -m, --macos
     Apply MacOS-specific configs
+
+-o, --omarchy
+    Apply Omarchy-specific configs
+
+-u, --ubuntu
+    Apply Ubuntu-specific configs
 
 -w, --windows
     Apply Windows-specific configs (copies files; no symlinks)

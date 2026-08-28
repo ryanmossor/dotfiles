@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# shellcheck disable=2154
 
 packages=(
     # flameshot
@@ -16,5 +15,6 @@ flatpaks=(
 )
 if [ -x /usr/bin/flatpak ]; then
     flatpak update -y
-    sudo flatpak install flathub --noninteractive --assumeyes "${flatpaks[@]}"
+    # sudo flatpak install flathub --noninteractive --assumeyes "${flatpaks[@]}"
+    flatpak install flathub --noninteractive --assumeyes "${flatpaks[@]}"
 fi

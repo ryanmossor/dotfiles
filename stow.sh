@@ -61,7 +61,6 @@ base=(
     scripts
     tmux
     vim
-    wezterm
     zsh
 )
 
@@ -69,7 +68,13 @@ macos=(
     ghostty-macos
 )
 
-linux=(
+omarchy=(
+    flameshot
+    hypr
+    omarchy
+)
+
+ubuntu=(
     dunst
     flameshot
     gtk-3.0
@@ -97,14 +102,17 @@ while [[ "$#" -gt 0 ]]; do
             exit
             ;;
         -d|-r|--delete|--remove)
-            unstow_apps "${base[@]}" "${linux[@]}" "${windows[@]}"
+            unstow_apps "${base[@]}" "${macos[@]}" "${omarchy[@]}" "${ubuntu[@]}" "${windows[@]}"
             exit
-            ;;
-        -l|--linux)
-            stow_apps "$HOME" "${linux[@]}"
             ;;
         -m|--macos)
             stow_apps "$HOME" "${macos[@]}"
+            ;;
+        -o|--omarchy)
+            stow_apps "$HOME" "${omarchy[@]}"
+            ;;
+        -u|--ubuntu)
+            stow_apps "$HOME" "${ubuntu[@]}"
             ;;
         -w|--windows)
             copy_windows_apps "$WIN_HOME" "${windows[@]}"
