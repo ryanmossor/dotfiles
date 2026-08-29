@@ -1,17 +1,16 @@
 #!/usr/bin/bash
 
-# ===== Start omarchy default bashrc =====
+# Omarchy default bashrc
+if [[ $(uname -a) == *omarchy* ]]; then
+    # Omarchy environment (OMARCHY_PATH + PATH), needed even for non-interactive shells
+    [[ -r /usr/share/omarchy/default/bash/env-bootstrap ]] && source /usr/share/omarchy/default/bash/env-bootstrap
 
-# Omarchy environment (OMARCHY_PATH + PATH), needed even for non-interactive shells
-[[ -r /usr/share/omarchy/default/bash/env-bootstrap ]] && source /usr/share/omarchy/default/bash/env-bootstrap
+    # If not running interactively, don't do anything else (leave this above the rc source)
+    [[ $- != *i* ]] && return
 
-# If not running interactively, don't do anything else (leave this above the rc source)
-[[ $- != *i* ]] && return
-
-# Default Omarchy aliases and functions
-source "$OMARCHY_PATH/default/bash/rc"
-
-# ===== End omarchy default bashrc =====
+    # Default Omarchy aliases and functions
+    source "$OMARCHY_PATH/default/bash/rc"
+fi
 
 GREEN="\[\e[1;32m\]"
 RESET="\[\e[0m\]"
