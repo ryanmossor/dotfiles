@@ -44,7 +44,7 @@ run_setup() {
     [ -n "$1" ] && dir="$script_dir/setup/$1"
 
     # Find all executable files
-    setup_dir=$(find "$dir" -mindepth 1 -maxdepth 1 -type f -perm -111)
+    setup_dir=$(find "$dir" -mindepth 1 -maxdepth 1 -type f -perm -111 | sort)
 
     for script in $setup_dir; do
         if [ -n "$filter_list" ] && echo "$filter_list" | grep --invert-match --quiet "$(basename "$script" .sh)"; then

@@ -9,12 +9,12 @@ rm -rf ~/.config/hypr/{autostart,bindings,hyprland,input,looknfeel,monitors}.lua
     ~/.config/omarchy/{shell.json,shell.toml} \
     ~/.config/tmux/tmux.conf \
     ~/.config/ghostty/config \
+    ~/.config/git/config \
     ~/.bashrc
 
 # Remove system packages
 packages=(
     chromium
-    foot
     obsidian
 )
 for pkg in "${packages[@]}"; do

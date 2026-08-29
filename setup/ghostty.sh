@@ -9,10 +9,8 @@ case "$os" in
     omarchy)
         omarchy-install-terminal ghostty ;;
     ubuntu)
-        if ! have ghostty; then
-            sudo add-apt-repository ppa:mkasberg/ghostty-ubuntu
-            sudo apt-get update
-        fi
+        sudo add-apt-repository ppa:mkasberg/ghostty-ubuntu
+        sudo apt-get update
         sudo apt-get install ghostty -y
         ;;
     *)
