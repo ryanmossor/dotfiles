@@ -72,6 +72,7 @@ omarchy=(
     flameshot
     hypr
     omarchy
+    shortcuts
 )
 
 ubuntu=(

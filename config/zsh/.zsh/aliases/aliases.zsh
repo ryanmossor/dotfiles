@@ -20,7 +20,9 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-if have xclip; then
+if have wl-copy; then
+    alias clip='wl-copy'
+elif have xclip; then
     alias clip='xclip -selection clipboard'
 elif have pbcopy; then
     alias clip='pbcopy'
@@ -30,6 +32,7 @@ fi
 
 have bat && alias cat='bat --theme=Catppuccin-mocha --paging=never'
 have fdfind && alias fd='fdfind'
+have wii-u-gc-adapter && alias wiiu='sudo wii-u-gc-adapter'
 
 alias ld='lazydocker'
 alias lg='lazygit'
@@ -41,8 +44,6 @@ fi
 
 alias history='history -f 1'
 
-alias update='$DOTFILES/install.sh'
-
 alias cgc='cat ~/.gitconfig'
 alias gp='git push origin HEAD'
 alias gpf='git push origin HEAD --force-with-lease'
@@ -53,12 +54,7 @@ alias ebp='$EDITOR ~/.zshrc'
 
 alias vim='nvim'
 
-alias cvrc='cat ~/.vimrc'
-alias evrc='$EDITOR ~/.vimrc'
-
 alias hosts='cat ~/.ssh/config'
-
-alias td='tmux detach'
 
 wez() {
     if [[ $(uname -a) == *microsoft* ]]; then

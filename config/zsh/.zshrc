@@ -36,7 +36,8 @@ source_file "$HOME/.fzf.zsh"
 # Aliases
 source_file "$HOME/.zsh/aliases/aliases.zsh"
 [[ $(uname -a) == *microsoft* ]] && source_file "$HOME/.zsh/aliases/windows-aliases.zsh"
-[[ $(hostname) == *desktop* ]] && source_file "$HOME/.zsh/aliases/linux-aliases.zsh"
+[[ $(hostname) == *omarchy* ]] && source_file "$HOME/.zsh/aliases/omarchy-aliases.zsh"
+[[ $(uname -a) == *Ubuntu* ]] && source_file "$HOME/.zsh/aliases/ubuntu-aliases.zsh"
 [[ $(uname -s) == "Darwin" ]] && source_file "$HOME/.zsh/aliases/macos-aliases.zsh"
 
 bindkey -s ^f " $HOME/.local/scripts/tmux-dispensary\n"

@@ -1,6 +1,5 @@
-alias bp='dot --linux && source ~/.zshrc'
-
-alias wiiu='sudo wii-u-gc-adapter'
+alias bp='dot --ubuntu && source ~/.zshrc'
+alias update='$DOTFILES/install.sh'
 
 alias cursor='sudo update-alternatives --config x-cursor-theme'
 

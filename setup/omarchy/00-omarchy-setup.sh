@@ -11,3 +11,28 @@ rm -rf ~/.config/hypr/{autostart,bindings,hyprland,input,looknfeel,monitors}.lua
     ~/.config/ghostty/config \
     ~/.bashrc
 
+# Remove system packages
+packages=(
+    chromium
+    foot
+    obsidian
+)
+for pkg in "${packages[@]}"; do
+    omarchy-pkg-drop "$pkg"
+done
+
+# Remove launcher shortcuts
+shortcuts=(
+    foot
+    'Google Contacts'
+    'Google Maps'
+    'Google Messages'
+    'Google Photos'
+    HEY
+    WhatsApp
+    X
+    Zoom
+)
+for app in "${shortcuts[@]}"; do
+    omarchy-webapp-remove "$app"
+done

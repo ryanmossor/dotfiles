@@ -14,6 +14,7 @@ case "$os" in
             make
         )
         omarchy-pkg-add "${wiiu_deps[@]}"
+        echo uinput | sudo tee /etc/modules-load.d/uinput.conf
         ;;
     ubuntu)
         wiiu_deps=(
