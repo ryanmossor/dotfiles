@@ -1,5 +1,7 @@
 # https://git-scm.com/docs/git-config
 
+[include]
+    path = ~/.gitconfig_user
 [alias]
 	ca = commit --amend --no-edit
 	co = checkout
@@ -13,8 +15,6 @@
 	editor = vim
 [fetch]
 	prune = true
-[include]
-    path = ~/.gitconfig_user
 [push]
     autoSetupRemote = true   # Automatically set upstream branch on push
 [diff]

@@ -9,7 +9,7 @@ case "$os" in
         fi
         ;;
     omarchy)
-        ! have lazygit && omarchy-pkg-add lazygit ;;
+        ! have lazygit && omarchy-pkg-add lazygit diff-so-fancy ;;
     ubuntu)
         lazygit_latest=$(github_latest_tag "jesseduffield/lazygit")
         lazygit_current=$(lazygit -v 2> /dev/null | cut -d ' ' -f 6 | sed 's/version=\(.*\),/\1/')

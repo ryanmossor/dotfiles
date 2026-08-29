@@ -133,9 +133,10 @@ elif [[ "$os" == "ubuntu" ]]; then
     sudo apt-get install -y "${packages[@]}"
 fi
 
-if [[ $SHELL != "/bin/zsh" ]]; then
+# Omarchy requires bash as default shell -- set as default in ghostty/tmux config instead
+if [[ "$os" != "omarchy" ]] && [[ $SHELL != *zsh* ]]; then
     log "${green}Changing shell to zsh${clear}"
-    sudo chsh -s /bin/zsh "$USER"
+    sudo chsh -s $(which zsh) "$USER"
 fi
 
 run_setup

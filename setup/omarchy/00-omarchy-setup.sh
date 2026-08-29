@@ -7,4 +7,7 @@ rm -rf ~/.config/hypr/{autostart,bindings,hyprland,input,looknfeel,monitors}.lua
     ~/.config/nvim \
     ~/.config/omarchy/extensions/omarchy-menu.jsonc \
     ~/.config/omarchy/{shell.json,shell.toml} \
-    ~/.config/tmux/tmux.conf
+    ~/.config/tmux/tmux.conf \
+    ~/.config/ghostty/config \
+    ~/.bashrc
+
