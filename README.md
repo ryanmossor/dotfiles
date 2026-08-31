@@ -10,7 +10,7 @@ omarchy update
 git clone https://github.com/ryanmossor/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
-./install.sh --omarchy | tee output.txt
+./install.sh | tee output.txt
 ./stow.sh --omarchy
 ```
 
@@ -23,7 +23,7 @@ sudo apt-get install git -y
 git clone https://github.com/ryanmossor/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
-./install.sh --ubuntu | tee output.txt
+./install.sh | tee output.txt
 ./stow.sh --ubuntu
 ```
 

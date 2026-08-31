@@ -18,8 +18,11 @@ stow_apps() {
         stow -Rt "$target_dir" "$app"
 
         if [[ "$app" == "bat" ]]; then
-            [[ $(uname -s) == "Darwin" ]] && bat cache --build &> /dev/null
-            [[ $(uname -a) == *Ubuntu* ]] && batcat cache --build &> /dev/null
+            if [[ "$os" == "ubuntu" ]]; then
+                batcat cache --build &> /dev/null
+            else
+                bat cache --build &> /dev/null
+            fi
         fi
     done
     popd &> /dev/null || exit
