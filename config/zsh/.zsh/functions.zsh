@@ -213,3 +213,34 @@ function prepend_path() {
 function path() {
     echo "$PATH" | tr ':' '\n'
 }
+
+# Git clone repo. Pass '<username>/<repo>' as 1st arg. (Optional) 2nd arg is custom target path.
+function gc() {
+    if [ -n "$2" ]; then
+        dest="$2"
+    else
+        repo_name="${1##*/}" # Get last substring split by '/'
+        dest="$HOME/code/$repo_name"
+    fi
+    [ ! -d "$dest" ] && git clone "git@github.com:$1.git" $dest || echo "$dest already exists"
+}
+
+# Git clone personal. Pass repo name only as 1st arg. (Optional) 2nd arg is custom target path.
+function gcp() {
+    if [ -n "$2" ]; then
+        dest="$2"
+    else
+        dest="$HOME/code/$1"
+    fi
+    [ ! -d "$dest" ] && git clone "git@github.com:ryanmossor/$1.git" $dest || echo "$dest already exists"
+}
+
+# Git clone work. Pass repo name only as 1st arg. (Optional) 2nd arg is custom target path.
+function gcw() {
+    if [ -n "$2" ]; then
+        dest="$2"
+    else
+        dest="$HOME/work/$1"
+    fi
+    [ ! -d "$dest" ] && git clone "git@github.com:copelandsoftware/$1.git" $dest || echo "$dest already exists"
+}
