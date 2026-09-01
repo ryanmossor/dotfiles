@@ -4,5 +4,5 @@ Exec=sh -c "cd /home/ryan/Applications/ocarina-of-time && ./soh.appimage"
 Comment=Ocarina of Time - Ship of Harkinian
 Terminal=false
 Categories=Game;
-Icon=/home/ryan/Pictures/Icons/oot.png
+Icon=/home/ryan/.local/share/applications/icons/oot.png
 Type=Application

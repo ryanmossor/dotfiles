@@ -4,5 +4,5 @@ Exec=sh -c "cd /home/ryan/Applications/majoras-mask && ./2ship.appimage"
 Comment=Majora's Mask - Ship of Harkinian
 Terminal=false
 Categories=Game;
-Icon=/home/ryan/Pictures/Icons/mm.png
+Icon=/home/ryan/.local/share/applications/icons/mm.png
 Type=Application

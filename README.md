@@ -36,11 +36,6 @@ Initial installation/setup script. Can also be run to handle software updates.
 ./install.sh | tee output.txt
 ```
 
-**Base install plus Omarchy desktop setup (WM, fonts, desktop apps, etc.):**
-```bash
-./install.sh --omarchy | tee output.txt
-```
-
 **Dry run (print what *would* be executed, but don't execute it):**
 ```bash
 ./install.sh --dry
@@ -58,7 +53,7 @@ Initial installation/setup script. Can also be run to handle software updates.
 ./stow.sh
 ```
 
-**Options:**
+**Stow Options:**
 ```
 -h, --help
     Show help

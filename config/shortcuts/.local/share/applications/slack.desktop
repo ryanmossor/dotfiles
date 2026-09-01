@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Slack
-Exec=brave-browser --app=https://copeland-software.slack.com/
+Exec=brave --app=https://copeland-software.slack.com/
 Terminal=false
 Categories=Chat;
-Icon=~/Pictures/Icons/slack.png
+Icon=/home/ryan/.local/share/applications/icons/slack.png
 Type=Application
 StartupWMClass=slack

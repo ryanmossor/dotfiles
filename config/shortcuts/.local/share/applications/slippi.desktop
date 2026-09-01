@@ -4,5 +4,5 @@ Exec=sh -c "/home/ryan/Applications/slippi/Slippi.appimage --no-sandbox"
 Comment=Melee Netplay Launcher
 Terminal=false
 Categories=Game;
-Icon=/home/ryan/Pictures/Icons/slippi.png
+Icon=/home/ryan/.local/share/applications/icons/slippi.png
 Type=Application

@@ -23,6 +23,7 @@ done
 
 # Remove launcher shortcuts
 shortcuts=(
+    Basecamp
     foot
     'Google Contacts'
     'Google Maps'

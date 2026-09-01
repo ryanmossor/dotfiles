@@ -76,7 +76,7 @@ bindKey("SUPER + SLASH", "Bitwarden", { omarchy = "bitwarden" })
 bindKey("SUPER + SHIFT + SLASH", "1password", { omarchy = "1password" })
 
 -- Web apps
-bindKey("SUPER + M", "Spotify", { webapp = "https://open.spotify.com/" })
+bindKey("SUPER + M", "Spotify", { omarchy = "spotify" })
 bindKey("SUPER + Y", "YouTube", { webapp = "https://www.youtube.com/" })
 bindKey("SUPER + A", "ChatGPT", { webapp = "https://chatgpt.com/" })
 bindKey("SUPER + G", "Grok", { webapp = "https://www.grok.com/" })
