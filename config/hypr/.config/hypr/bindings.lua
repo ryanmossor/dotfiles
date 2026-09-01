@@ -79,7 +79,6 @@ o.bind("SUPER + SHIFT + CTRL + I", "Install AUR Package",
 -- o.bind("SUPER + SHIFT + PERIOD", "Lock & suspend", "omarchy-system-lock; systemctl suspend")
 
 -- o.bind("SUPER + SHIFT + S", "Screenshot", "flameshot gui")
-o.bind("SUPER + W", "Weather", "omarchy-notification-weather")
 o.bind("SUPER + SHIFT + S", "Screenshot", "omarchy-capture-screenshot")
 o.bind("SUPER + SHIFT + CTRL + S", "Extract text (OCR) from screenshot", "omarchy-capture-text")
 
