@@ -7,7 +7,6 @@ show_help() {
     echo "    dot [OPTIONS]"
     echo -e "\nOPTIONS:"
     echo "    -h, --help                Show this help message"
-    echo "    -i, --init, --install     Install/update required packages"
     echo "    -m, --macos               Set up MacOS-specific configurations"
     echo "    -o, --omarchy             Set up Omarchy-specific configurations"
     echo "    -u, --ubuntu              Set up Ubuntu-specific configurations"
@@ -34,7 +33,8 @@ while [[ $# -gt 0 ]]; do
         -w|--windows)
             options+=('--windows')
             ;;
-        *) echo "Unknown option: $1"
+        *)
+            echo "Unknown option: $1"
             exit
             ;;
     esac
