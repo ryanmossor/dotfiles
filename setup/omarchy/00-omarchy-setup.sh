@@ -10,7 +10,9 @@ rm -rf ~/.config/hypr/{autostart,bindings,hyprland,input,looknfeel,monitors}.lua
     ~/.config/tmux/tmux.conf \
     ~/.config/ghostty/config \
     ~/.config/git/config \
-    ~/.bashrc
+    ~/.bashrc \
+    ~/Projects \
+    ~/Work
 
 # Remove system packages
 packages=(

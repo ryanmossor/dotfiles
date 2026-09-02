@@ -16,7 +16,7 @@
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#decoration
 hl.config({
     general = {
-        border_size = 4,
+        border_size = 3,
         gaps_in = 4,
         gaps_out = 8,
         -- follow_mouse = 0,

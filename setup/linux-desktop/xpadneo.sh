@@ -21,12 +21,12 @@ case "$os" in
         if ! grep "MinConnectionInterval" /etc/bluetooth/main.conf &> /dev/null; then
             # Xbox controller input delay fix
             sudo cp /etc/bluetooth/main.conf /etc/bluetooth/main.conf.BAK
-            cat >> "/etc/bluetooth/main.conf" <<-EOF
-            [LE]
-            MinConnectionInterval=7
-            MaxConnectionInterval=9
-            ConnectionLatency=0
-            EOF
+            sudo tee -a /etc/bluetooth/main.conf > /dev/null << 'EOF'
+[LE]
+MinConnectionInterval=7
+MaxConnectionInterval=9
+ConnectionLatency=0
+EOF
             sudo systemctl restart bluetooth.service
         else
             echo "Xbox delay fix already implemented"
