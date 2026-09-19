@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Cemu
-Exec=sh -c "/mnt/adata/Games/cemu/cemu.appimage"
+Exec=sh -c "cd /mnt/adata/Games/cemu && ./cemu.appimage"
 Comment=Wii U Emulator
 Terminal=false
 Categories=Game;

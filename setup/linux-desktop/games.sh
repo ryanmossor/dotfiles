@@ -47,6 +47,8 @@ if [[ "$slippi_current" == "$slippi_latest" ]]; then
     echo "Slippi already up to date"
 else
     [[ "$os" == "ubuntu" ]] && sudo apt-get install -y libopengl0
+    [[ "$os" == "omarchy" ]] && omarchy-pkg-add fuse2
+
     [ -z "$slippi_current" ] && echo "Installing Slippi ${slippi_latest}" \
         || echo "Updating Slippi from ${slippi_current} to ${slippi_latest}"
     slippi_download=$(get_latest_appimage "${slippi_repo}" "AppImage")
